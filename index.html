@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vamsi Krishna Peeta — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0b0c10;--ink2:#1a1d2e;--ink3:#252840;
+  --cream:#f4f0e8;--cream2:#ede9df;
+  --acid:#b8ff57;--acid2:#9de040;
+  --sky:#6ee7f7;--rose:#ff6b8a;--amber:#ffb830;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Syne',sans-serif;
+  background:var(--ink);
+  color:var(--cream);
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:12px;height:12px;background:var(--acid);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid rgba(184,255,87,0.5);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .25s cubic-bezier(.23,1,.32,1);}
+
+/* NOISE OVERLAY */
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:200px 200px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.4rem 3rem;backdrop-filter:blur(8px);background:rgba(11,12,16,.7);border-bottom:.5px solid rgba(184,255,87,.08);}
+.nav-logo{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;color:var(--acid);letter-spacing:.12em;display:flex;align-items:center;gap:8px;}
+.nav-logo-dot{width:6px;height:6px;border-radius:50%;background:var(--acid);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.2}}
+.nav-links{display:flex;gap:2.5rem}
+.nav-links a{font-size:11px;font-weight:600;color:rgba(244,240,232,0.4);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;position:relative;}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--acid);transition:width .3s;}
+.nav-links a:hover{color:var(--acid)}
+.nav-links a:hover::after{width:100%}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 3rem 5rem;position:relative;overflow:hidden;gap:2rem;}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 60% 80% at 70% 50%,rgba(110,231,247,.07) 0%,transparent 60%),radial-gradient(ellipse 40% 50% at 10% 80%,rgba(184,255,87,.06) 0%,transparent 60%);}
+.hero-grid-lines{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(244,240,232,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(244,240,232,.04) 1px,transparent 1px);background-size:80px 80px;}
+.hero-left{position:relative;z-index:2}
+.hero-number{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--acid);letter-spacing:.15em;margin-bottom:1.5rem;display:flex;align-items:center;gap:12px;}
+.hero-number::before{content:'';width:32px;height:1px;background:var(--acid)}
+h1.name{font-family:'Playfair Display',serif;font-size:clamp(3.5rem,6vw,5.5rem);line-height:1.05;font-weight:400;color:var(--cream);margin-bottom:.2rem;}
+h1.name em{font-style:italic;color:var(--acid);display:block;}
+.hero-role{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(244,240,232,0.35);margin:1.5rem 0 2rem;display:flex;align-items:center;gap:12px;}
+.hero-role::after{content:'';flex:0 0 40px;height:1px;background:rgba(244,240,232,.2)}
+.hero-desc{font-size:1rem;color:rgba(244,240,232,.6);max-width:380px;line-height:1.75;font-weight:400;margin-bottom:2.5rem;}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+.cta-main{display:inline-flex;align-items:center;gap:10px;background:var(--acid);color:var(--ink);font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:background .2s,transform .15s;}
+.cta-main:hover{background:var(--acid2);transform:translateY(-2px)}
+.cta-ghost{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(244,240,232,.2);color:rgba(244,240,232,.7);font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:14px 28px;border-radius:2px;text-decoration:none;transition:border-color .2s,color .2s,transform .15s;}
+.cta-ghost:hover{border-color:var(--acid);color:var(--acid);transform:translateY(-2px)}
+
+/* HERO RIGHT */
+.hero-right{position:relative;z-index:2;display:flex;justify-content:center}
+.profile-card{width:280px;background:var(--ink2);border:1px solid rgba(244,240,232,.08);border-radius:16px;padding:2rem;position:relative;overflow:hidden;}
+.profile-card::before{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(184,255,87,.15) 0%,transparent 70%);}
+.profile-avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(135deg,var(--acid) 0%,var(--sky) 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:700;color:var(--ink);margin-bottom:1.2rem;}
+.profile-name{font-size:1rem;font-weight:700;color:var(--cream);margin-bottom:3px}
+.profile-title{font-size:11px;color:rgba(244,240,232,.4);letter-spacing:.05em;margin-bottom:1.5rem}
+.profile-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pstat{background:rgba(244,240,232,.04);border:1px solid rgba(244,240,232,.06);border-radius:10px;padding:.75rem;text-align:center;}
+.pstat-num{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--acid);line-height:1}
+.pstat-label{font-size:9px;color:rgba(244,240,232,.35);letter-spacing:.08em;margin-top:4px;text-transform:uppercase}
+.badge-available{display:inline-flex;align-items:center;gap:6px;background:rgba(184,255,87,.1);border:1px solid rgba(184,255,87,.25);color:var(--acid);font-size:10px;font-family:'IBM Plex Mono',monospace;padding:6px 14px;border-radius:20px;margin-top:1.2rem;letter-spacing:.05em;}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--acid);animation:blink 2s infinite}
+
+/* MARQUEE */
+.strip{background:var(--acid);padding:.65rem 0;overflow:hidden;white-space:nowrap;position:relative;z-index:2;}
+.strip-inner{display:inline-flex;animation:march 20s linear infinite;}
+.strip-item{font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:500;color:var(--ink);letter-spacing:.08em;text-transform:uppercase;padding:0 2.5rem;}
+.strip-item::after{content:'✦';margin-left:2.5rem;font-size:8px}
+@keyframes march{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.wrap{max-width:1140px;margin:0 auto;padding:0 3rem}
+section{padding:7rem 0}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--acid);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:12px;}
+.eyebrow::before{content:'';width:24px;height:1px;background:var(--acid)}
+h2.section-title{font-family:'Playfair Display',serif;font-size:clamp(2.2rem,4vw,3.4rem);font-weight:400;line-height:1.15;color:var(--cream);margin-bottom:0;}
+h2.section-title em{font-style:italic;color:var(--acid)}
+
+/* ABOUT */
+#about .grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:4rem;}
+.about-text p{font-size:.95rem;color:rgba(244,240,232,.6);line-height:1.85;margin-bottom:1.2rem;}
+.about-text p strong{color:var(--cream);font-weight:600}
+.edu-stack{display:flex;flex-direction:column;gap:1px}
+.edu-item{background:var(--ink2);padding:1.5rem 1.8rem;position:relative;overflow:hidden;transition:background .2s;}
+.edu-item:first-child{border-radius:12px 12px 0 0}
+.edu-item:last-child{border-radius:0 0 12px 12px}
+.edu-item:hover{background:var(--ink3)}
+.edu-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--acid) 0%,var(--sky) 100%);}
+.edu-school{font-size:.9rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.edu-deg{font-size:.78rem;color:var(--acid);letter-spacing:.03em;margin-bottom:4px}
+.edu-meta{font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:rgba(244,240,232,.3)}
+
+/* EXPERIENCE */
+#experience{background:var(--ink2)}
+.exp-list{margin-top:4rem;display:flex;flex-direction:column}
+.exp-card{display:grid;grid-template-columns:200px 1fr;padding:2.8rem 0;border-bottom:1px solid rgba(244,240,232,.06);gap:3rem;}
+.exp-card:last-child{border-bottom:none}
+.exp-period{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:rgba(244,240,232,.3);letter-spacing:.05em;margin-bottom:.6rem;}
+.exp-loc{font-size:.75rem;color:rgba(244,240,232,.3);margin-bottom:.8rem}
+.tag-type{display:inline-block;font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 12px;border-radius:20px;}
+.tag-ft{background:rgba(184,255,87,.12);color:var(--acid);border:1px solid rgba(184,255,87,.25)}
+.tag-intern{background:rgba(255,184,48,.1);color:var(--amber);border:1px solid rgba(255,184,48,.2)}
+.exp-role{font-size:1.15rem;font-weight:700;color:var(--cream);margin-bottom:4px}
+.exp-co{font-size:.8rem;color:var(--acid);letter-spacing:.05em;margin-bottom:1.2rem;display:flex;align-items:center;gap:8px;}
+.exp-co::after{content:'';flex:0 0 30px;height:1px;background:rgba(184,255,87,.3)}
+.bullets{display:flex;flex-direction:column;gap:.7rem}
+.bullet{font-size:.85rem;color:rgba(244,240,232,.55);padding-left:20px;position:relative;line-height:1.65;}
+.bullet::before{content:'';position:absolute;left:0;top:.6rem;width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,var(--acid),var(--sky));}
+
+/* PROJECTS */
+.projects-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.proj-card{background:var(--ink2);border:1px solid rgba(244,240,232,.06);border-radius:14px;padding:1.8rem;position:relative;overflow:hidden;transition:transform .25s,border-color .25s;display:flex;flex-direction:column;}
+.proj-card:hover{transform:translateY(-5px);border-color:rgba(184,255,87,.25)}
+.proj-card::after{content:'';position:absolute;top:0;right:0;width:80px;height:80px;background:radial-gradient(circle,rgba(110,231,247,.08) 0%,transparent 70%);transform:translate(20%,-20%);}
+.proj-type{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,240,232,.3);margin-bottom:1rem;display:flex;align-items:center;gap:8px;}
+.proj-type-dot{width:6px;height:6px;border-radius:50%}
+.dot-bi{background:var(--acid)}.dot-ai{background:var(--sky)}.dot-ml{background:var(--rose)}.dot-py{background:var(--amber)}.dot-cs{background:#b39ddb}
+.proj-title{font-size:.95rem;font-weight:700;color:var(--cream);line-height:1.35;margin-bottom:.8rem;flex:1;}
+.proj-desc{font-size:.78rem;color:rgba(244,240,232,.45);line-height:1.65;margin-bottom:1.2rem}
+.proj-chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-family:'IBM Plex Mono',monospace;font-size:.6rem;padding:4px 10px;border-radius:4px;letter-spacing:.05em;background:rgba(244,240,232,.05);color:rgba(244,240,232,.4);border:1px solid rgba(244,240,232,.08);}
+.proj-link{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:600;color:var(--acid);text-decoration:none;letter-spacing:.05em;margin-top:1rem;opacity:0;transition:opacity .2s;}
+.proj-card:hover .proj-link{opacity:1}
+.proj-link svg{width:12px;height:12px}
+
+/* PUBLICATION */
+#publication{background:var(--ink3)}
+.pub-card{margin-top:3rem;background:var(--ink2);border-radius:16px;border:1px solid rgba(244,240,232,.07);padding:2.5rem 3rem;display:grid;grid-template-columns:1fr auto;gap:2rem;align-items:center;position:relative;overflow:hidden;}
+.pub-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--sky) 0%,var(--acid) 100%);}
+.pub-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(110,231,247,.1);border:1px solid rgba(110,231,247,.2);color:var(--sky);font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.08em;padding:5px 12px;border-radius:20px;margin-bottom:1rem;}
+.pub-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--cream);line-height:1.4;margin-bottom:.75rem;}
+.pub-authors{font-size:.78rem;color:rgba(244,240,232,.4);margin-bottom:.5rem}
+.pub-journal{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--acid);letter-spacing:.05em;}
+.pub-abstract{font-size:.78rem;color:rgba(244,240,232,.35);margin-top:.8rem;line-height:1.6}
+.pub-action a{display:inline-flex;align-items:center;gap:8px;flex-direction:column;background:rgba(184,255,87,.08);border:1px solid rgba(184,255,87,.2);color:var(--acid);text-decoration:none;padding:1rem 1.5rem;border-radius:10px;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-align:center;transition:background .2s;white-space:nowrap;}
+.pub-action a:hover{background:rgba(184,255,87,.15)}
+.pub-action svg{width:20px;height:20px;fill:var(--acid)}
+
+/* SKILLS */
+.skills-wrapper{margin-top:3.5rem;display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.skill-cat{background:var(--ink2);border-radius:12px;border:1px solid rgba(244,240,232,.06);padding:1.5rem;}
+.skill-cat-header{display:flex;align-items:center;gap:10px;font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(244,240,232,.35);padding-bottom:.75rem;border-bottom:1px solid rgba(244,240,232,.06);margin-bottom:.9rem;}
+.skill-ico{font-size:14px}
+.skill-pills{display:flex;flex-wrap:wrap;gap:6px}
+.skill-pill{font-size:.72rem;padding:5px 12px;border-radius:20px;color:rgba(244,240,232,.65);background:rgba(244,240,232,.05);border:1px solid rgba(244,240,232,.08);transition:border-color .2s,color .2s;}
+.skill-pill:hover{border-color:rgba(184,255,87,.3);color:var(--acid)}
+
+/* CONTACT */
+#contact{background:var(--ink)}
+.contact-box{margin-top:4rem;border:1px solid rgba(244,240,232,.07);border-radius:20px;padding:4rem;text-align:center;background:var(--ink2);position:relative;overflow:hidden;}
+.contact-box::before{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:400px;height:200px;background:radial-gradient(ellipse,rgba(184,255,87,.08) 0%,transparent 70%);pointer-events:none;}
+.contact-big{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);color:var(--cream);font-weight:400;line-height:1.2;margin:1rem 0 .8rem;}
+.contact-big em{color:var(--acid);font-style:italic}
+.contact-sub{font-size:.9rem;color:rgba(244,240,232,.4);max-width:480px;margin:0 auto 2.5rem}
+.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.clink{display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(244,240,232,.12);color:rgba(244,240,232,.7);padding:13px 22px;border-radius:8px;text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;transition:border-color .2s,color .2s,background .2s;}
+.clink:hover{border-color:var(--acid);color:var(--acid);background:rgba(184,255,87,.05)}
+.clink svg{width:15px;height:15px;fill:currentColor;flex-shrink:0}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem 3rem;font-family:'IBM Plex Mono',monospace;font-size:.65rem;color:rgba(244,240,232,.2);letter-spacing:.08em;border-top:1px solid rgba(244,240,232,.05);}
+
+/* ANIMATIONS */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-28px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
+.reveal-left.in{opacity:1;transform:none}
+
+@media(max-width:900px){
+  nav{padding:1rem 1.5rem}
+  .nav-links{gap:1.2rem}
+  .hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;gap:3rem}
+  .hero-right{display:none}
+  .wrap{padding:0 1.5rem}
+  #about .grid,.proj-grid,.skills-wrapper{grid-template-columns:1fr}
+  .exp-card{grid-template-columns:1fr;gap:1rem}
+  .pub-card{grid-template-columns:1fr;gap:1.5rem}
+  .contact-box{padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="ring"></div>
+
+<nav>
+  <div class="nav-logo"><div class="nav-logo-dot"></div>VKP.portfolio</div>
+  <div class="nav-links">
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#publication">Research</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-left reveal">
+    <div class="hero-number">01 — Introduction</div>
+    <h1 class="name">Vamsi Krishna<br><em>Peeta</em></h1>
+    <div class="hero-role">Data Analyst &nbsp;·&nbsp; Power BI Developer &nbsp;·&nbsp; Business Analyst</div>
+    <p class="hero-desc">Most people see spreadsheets. I see decisions waiting to be made. I build Power BI dashboards executives actually rely on, surface the insights buried in business data, and translate numbers into actions that move organisations forward. IEEE published researcher. Based in the USA and open to onsite opportunities.</p>
+    <div class="hero-ctas">
+      <a href="#projects" class="cta-main">View Work ↓</a>
+      <a href="https://www.linkedin.com/in/vamsi-krishna-peeta-23585223a/" class="cta-ghost" target="_blank">LinkedIn ↗</a>
+      <a href="https://github.com/vamsi57567" class="cta-ghost" target="_blank">GitHub ↗</a>
+    </div>
+  </div>
+  <div class="hero-right reveal">
+    <div class="profile-card">
+      <div class="profile-avatar">VK</div>
+      <div class="profile-name">Vamsi Krishna Peeta</div>
+      <div class="profile-title">Data Analyst · Power BI Developer · USA</div>
+      <div class="profile-stats">
+        <div class="pstat"><div class="pstat-num">15</div><div class="pstat-label">Repos</div></div>
+        <div class="pstat"><div class="pstat-num">1</div><div class="pstat-label">Publication</div></div>
+        <div class="pstat"><div class="pstat-num">2+</div><div class="pstat-label">Yrs Exp</div></div>
+        <div class="pstat"><div class="pstat-num">5</div><div class="pstat-label">Projects</div></div>
+      </div>
+      <div class="badge-available"><div class="badge-dot"></div>Open to opportunities</div>
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <span class="strip-item">Power BI</span><span class="strip-item">DAX</span><span class="strip-item">SQL</span><span class="strip-item">Data Analysis</span><span class="strip-item">Business Intelligence</span><span class="strip-item">Power Query</span><span class="strip-item">Excel VBA</span><span class="strip-item">KPI Dashboards</span><span class="strip-item">Business Analysis</span><span class="strip-item">IEEE Researcher</span>
+    <span class="strip-item">Power BI</span><span class="strip-item">DAX</span><span class="strip-item">SQL</span><span class="strip-item">Data Analysis</span><span class="strip-item">Business Intelligence</span><span class="strip-item">Power Query</span><span class="strip-item">Excel VBA</span><span class="strip-item">KPI Dashboards</span><span class="strip-item">Business Analysis</span><span class="strip-item">IEEE Researcher</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="eyebrow reveal">02 — About</div>
+    <h2 class="section-title reveal">The analyst behind<br>the <em>dashboards</em></h2>
+    <div class="grid">
+      <div class="about-text reveal-left">
+        <p>I'm a <strong>Data Analyst and Power BI Developer</strong> with a sharp focus on business intelligence, reporting, and helping organisations make better decisions through clean data and clear visuals. Currently completing my Master of Professional Studies in Data Science at the University of Maryland, Baltimore County.</p>
+        <p>At Minnodi LLC, I design <strong>Power BI dashboards</strong> that give leadership real answers — tracking KPIs, revenue performance, and operational health across the business. I write DAX, build data models, automate reporting with Power Query and Excel VBA, and work directly with stakeholders to turn business questions into dashboards people actually open every morning.</p>
+        <p>I have also published peer reviewed research in IEEE on detecting deforestation from satellite imagery using machine learning. Because good analysis does not stop at the business — it can go anywhere data matters.</p>
+      </div>
+      <div class="edu-stack reveal">
+        <div class="edu-item">
+          <div class="edu-school">University of Maryland, Baltimore County</div>
+          <div class="edu-deg">MS · Professional Studies in Data Science</div>
+          <div class="edu-meta">Aug 2024 — Present · Baltimore, USA</div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-school">SRM University</div>
+          <div class="edu-deg">Bachelor of Engineering · Computer Science and Engineering</div>
+          <div class="edu-meta">Jun 2020 — May 2024 · Andhra Pradesh, India</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="eyebrow reveal">03 — Experience</div>
+    <h2 class="section-title reveal">Where I've made<br><em>impact</em></h2>
+    <div class="exp-list reveal">
+      <div class="exp-card">
+        <div>
+          <div class="exp-period">Present</div>
+          <div class="exp-loc">Baltimore, USA</div>
+          <span class="tag-type tag-ft">Full-Time</span>
+        </div>
+        <div>
+          <div class="exp-role">Power BI &amp; Business Analyst</div>
+          <div class="exp-co">Minnodi LLC</div>
+          <div class="bullets">
+            <div class="bullet">Designed interactive Power BI dashboards tracking KPIs, business performance, and operational metrics across the enterprise.</div>
+            <div class="bullet">Built DAX data models enabling dynamic self service reporting, eliminating hours of manual compilation per week.</div>
+            <div class="bullet">Automated reporting workflows via Power BI and Excel VBA, cutting manual effort significantly.</div>
+            <div class="bullet">Conducted business and market analysis translating stakeholder requirements into data driven strategic decisions.</div>
+          </div>
+        </div>
+      </div>
+      <div class="exp-card">
+        <div>
+          <div class="exp-period">Jun – Aug 2025</div>
+          <div class="exp-loc">Bangalore, India</div>
+          <span class="tag-type tag-intern">Internship</span>
+        </div>
+        <div>
+          <div class="exp-role">Data Analyst</div>
+          <div class="exp-co">Bendito Soft Tech Pvt. Ltd.</div>
+          <div class="bullets">
+            <div class="bullet">Built Python ETL pipelines extracting, transforming, and integrating HRM data across multiple enterprise systems.</div>
+            <div class="bullet">Performed Pandas based data cleaning and transformation ensuring accuracy across all reporting layers.</div>
+            <div class="bullet">Tested and validated REST APIs via Postman ensuring reliable data flow and seamless system integration.</div>
+            <div class="bullet">Documented workflows and API integrations creating scalable and maintainable process records.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="projects-header">
+      <div>
+        <div class="eyebrow reveal">04 — Projects</div>
+        <h2 class="section-title reveal">Built &amp;<br><em>shipped</em></h2>
+      </div>
+    </div>
+    <div class="proj-grid">
+      <div class="proj-card reveal">
+        <div class="proj-type"><span class="proj-type-dot dot-bi"></span>Business Intelligence</div>
+        <div class="proj-title">Meta Ad Performance Power BI Dashboard</div>
+        <div class="proj-desc">End to end interactive dashboard analyzing Meta ad campaign metrics — impressions, CTR, engagement, conversions, and ROAS — to drive marketing decisions at scale.</div>
+        <div class="proj-chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">SQL</span><span class="chip">KPI Design</span></div>
+        <a href="https://github.com/vamsi57567" class="proj-link" target="_blank">View on GitHub <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-type"><span class="proj-type-dot dot-ai"></span>Trustworthy AI</div>
+        <div class="proj-title">Hallucination Detection &amp; Mitigation via RAG</div>
+        <div class="proj-desc">8 layer RAG system fusing FAISS dense retrieval and BM25 sparse retrieval with NLI based fact verification. Achieved +5.95pp accuracy on FEVER dataset across 15,000 claims.</div>
+        <div class="proj-chips"><span class="chip">Python</span><span class="chip">FAISS</span><span class="chip">BM25</span><span class="chip">NLP</span><span class="chip">NLI</span><span class="chip">RAG</span></div>
+        <a href="https://github.com/vamsi57567" class="proj-link" target="_blank">View on GitHub <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-type"><span class="proj-type-dot dot-ml"></span>Deep Learning · Capstone</div>
+        <div class="proj-title">Deforestation Detection from Satellite Imagery</div>
+        <div class="proj-desc">Custom CNN trained on large-scale satellite data to detect deforested regions, outperforming baseline models. Visualized spatial prediction patterns across global imagery sets.</div>
+        <div class="proj-chips"><span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">CNN</span><span class="chip">Remote Sensing</span></div>
+        <a href="https://github.com/vamsi57567" class="proj-link" target="_blank">View on GitHub <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-type"><span class="proj-type-dot dot-py"></span>Data Analysis</div>
+        <div class="proj-title">Wholesale Price Index — Exploratory Data Analysis</div>
+        <div class="proj-desc">Deep-dive EDA notebook on WPI commodity data — trend decomposition, correlation matrices, and visualizations surfacing macro price drivers across sectors.</div>
+        <div class="proj-chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Jupyter</span><span class="chip">EDA</span><span class="chip">Statistics</span></div>
+        <a href="https://github.com/vamsi57567/Exploratory_data_analysis" class="proj-link" target="_blank">View on GitHub <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
+      </div>
+      <div class="proj-card reveal">
+        <div class="proj-type"><span class="proj-type-dot dot-py"></span>Big Data</div>
+        <div class="proj-title">MapReduce Word Count &amp; NLP Pipeline</div>
+        <div class="proj-desc">Implemented the MapReduce paradigm from scratch in Python for distributed word counting and non-English word filtering across large multi-file corpora.</div>
+        <div class="proj-chips"><span class="chip">Python</span><span class="chip">MapReduce</span><span class="chip">Jupyter</span><span class="chip">NLP</span><span class="chip">Big Data</span></div>
+        <a href="https://github.com/vamsi57567/Mapreduce" class="proj-link" target="_blank">View on GitHub <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PUBLICATION -->
+<section id="publication">
+  <div class="wrap">
+    <div class="eyebrow reveal">05 — Research</div>
+    <h2 class="section-title reveal">Peer-reviewed<br><em>publication</em></h2>
+    <div class="pub-card reveal">
+      <div>
+        <div class="pub-badge">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor"/><path d="M5 3v4M3 5h4" stroke="currentColor" stroke-width="1"/></svg>
+          IEEE Xplore &nbsp;·&nbsp; Conference Publication &nbsp;·&nbsp; 2024
+        </div>
+        <div class="pub-title">Deforestation Detection from Remote Sensing Images using Machine Learning</div>
+        <div class="pub-authors">Vamsi Krishna Peeta et al. &nbsp;·&nbsp; SRM Institute of Science and Technology</div>
+        <div class="pub-journal">IEEE Xplore &nbsp;·&nbsp; DOI: 10.1109/10724972 &nbsp;·&nbsp; Conference Paper</div>
+        <p class="pub-abstract">Published in IEEE Xplore, this research applies machine learning and deep learning to satellite remote sensing data to analyze and detect deforestation patterns at scale. The study extracts key parameters including vegetation cover change, forest loss, and land use dynamics — combining CNNs with remote sensing to produce deforestation maps suitable for real environmental monitoring.</p>
+      </div>
+      <div class="pub-action">
+        <a href="https://ieeexplore.ieee.org/document/10724972" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm0-10h4v6h6v-6h4l-7-7-7 7z"/></svg>
+          Read on IEEE
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" style="background:var(--ink2)">
+  <div class="wrap">
+    <div class="eyebrow reveal">06 — Skills</div>
+    <h2 class="section-title reveal">Technical<br><em>toolkit</em></h2>
+    <div class="skills-wrapper">
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header"><span class="skill-ico">📊</span>Power BI Development</div>
+        <div class="skill-pills"><span class="skill-pill">Power BI Desktop</span><span class="skill-pill">DAX</span><span class="skill-pill">Power Query</span><span class="skill-pill">Data Modelling</span><span class="skill-pill">KPI Design</span><span class="skill-pill">Report Publishing</span></div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header"><span class="skill-ico">🗄️</span>Data Analysis</div>
+        <div class="skill-pills"><span class="skill-pill">SQL</span><span class="skill-pill">Python</span><span class="skill-pill">Pandas</span><span class="skill-pill">NumPy</span><span class="skill-pill">EDA</span><span class="skill-pill">Statistical Analysis</span></div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header"><span class="skill-ico">📑</span>Reporting and Excel</div>
+        <div class="skill-pills"><span class="skill-pill">Excel Advanced</span><span class="skill-pill">VBA Macros</span><span class="skill-pill">Pivot Tables</span><span class="skill-pill">Automated Reports</span><span class="skill-pill">Dashboard Design</span></div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header"><span class="skill-ico">📋</span>Business Analysis</div>
+        <div class="skill-pills"><span class="skill-pill">Requirements Gathering</span><span class="skill-pill">BRD / FRD</span><span class="skill-pill">Gap Analysis</span><span class="skill-pill">Process Mapping</span><span class="skill-pill">Stakeholder Comms</span></div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header"><span class="skill-ico">🔧</span>Data Engineering</div>
+        <div class="skill-pills"><span class="skill-pill">ETL Pipelines</span><span class="skill-pill">Data Cleaning</span><span class="skill-pill">Data Transformation</span><span class="skill-pill">REST APIs</span><span class="skill-pill">Postman</span></div>
+      </div>
+      <div class="skill-cat reveal">
+        <div class="skill-cat-header"><span class="skill-ico">📈</span>Analytics and Testing</div>
+        <div class="skill-pills"><span class="skill-pill">A/B Testing</span><span class="skill-pill">Hypothesis Testing</span><span class="skill-pill">Descriptive Statistics</span><span class="skill-pill">Data Driven Decisions</span><span class="skill-pill">Business Insights</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="eyebrow reveal">07 — Contact</div>
+    <h2 class="section-title reveal">Let's build something<br>that <em>matters</em></h2>
+    <div class="contact-box reveal">
+      <p class="contact-sub">Open to full time roles in data analytics, Power BI development, and business analysis. Based in the USA — onsite, hybrid, and remote all welcome.</p>
+      <div class="contact-links">
+        <a href="https://www.linkedin.com/in/vamsi-krishna-peeta-23585223a/" class="clink" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://github.com/vamsi57567" class="clink" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
+        </a>
+        <a href="mailto:vamsi57567@gmail.com" class="clink">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email Me
+        </a>
+        <a href="https://ieeexplore.ieee.org/document/10724972" class="clink" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z"/></svg>
+          IEEE Paper
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 · Vamsi Krishna Peeta · USA · Designed with precision</footer>
+
+<script>
+const cur=document.getElementById('cur'),ring=document.getElementById('ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function loop(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-left').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
