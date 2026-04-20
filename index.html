@@ -4,599 +4,1572 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Vamsi Krishna Peeta — Data Analyst &amp; Power BI Developer</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --ink:#08090f;--ink2:#111422;--ink3:#1c2038;
-  --cream:#f2eee6;--muted:rgba(242,238,230,.5);--hint:rgba(242,238,230,.25);
-  --acid:#b8ff57;--acid2:#9de040;
-  --sky:#5ee7f5;--rose:#ff5f7e;--amber:#ffc03d;--violet:#a78bfa;
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TOKENS ── */
+:root {
+  --bg:    #060408;
+  --s1:    #0d0a12;
+  --s2:    #14101a;
+  --s3:    #1e1825;
+  --red:   #e8192c;
+  --red2:  #ff3349;
+  --gold:  #f5c842;
+  --cream: #f0ece3;
+  --body:  #ccc8bf;
+  --sub:   #9a968e;
+  --hint:  #6a6760;
+  --line:  rgba(240,236,227,.08);
 }
-html{scroll-behavior:smooth}
-body{font-family:'Syne',sans-serif;background:var(--ink);color:var(--cream);overflow-x:hidden;cursor:none}
-.cur{position:fixed;width:10px;height:10px;background:var(--acid);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:difference;transition:width .15s,height .15s}
-.cur-ring{position:fixed;width:34px;height:34px;border:1px solid rgba(184,255,87,.35);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
-body::after{content:'';position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:1.25rem 3rem;background:rgba(8,9,15,.8);backdrop-filter:blur(14px);border-bottom:.5px solid rgba(184,255,87,.07)}
-.nav-logo{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--acid);letter-spacing:.14em;display:flex;align-items:center;gap:9px}
-.nav-dot{width:6px;height:6px;border-radius:50%;background:var(--acid);animation:pulse 2.2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
-.nav-links{display:flex;gap:2.2rem}
-.nav-links a{font-size:10px;font-weight:700;color:var(--hint);text-decoration:none;letter-spacing:.13em;text-transform:uppercase;transition:color .2s;position:relative}
-.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:var(--acid);transition:width .3s}
-.nav-links a:hover{color:var(--acid)}
-.nav-links a:hover::after{width:100%}
+/* ── BASE ── */
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--cream);
+  overflow-x: hidden;
+  cursor: none;
+  font-size: 16px;
+  line-height: 1.6;
+}
 
-/* HERO */
-.hero{min-height:100vh;display:grid;grid-template-columns:58% 42%;align-items:center;padding:8rem 3rem 5rem;position:relative;overflow:hidden;gap:1rem}
-.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 55% 70% at 75% 45%,rgba(94,231,245,.06) 0%,transparent 65%),radial-gradient(ellipse 35% 45% at 5% 85%,rgba(184,255,87,.07) 0%,transparent 60%),radial-gradient(ellipse 40% 50% at 50% 10%,rgba(167,139,250,.04) 0%,transparent 60%)}
-.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(242,238,230,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(242,238,230,.03) 1px,transparent 1px);background-size:72px 72px;mask-image:radial-gradient(ellipse 80% 80% at 50% 50%,black 40%,transparent 100%)}
-.hero-left{position:relative;z-index:2}
-.hero-kicker{font-family:'IBM Plex Mono',monospace;font-size:10px;color:var(--acid);letter-spacing:.18em;margin-bottom:1.6rem;display:flex;align-items:center;gap:14px}
-.hero-kicker::before{content:'';width:28px;height:1px;background:var(--acid)}
-h1.name{font-family:'Playfair Display',serif;font-size:clamp(3.2rem,5.5vw,5.2rem);line-height:1.06;font-weight:400;color:var(--cream)}
-h1.name em{font-style:italic;color:var(--acid);display:block}
-.hero-roles{display:flex;align-items:center;gap:8px;margin:1.6rem 0 1.8rem;flex-wrap:wrap}
-.role-pill{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 13px;border-radius:20px;border:.5px solid rgba(184,255,87,.3);color:rgba(184,255,87,.8);background:rgba(184,255,87,.06)}
-.hero-desc{font-size:.95rem;color:var(--muted);max-width:500px;line-height:1.82;margin-bottom:2.5rem}
-.hero-desc strong{color:var(--cream);font-weight:600}
-.hero-ctas{display:flex;gap:.9rem;flex-wrap:wrap}
-.cta-main{display:inline-flex;align-items:center;gap:9px;background:var(--acid);color:var(--ink);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:13px 26px;border-radius:3px;text-decoration:none;transition:background .2s,transform .15s}
-.cta-main:hover{background:var(--acid2);transform:translateY(-2px)}
-.cta-ghost{display:inline-flex;align-items:center;gap:9px;border:.5px solid rgba(242,238,230,.2);color:rgba(242,238,230,.65);font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;padding:13px 26px;border-radius:3px;text-decoration:none;transition:all .2s}
-.cta-ghost:hover{border-color:var(--acid);color:var(--acid);transform:translateY(-2px)}
+/* ── CURSOR ── */
+#cur {
+  position: fixed; width: 8px; height: 8px;
+  background: var(--red); border-radius: 50%;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  mix-blend-mode: difference;
+  transition: width .15s, height .15s;
+}
+#ring {
+  position: fixed; width: 30px; height: 30px;
+  border: 1px solid rgba(232,25,44,.4); border-radius: 50%;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+}
+body.hl #cur { width: 16px; height: 16px; }
+body.hl #ring { width: 44px; height: 44px; border-color: rgba(232,25,44,.75); }
 
-/* HERO RIGHT — PERSONAL CARD */
-.hero-right{position:relative;z-index:2;display:flex;justify-content:center;align-items:center}
-.profile-card{width:100%;max-width:360px;background:var(--ink2);border:1px solid rgba(242,238,230,.08);border-radius:20px;overflow:hidden;box-shadow:0 40px 80px rgba(0,0,0,.5);position:relative}
-.profile-card::before{content:'';position:absolute;top:-60px;right:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(184,255,87,.1) 0%,transparent 70%);pointer-events:none}
-.pc-top{padding:1.6rem 1.6rem 1.2rem;border-bottom:.5px solid rgba(242,238,230,.06)}
-.pc-avatar{width:52px;height:52px;border-radius:12px;background:linear-gradient(135deg,var(--acid) 0%,var(--sky) 100%);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.4rem;font-weight:700;color:var(--ink);margin-bottom:1rem;flex-shrink:0}
-.pc-name{font-size:.95rem;font-weight:700;color:var(--cream);margin-bottom:2px}
-.pc-title{font-size:.7rem;color:var(--hint);letter-spacing:.05em;margin-bottom:1rem}
-.pc-status{display:inline-flex;align-items:center;gap:6px;background:rgba(184,255,87,.1);border:.5px solid rgba(184,255,87,.25);color:var(--acid);font-family:'IBM Plex Mono',monospace;font-size:.62rem;padding:4px 11px;border-radius:20px;letter-spacing:.06em}
-.pc-status-dot{width:5px;height:5px;border-radius:50%;background:var(--acid);animation:pulse 2s infinite}
-.pc-skills{padding:1.2rem 1.6rem;border-bottom:.5px solid rgba(242,238,230,.06)}
-.pc-skill-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--hint);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.9rem}
-.skill-bar-row{margin-bottom:.7rem}
-.skill-bar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px}
-.skill-bar-name{font-size:.72rem;font-weight:600;color:rgba(242,238,230,.7)}
-.skill-bar-pct{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--hint)}
-.skill-bar-track{height:4px;background:rgba(242,238,230,.06);border-radius:4px;overflow:hidden}
-.skill-bar-fill{height:100%;border-radius:4px;transform:scaleX(0);transform-origin:left;animation:barfill 1.1s cubic-bezier(.23,1,.32,1) forwards}
-@keyframes barfill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-.pc-facts{padding:1.1rem 1.6rem;display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
-.pc-fact{background:var(--ink3);border-radius:8px;padding:.7rem .9rem;border:.5px solid rgba(242,238,230,.05)}
-.pc-fact-val{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--acid);line-height:1;margin-bottom:2px}
-.pc-fact-label{font-size:.62rem;color:var(--hint);letter-spacing:.05em;text-transform:uppercase}
+/* ── CANVAS ── */
+#cv { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .55; }
 
-/* MARQUEE */
-.strip{background:var(--acid);padding:.6rem 0;overflow:hidden;white-space:nowrap;position:relative;z-index:2}
-.strip-inner{display:inline-flex;animation:march 22s linear infinite}
-.strip-item{font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:500;color:var(--ink);letter-spacing:.1em;text-transform:uppercase;padding:0 2.2rem}
-.strip-item::after{content:'✦';margin-left:2.2rem;font-size:7px}
-@keyframes march{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ════════════════════════════
+   INTRO
+════════════════════════════ */
+#intro {
+  position: fixed; inset: 0; z-index: 2000;
+  background: #000;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: hidden;
+}
+#mv-box {
+  position: absolute; inset: 0;
+  background: var(--red);
+  transform: scaleX(0); transform-origin: left;
+  z-index: 1;
+}
+#mv-strip {
+  position: relative; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  perspective: 600px;
+}
+.mvc {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(5rem, 16vw, 12rem);
+  color: #fff; margin: 0 3px;
+  opacity: 0; transform: rotateX(90deg);
+  text-shadow: 0 0 60px rgba(232,25,44,.5);
+}
+#intro-bitmoji {
+  position: relative; z-index: 2;
+  margin-top: 1.5rem; opacity: 0;
+  display: flex; flex-direction: column; align-items: center; gap: .5rem;
+}
+#intro-bitmoji svg { width: clamp(60px, 10vw, 85px); height: auto; }
+#mv-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: clamp(.55rem, 1vw, .78rem);
+  letter-spacing: .26em; color: var(--gold);
+  text-transform: uppercase; opacity: 0; text-align: center;
+}
+#mv-prog {
+  position: absolute; bottom: 2.5rem;
+  left: 50%; transform: translateX(-50%);
+  width: min(280px, 65vw); height: 2px;
+  background: rgba(255,255,255,.1); overflow: hidden;
+}
+#mv-bar { height: 100%; width: 0; background: var(--red); }
+#mv-flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 3; }
 
-/* SHARED */
-.wrap{max-width:1100px;margin:0 auto;padding:0 3rem}
-section{padding:6.5rem 0}
-.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9px;color:var(--acid);letter-spacing:.18em;text-transform:uppercase;margin-bottom:.7rem;display:flex;align-items:center;gap:12px}
-.eyebrow::before{content:'';width:22px;height:1px;background:var(--acid)}
-h2.sec-title{font-family:'Playfair Display',serif;font-size:clamp(2rem,3.8vw,3.2rem);font-weight:400;line-height:1.15;color:var(--cream)}
-h2.sec-title em{font-style:italic;color:var(--acid)}
+/* ════════════════════════════
+   NAV
+════════════════════════════ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(6,4,8,.85); backdrop-filter: blur(20px);
+  border-bottom: .5px solid var(--line);
+  opacity: 0; transform: translateY(-100%);
+  transition: opacity .6s, transform .6s;
+}
+nav.show { opacity: 1; transform: translateY(0); }
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem; letter-spacing: .2em; color: var(--red);
+  display: flex; align-items: flex-end; gap: .4rem;
+}
+.nav-logo span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .5rem; color: var(--gold); letter-spacing: .18em; margin-bottom: .18rem;
+}
+.nav-links { display: flex; align-items: center; gap: 2rem; }
+.nav-links a {
+  font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--sub); text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--red); }
 
-/* ABOUT */
-#about .grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3.5rem}
-.about-text p{font-size:.91rem;color:var(--muted);line-height:1.88;margin-bottom:1.1rem}
-.about-text p strong{color:var(--cream);font-weight:600}
-.edu-stack{display:flex;flex-direction:column;gap:2px}
-.edu-item{background:var(--ink2);padding:1.4rem 1.7rem;position:relative;overflow:hidden;transition:background .25s}
-.edu-item:first-child{border-radius:12px 12px 0 0}
-.edu-item:last-child{border-radius:0 0 12px 12px}
-.edu-item:hover{background:var(--ink3)}
-.edu-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--acid),var(--sky))}
-.edu-school{font-size:.87rem;font-weight:700;color:var(--cream);margin-bottom:3px}
-.edu-deg{font-size:.75rem;color:var(--acid);letter-spacing:.02em;margin-bottom:3px}
-.edu-meta{font-family:'IBM Plex Mono',monospace;font-size:.68rem;color:var(--hint)}
+/* ════════════════════════════
+   MODAL
+════════════════════════════ */
+#modal-overlay {
+  position: fixed; inset: 0; z-index: 500;
+  background: rgba(6,4,8,.97); backdrop-filter: blur(14px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem; opacity: 0; pointer-events: none;
+  transition: opacity .35s;
+}
+#modal-overlay.open { opacity: 1; pointer-events: all; }
+#modal {
+  background: var(--s2); border: .5px solid rgba(232,25,44,.22); border-radius: 6px;
+  width: 100%; max-width: 800px; max-height: 88vh; overflow-y: auto;
+  position: relative;
+  transform: scale(.92) translateY(24px);
+  transition: transform .4s cubic-bezier(.23,1,.32,1);
+  scrollbar-width: thin; scrollbar-color: var(--red) transparent;
+}
+#modal-overlay.open #modal { transform: scale(1) translateY(0); }
+#modal::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+}
+#modal-close {
+  position: sticky; top: 0; float: right;
+  margin: 1rem 1rem 0 0;
+  width: 30px; height: 30px;
+  background: rgba(232,25,44,.15); border: .5px solid rgba(232,25,44,.3); border-radius: 3px;
+  color: var(--red); font-size: .9rem;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: background .2s; z-index: 1;
+}
+#modal-close:hover { background: rgba(232,25,44,.3); }
+#modal-body { padding: 2rem 2.2rem 2.5rem; clear: both; }
+.modal-num {
+  font-family: 'Bebas Neue', sans-serif; font-size: 3.5rem;
+  color: rgba(232,25,44,.1); letter-spacing: .04em; line-height: 1; margin-bottom: .3rem;
+}
+.modal-title {
+  font-family: 'Bebas Neue', sans-serif; font-size: 1.9rem;
+  letter-spacing: .04em; color: var(--cream); line-height: 1.1; margin-bottom: 1.2rem;
+}
+.modal-par {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 1.1rem;
+}
+.modal-par-block {
+  background: rgba(240,236,227,.03); border: .5px solid rgba(240,236,227,.08);
+  border-radius: 4px; padding: .9rem;
+}
+.modal-par-label {
+  font-family: 'JetBrains Mono', monospace; font-size: .55rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--sub); margin-bottom: .5rem;
+}
+.modal-par-text { font-size: .85rem; color: var(--body); line-height: 1.65; font-weight: 300; }
+.modal-outcome {
+  display: flex; gap: .75rem; align-items: flex-start;
+  background: rgba(232,25,44,.06); border: .5px solid rgba(232,25,44,.22);
+  border-radius: 4px; padding: .9rem 1.1rem; margin-bottom: 1rem;
+}
+.modal-outcome-icon { font-size: .85rem; flex-shrink: 0; margin-top: 1px; }
+.modal-outcome-text { font-size: .85rem; color: #ffb3bc; line-height: 1.6; font-weight: 500; }
+.modal-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 1.2rem; }
+.modal-chip {
+  font-family: 'JetBrains Mono', monospace; font-size: .56rem;
+  padding: 3px 9px; background: rgba(240,236,227,.04);
+  color: var(--sub); border: .5px solid rgba(240,236,227,.09);
+}
+.modal-link {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--red); color: #fff;
+  font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 11px 24px; text-decoration: none;
+  clip-path: polygon(7px 0,100% 0,calc(100% - 7px) 100%,0 100%);
+  transition: background .2s;
+}
+.modal-link:hover { background: var(--red2); color: #fff; }
 
-/* EXPERIENCE TIMELINE */
-#experience{background:var(--ink2)}
-.timeline{position:relative;margin-top:4rem;padding-left:2.4rem}
-.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:linear-gradient(180deg,var(--acid) 0%,rgba(184,255,87,.08) 100%)}
-.tl-item{position:relative;margin-bottom:3rem;opacity:0;transform:translateX(-18px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
-.tl-item.in{opacity:1;transform:none}
-.tl-item:last-child{margin-bottom:0}
-.tl-dot{position:absolute;left:-2.4rem;top:.35rem;width:13px;height:13px;border-radius:50%;background:var(--acid);transform:translateX(-6px);box-shadow:0 0 0 4px rgba(184,255,87,.15),0 0 16px rgba(184,255,87,.3)}
-.tl-dot.past{background:var(--sky);box-shadow:0 0 0 4px rgba(94,231,245,.15),0 0 16px rgba(94,231,245,.2)}
-.exp-deck{background:var(--ink3);border:1px solid rgba(242,238,230,.06);border-radius:16px;padding:2rem 2.2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s}
-.exp-deck:hover{border-color:rgba(184,255,87,.2);transform:translateY(-2px)}
-.exp-deck::before{content:'';position:absolute;top:0;right:0;width:220px;height:220px;background:radial-gradient(circle,rgba(184,255,87,.04) 0%,transparent 70%);transform:translate(30%,-30%);pointer-events:none}
-.exp-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.2rem;flex-wrap:wrap}
-.exp-role{font-size:1.08rem;font-weight:700;color:var(--cream);margin-bottom:4px}
-.exp-co{font-size:.78rem;color:var(--acid);letter-spacing:.04em;display:flex;align-items:center;gap:8px}
-.exp-co::after{content:'';width:22px;height:1px;background:rgba(184,255,87,.3)}
-.exp-right{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
-.exp-period{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:var(--hint);letter-spacing:.04em}
-.exp-loc{font-size:.7rem;color:var(--hint)}
-.tag-type{display:inline-block;font-size:.58rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 11px;border-radius:20px}
-.tag-ft{background:rgba(184,255,87,.1);color:var(--acid);border:.5px solid rgba(184,255,87,.28)}
-.tag-intern{background:rgba(255,192,61,.08);color:var(--amber);border:.5px solid rgba(255,192,61,.22)}
-.exp-stats{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.1rem}
-.exp-stat{font-family:'IBM Plex Mono',monospace;font-size:.62rem;padding:3px 10px;border-radius:20px;background:rgba(184,255,87,.07);border:.5px solid rgba(184,255,87,.16);color:rgba(184,255,87,.75)}
-.bullets{display:flex;flex-direction:column;gap:.62rem}
-.bullet{font-size:.83rem;color:var(--muted);padding-left:17px;position:relative;line-height:1.65}
-.bullet::before{content:'';position:absolute;left:0;top:.57rem;width:5px;height:5px;border-radius:50%;background:linear-gradient(135deg,var(--acid),var(--sky))}
+/* ════════════════════════════
+   HERO — 2 COL: BITMOJI LEFT, CONTENT RIGHT
+════════════════════════════ */
+.hero {
+  position: relative; z-index: 1;
+  min-height: 100vh;
+  display: grid; grid-template-columns: 280px 1fr;
+  align-items: center; gap: 3rem;
+  padding: 7.5rem 3rem 5rem;
+  max-width: 1280px; margin: 0 auto;
+  opacity: 0; transform: translateY(36px);
+  transition: opacity .9s, transform .9s;
+}
+.hero.show { opacity: 1; transform: translateY(0); }
+.hero::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--red), var(--gold), transparent);
+}
 
-/* PROJECTS DECK */
-#projects{background:var(--ink)}
-.proj-deck-grid{margin-top:3.5rem;display:grid;grid-template-columns:1fr;gap:1.4rem}
-.proj-deck{background:var(--ink2);border:1px solid rgba(242,238,230,.06);border-radius:16px;padding:2rem;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
-.proj-deck:hover{transform:translateY(-6px);border-color:rgba(184,255,87,.22)}
-.proj-deck::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(184,255,87,.025) 0%,transparent 60%);pointer-events:none}
-.proj-deck::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--acid),var(--sky));transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.23,1,.32,1)}
-.proj-deck:hover::after{transform:scaleX(1)}
-.proj-number{font-family:'IBM Plex Mono',monospace;font-size:2rem;font-weight:500;color:rgba(184,255,87,.08);line-height:1;margin-bottom:.5rem}
-.proj-cat{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--hint);margin-bottom:.75rem;display:flex;align-items:center;gap:7px}
-.proj-cat-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.d-bi{background:var(--acid)}.d-ai{background:var(--sky)}.d-ml{background:var(--rose)}.d-py{background:var(--amber)}.d-np{background:var(--violet)}
-.proj-title{font-size:.97rem;font-weight:700;color:var(--cream);line-height:1.32;margin-bottom:.72rem}
-.proj-desc{font-size:.79rem;color:var(--muted);line-height:1.68;margin-bottom:.9rem}
-.proj-outcome{background:rgba(184,255,87,.06);border:.5px solid rgba(184,255,87,.18);border-radius:8px;padding:.65rem 1rem;margin-bottom:.9rem;display:flex;align-items:flex-start;gap:.6rem}
-.proj-outcome-icon{font-size:.75rem;flex-shrink:0;margin-top:1px}
-.proj-outcome-text{font-size:.72rem;color:rgba(184,255,87,.85);line-height:1.55;font-weight:600}
-.proj-chips{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.1rem}
-.chip{font-family:'IBM Plex Mono',monospace;font-size:.57rem;padding:3px 8px;border-radius:4px;background:rgba(242,238,230,.04);color:rgba(242,238,230,.35);border:.5px solid rgba(242,238,230,.07)}
-.proj-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.75rem;border-top:.5px solid rgba(242,238,230,.06)}
-.proj-link{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:700;color:var(--acid);text-decoration:none;letter-spacing:.04em;opacity:.65;transition:opacity .2s}
-.proj-deck:hover .proj-link{opacity:1}
-.proj-link svg{width:11px;height:11px}
-.proj-impact{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--hint);background:rgba(242,238,230,.04);padding:3px 8px;border-radius:4px;border:.5px solid rgba(242,238,230,.06)}
-.proj-deck.wide{grid-column:span 1}
+/* LEFT — bitmoji column */
+.hero-left {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem;
+}
+#hero-bitmoji svg { width: clamp(90px, 11vw, 125px); height: auto; display: block; }
+.hero-name-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: .66rem;
+  color: var(--gold); letter-spacing: .18em; text-transform: uppercase; margin-bottom: .2rem;
+}
+.hero-name-sub { font-size: .84rem; color: var(--sub); font-weight: 300; line-height: 1.5; }
+.hero-facts { display: flex; flex-direction: column; gap: .6rem; margin-top: .4rem; }
+.hero-fact { display: flex; align-items: flex-start; gap: .65rem; }
+.hero-fact-arrow { color: var(--red); font-size: .75rem; flex-shrink: 0; margin-top: .2rem; }
+.hero-fact-text { font-size: .88rem; color: var(--body); font-weight: 300; line-height: 1.5; }
+.hero-fact-text strong { color: var(--cream); font-weight: 500; }
 
-/* PUBLICATION */
-#publication{background:var(--ink3)}
-.pub-card{margin-top:3rem;background:var(--ink2);border-radius:16px;border:1px solid rgba(242,238,230,.07);padding:2.5rem 3rem;display:grid;grid-template-columns:1fr auto;gap:2.5rem;align-items:center;position:relative;overflow:hidden}
-.pub-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--sky),var(--acid))}
-.pub-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(94,231,245,.1);border:.5px solid rgba(94,231,245,.22);color:var(--sky);font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;padding:5px 12px;border-radius:20px;margin-bottom:.9rem}
-.pub-title{font-family:'Playfair Display',serif;font-size:1.12rem;color:var(--cream);line-height:1.4;margin-bottom:.65rem}
-.pub-authors{font-size:.75rem;color:var(--hint);margin-bottom:.45rem}
-.pub-journal{font-family:'IBM Plex Mono',monospace;font-size:.66rem;color:var(--acid);letter-spacing:.04em}
-.pub-abstract{font-size:.76rem;color:rgba(242,238,230,.3);margin-top:.75rem;line-height:1.65}
-.pub-action a{display:inline-flex;align-items:center;gap:8px;flex-direction:column;background:rgba(184,255,87,.07);border:.5px solid rgba(184,255,87,.2);color:var(--acid);text-decoration:none;padding:1.1rem 1.5rem;border-radius:10px;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-align:center;transition:background .2s;white-space:nowrap}
-.pub-action a:hover{background:rgba(184,255,87,.13)}
-.pub-action svg{width:20px;height:20px;fill:var(--acid)}
+/* RIGHT — headline + card */
+.hero-right { display: flex; flex-direction: column; }
+.kicker {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: .64rem; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 1.2rem;
+}
+.kicker::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+.kicker-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--red); animation: beat 1.8s ease-in-out infinite; }
+@keyframes beat { 0%,100%{ transform: scale(1); opacity: 1; } 50%{ transform: scale(.35); opacity: .15; } }
 
-/* SKILLS */
-#skills{background:var(--ink2)}
-.skills-wrapper{margin-top:3.5rem;display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
-.skill-cat{background:var(--ink3);border-radius:14px;border:.5px solid rgba(242,238,230,.06);padding:1.6rem;transition:border-color .25s}
-.skill-cat:hover{border-color:rgba(184,255,87,.14)}
-.skill-cat-header{display:flex;align-items:center;gap:10px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--cream);padding-bottom:.8rem;border-bottom:.5px solid rgba(242,238,230,.06);margin-bottom:1.1rem}
-.skill-ico{font-size:16px}
-.skill-cat-sub{font-size:.7rem;color:var(--hint);margin-bottom:1rem;line-height:1.6}
-.sbar{margin-bottom:.75rem}
-.sbar:last-child{margin-bottom:0}
-.sbar-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px}
-.sbar-name{font-size:.75rem;font-weight:600;color:rgba(242,238,230,.72)}
-.sbar-pct{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--hint)}
-.sbar-track{height:3px;background:rgba(242,238,230,.06);border-radius:3px;overflow:hidden}
-.sbar-fill{height:100%;border-radius:3px;transform:scaleX(0);transform-origin:left;animation:barfill 1s cubic-bezier(.23,1,.32,1) forwards}
-.skill-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.9rem}
-.stag{font-family:'IBM Plex Mono',monospace;font-size:.58rem;padding:3px 9px;border-radius:4px;background:rgba(242,238,230,.04);color:rgba(242,238,230,.38);border:.5px solid rgba(242,238,230,.07)}
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 5vw, 5rem);
+  line-height: .96; letter-spacing: .04em;
+  color: var(--cream); margin-bottom: 1.2rem;
+}
+h1 .h1-red { color: var(--red); }
+h1 .h1-gold { color: var(--gold); display: block; font-size: .58em; letter-spacing: .14em; margin-left: .2em; }
+h1 .h1-ind { padding-left: clamp(.8rem, 3vw, 3rem); }
 
-/* CONTACT */
-#contact{background:var(--ink)}
-.contact-box{margin-top:4rem;border:.5px solid rgba(242,238,230,.07);border-radius:20px;padding:4rem;text-align:center;background:var(--ink2);position:relative;overflow:hidden}
-.contact-box::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:500px;height:240px;background:radial-gradient(ellipse,rgba(184,255,87,.07) 0%,transparent 70%);pointer-events:none}
-.contact-sub{font-size:.9rem;color:var(--muted);max-width:500px;margin:.8rem auto 2.5rem;line-height:1.78}
-.contact-links{display:flex;justify-content:center;gap:.85rem;flex-wrap:wrap}
-.clink{display:inline-flex;align-items:center;gap:9px;border:.5px solid rgba(242,238,230,.11);color:rgba(242,238,230,.62);padding:12px 20px;border-radius:8px;text-decoration:none;font-size:.76rem;font-weight:600;letter-spacing:.07em;text-transform:uppercase;transition:all .2s}
-.clink:hover{border-color:var(--acid);color:var(--acid);background:rgba(184,255,87,.04)}
-.clink svg{width:14px;height:14px;fill:currentColor;flex-shrink:0}
+.hero-desc {
+  font-size: 1.05rem; color: var(--body);
+  line-height: 1.82; max-width: 520px;
+  margin-bottom: 1.8rem; font-weight: 300;
+}
+.hero-desc strong { color: var(--cream); font-weight: 500; }
 
-footer{text-align:center;padding:1.8rem 3rem;font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:rgba(242,238,230,.15);letter-spacing:.1em;border-top:.5px solid rgba(242,238,230,.04)}
+.hero-btns { display: flex; gap: .8rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.btn-red {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--red); color: #fff;
+  font-size: .76rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: 12px 26px; text-decoration: none;
+  clip-path: polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);
+  transition: background .2s, transform .15s;
+}
+.btn-red:hover { background: var(--red2); transform: translateY(-2px); color: #fff; }
+.btn-line {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: .5px solid rgba(240,236,227,.24); color: var(--body);
+  font-size: .76rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  padding: 12px 26px; text-decoration: none; transition: all .2s;
+}
+.btn-line:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
 
-/* ANIMATIONS */
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
-.reveal.in{opacity:1;transform:none}
-.reveal-l{opacity:0;transform:translateX(-24px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
-.reveal-l.in{opacity:1;transform:none}
-.reveal-r{opacity:0;transform:translateX(24px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
-.reveal-r.in{opacity:1;transform:none}
-.d1{transition-delay:.12s}.d2{transition-delay:.22s}.d3{transition-delay:.32s}.d4{transition-delay:.42s}
+/* PROFILE SKILLS CARD */
+.profile-card {
+  background: rgba(14,10,20,.96);
+  border: 1px solid rgba(232,25,44,.18); border-radius: 6px;
+  overflow: hidden; position: relative;
+  box-shadow: 0 0 60px rgba(232,25,44,.06), 0 32px 64px rgba(0,0,0,.7);
+}
+.profile-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+}
+.pc-bar {
+  background: rgba(6,4,10,.9); padding: .5rem 1rem;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: .5px solid rgba(240,236,227,.05);
+}
+.pc-dots { display: flex; gap: .35rem; }
+.pc-dot { width: 8px; height: 8px; border-radius: 50%; }
+.pc-title { font-family: 'JetBrains Mono', monospace; font-size: .58rem; color: var(--sub); letter-spacing: .1em; }
+.pc-status {
+  display: flex; align-items: center; gap: 4px;
+  font-family: 'JetBrains Mono', monospace; font-size: .56rem; color: #4ade80; letter-spacing: .1em;
+}
+.pc-status-dot { width: 4px; height: 4px; border-radius: 50%; background: #4ade80; animation: beat 2s ease-in-out infinite; }
+.pc-body { padding: 1.1rem; }
+.pc-identity {
+  display: flex; align-items: center; gap: .85rem;
+  padding-bottom: .9rem; margin-bottom: .9rem;
+  border-bottom: .5px solid rgba(240,236,227,.06);
+}
+.pc-avatar {
+  width: 38px; height: 38px; border-radius: 6px; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--red), var(--gold));
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1rem; color: #000; letter-spacing: .05em;
+}
+.pc-id-name { font-family: 'Oswald', sans-serif; font-size: .88rem; font-weight: 500; color: var(--cream); letter-spacing: .04em; }
+.pc-id-role { font-size: .66rem; color: var(--sub); margin-top: 2px; }
+.pc-id-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(74,222,128,.1); border: .5px solid rgba(74,222,128,.25);
+  color: #4ade80; font-family: 'JetBrains Mono', monospace;
+  font-size: .54rem; padding: 2px 8px; border-radius: 20px; margin-top: 4px; letter-spacing: .08em;
+}
+.pc-skills-label {
+  font-family: 'JetBrains Mono', monospace; font-size: .56rem;
+  color: var(--hint); letter-spacing: .15em; text-transform: uppercase; margin-bottom: .72rem;
+}
+.pc-skill { margin-bottom: .62rem; }
+.pc-skill:last-of-type { margin-bottom: 0; }
+.pc-skill-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+.pc-skill-name { font-size: .78rem; color: var(--body); }
+.pc-skill-pct { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--hint); }
+.pc-skill-track { height: 3px; background: rgba(240,236,227,.07); border-radius: 3px; overflow: hidden; }
+.pc-skill-fill {
+  height: 100%; border-radius: 3px;
+  transform: scaleX(0); transform-origin: left;
+  animation: sfill 1.2s cubic-bezier(.23,1,.32,1) forwards;
+}
+@keyframes sfill { from{ transform: scaleX(0); } to{ transform: scaleX(1); } }
+.pc-chips {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .45rem;
+  margin-top: 1rem; padding-top: .9rem; border-top: .5px solid rgba(240,236,227,.06);
+}
+.pc-chip { background: rgba(240,236,227,.03); border: .5px solid rgba(240,236,227,.08); border-radius: 4px; padding: .55rem .7rem; text-align: center; }
+.pc-chip-val { font-family: 'Bebas Neue', sans-serif; font-size: 1.3rem; letter-spacing: .04em; color: var(--red); line-height: 1; }
+.pc-chip-lbl { font-size: .58rem; color: var(--sub); letter-spacing: .06em; text-transform: uppercase; margin-top: 2px; }
 
-@media(max-width:920px){
-  nav{padding:1rem 1.5rem}.nav-links{gap:1rem}
-  .hero{grid-template-columns:1fr;padding:6rem 1.5rem 3rem;gap:3rem}.hero-right{display:none}
-  .wrap{padding:0 1.5rem}
-  #about .grid,.skills-wrapper{grid-template-columns:1fr}
-  .proj-deck-grid{grid-template-columns:1fr}.proj-deck.wide{grid-column:span 1}
-  .pub-card{grid-template-columns:1fr;gap:1.5rem}
-  .contact-box{padding:2rem 1.5rem}
-  .timeline{padding-left:1.8rem}
+/* ════════════════════════════
+   MARQUEE
+════════════════════════════ */
+.marquee {
+  overflow: hidden; padding: .6rem 0;
+  border-top: .5px solid var(--line); border-bottom: .5px solid var(--line);
+  position: relative; z-index: 1;
+}
+.marquee-inner { display: flex; animation: mscroll 26s linear infinite; width: max-content; }
+.marquee-item {
+  font-family: 'JetBrains Mono', monospace; font-size: .66rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--hint); padding: 0 2rem; white-space: nowrap;
+}
+.marquee-item b { color: var(--red); font-weight: 500; }
+@keyframes mscroll { from{ transform: translateX(0); } to{ transform: translateX(-50%); } }
+
+/* ════════════════════════════
+   SHARED SECTION
+════════════════════════════ */
+.section { position: relative; z-index: 1; padding: 6rem 3rem; max-width: 1100px; margin: 0 auto; }
+.section-bg { background: var(--s1); border-top: .5px solid var(--line); border-bottom: .5px solid var(--line); }
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace; font-size: .66rem;
+  color: var(--gold); letter-spacing: .2em; text-transform: uppercase;
+  margin-bottom: .7rem; display: flex; align-items: center; gap: 10px;
+}
+.eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.4rem, 4vw, 4rem);
+  letter-spacing: .04em; color: var(--cream); line-height: .96; margin-bottom: 0;
+}
+h2 .h2-red { color: var(--red); }
+h2 .h2-gold { color: var(--gold); }
+
+/* ════════════════════════════
+   EXPERIENCE
+════════════════════════════ */
+.exp-list { margin-top: 3.5rem; }
+.exp-row {
+  display: grid; grid-template-columns: 185px 1fr; gap: 3rem;
+  padding: 2.5rem 0; border-bottom: .5px solid var(--line);
+}
+.exp-row:last-child { border-bottom: none; }
+.exp-date { font-family: 'JetBrains Mono', monospace; font-size: .64rem; color: var(--sub); margin-bottom: .4rem; }
+.exp-company { font-family: 'Oswald', sans-serif; font-size: .88rem; font-weight: 600; color: var(--gold); margin-bottom: .28rem; letter-spacing: .04em; }
+.exp-location { font-size: .72rem; color: var(--sub); margin-bottom: .6rem; }
+.exp-badge {
+  display: inline-block; font-size: .56rem; font-weight: 700;
+  letter-spacing: .12em; text-transform: uppercase; padding: 3px 10px;
+  clip-path: polygon(4px 0,100% 0,calc(100% - 4px) 100%,0 100%);
+}
+.badge-ft { background: rgba(232,25,44,.12); color: var(--red); border: .5px solid rgba(232,25,44,.3); }
+.badge-intern { background: rgba(245,200,66,.08); color: var(--gold); border: .5px solid rgba(245,200,66,.22); }
+.exp-title { font-family: 'Oswald', sans-serif; font-size: 1.08rem; font-weight: 500; letter-spacing: .04em; color: var(--cream); margin-bottom: .5rem; }
+.exp-pills { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.exp-pill {
+  font-family: 'JetBrains Mono', monospace; font-size: .58rem;
+  padding: 3px 9px; background: rgba(232,25,44,.08);
+  border: .5px solid rgba(232,25,44,.22); color: #f28a92;
+}
+.bullets { display: flex; flex-direction: column; gap: .6rem; }
+.bullet { font-size: .95rem; color: var(--body); padding-left: 16px; position: relative; line-height: 1.72; font-weight: 300; }
+.bullet::before { content: '▸'; position: absolute; left: 0; color: var(--red); font-size: .6rem; top: .26rem; }
+
+/* ════════════════════════════
+   PROJECTS DECK
+════════════════════════════ */
+.deck { margin-top: 3.5rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.project-card {
+  position: relative;
+  width: calc(33.33% - .85rem); min-width: 240px;
+  background: var(--s2); border: .5px solid rgba(240,236,227,.09); border-radius: 6px;
+  overflow: hidden; cursor: pointer;
+  transition: transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s, border-color .3s;
+}
+.project-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--red), var(--gold));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.23,1,.32,1); z-index: 2;
+}
+.project-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(232,25,44,.18), 0 0 0 1px rgba(232,25,44,.22);
+  border-color: rgba(232,25,44,.28);
+}
+.project-card:hover::before { transform: scaleX(1); }
+.card-face { padding: 1.6rem 1.4rem; display: flex; flex-direction: column; min-height: 210px; }
+.card-num { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; letter-spacing: .04em; color: rgba(232,25,44,.1); line-height: 1; margin-bottom: .4rem; }
+.card-cat {
+  font-family: 'JetBrains Mono', monospace; font-size: .54rem;
+  letter-spacing: .14em; text-transform: uppercase;
+  padding: 3px 9px; border: .5px solid; display: inline-block; margin-bottom: .85rem; width: fit-content;
+}
+.cat-bi  { color: var(--gold); border-color: rgba(245,200,66,.35); background: rgba(245,200,66,.07); }
+.cat-ai  { color: #6bffc8;   border-color: rgba(107,255,200,.35); background: rgba(107,255,200,.07); }
+.cat-ml  { color: #ff8096;   border-color: rgba(232,25,44,.35);   background: rgba(232,25,44,.07); }
+.cat-da  { color: #c4b5fd;   border-color: rgba(196,181,253,.35); background: rgba(196,181,253,.07); }
+.cat-bd  { color: #93b4ff;   border-color: rgba(147,180,255,.35); background: rgba(147,180,255,.07); }
+.card-title {
+  font-family: 'Oswald', sans-serif; font-size: 1rem; font-weight: 500;
+  letter-spacing: .04em; color: var(--cream); line-height: 1.3; flex: 1; margin-bottom: .8rem;
+}
+.card-glimpse { font-size: .8rem; color: var(--body); line-height: 1.58; font-weight: 300; margin-bottom: .9rem; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: auto; }
+.card-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: .52rem;
+  padding: 2px 7px; background: rgba(240,236,227,.04);
+  color: var(--sub); border: .5px solid rgba(240,236,227,.09);
+}
+.card-arrow { position: absolute; bottom: 1rem; right: 1.2rem; font-size: .65rem; color: var(--red); opacity: 0; transition: opacity .2s, transform .2s; }
+.project-card:hover .card-arrow { opacity: 1; transform: translateX(4px); }
+
+/* ════════════════════════════
+   DEEP CASE STUDY — RAG
+════════════════════════════ */
+.deep-case { margin-top: 3.5rem; }
+.deep-3col {
+  display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 2rem;
+}
+.deep-block { border-radius: 6px; padding: 1.2rem 1.4rem; }
+.deep-block-label {
+  font-family: 'JetBrains Mono', monospace; font-size: .58rem;
+  letter-spacing: .15em; text-transform: uppercase; margin-bottom: .55rem;
+}
+.deep-block-text { font-size: .92rem; color: var(--body); line-height: 1.7; font-weight: 300; }
+.db-problem  { background: rgba(232,25,44,.07); border: .5px solid rgba(232,25,44,.22); }
+.db-approach { background: rgba(245,200,66,.06); border: .5px solid rgba(245,200,66,.22); }
+.db-result   { background: rgba(74,222,128,.06); border: .5px solid rgba(74,222,128,.22); }
+.db-problem  .deep-block-label { color: var(--red); }
+.db-approach .deep-block-label { color: var(--gold); }
+.db-result   .deep-block-label { color: #4ade80; }
+.result-big { font-family: 'Bebas Neue', sans-serif; font-size: 1.4rem; color: #4ade80; letter-spacing: .04em; }
+
+/* architecture diagram container */
+.arch-box {
+  background: rgba(14,10,20,.95); border: 1px solid rgba(232,25,44,.15);
+  border-radius: 6px; padding: 1.6rem; overflow-x: auto; margin-bottom: 1.5rem;
+}
+.arch-label {
+  font-family: 'JetBrains Mono', monospace; font-size: .6rem;
+  color: var(--gold); letter-spacing: .18em; text-transform: uppercase; margin-bottom: 1rem;
+}
+
+/* tech pills for deep case */
+.tech-pills { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+.tech-pill {
+  font-family: 'JetBrains Mono', monospace; font-size: .62rem;
+  padding: 5px 12px; border-radius: 3px; border: .5px solid;
+}
+.tp-green  { color: #6bffc8; border-color: rgba(107,255,200,.3); background: rgba(107,255,200,.08); }
+.tp-blue   { color: #93b4ff; border-color: rgba(147,180,255,.3); background: rgba(147,180,255,.08); }
+.tp-purple { color: #c4b5fd; border-color: rgba(196,181,253,.3); background: rgba(196,181,253,.08); }
+.tp-gold   { color: var(--gold); border-color: rgba(245,200,66,.3); background: rgba(245,200,66,.08); }
+.tp-red    { color: #ff8096;   border-color: rgba(232,25,44,.3);   background: rgba(232,25,44,.08); }
+.tp-ok     { color: #4ade80;   border-color: rgba(74,222,128,.3);  background: rgba(74,222,128,.08); }
+.tp-gray   { color: var(--body); border-color: rgba(240,236,227,.12); background: rgba(240,236,227,.04); }
+
+/* learnings 2-col */
+.learnings { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.8rem; }
+.learn-card { background: var(--s2); border: .5px solid var(--line); border-radius: 6px; padding: 1.3rem; }
+.learn-label { font-family: 'JetBrains Mono', monospace; font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: .65rem; }
+.learn-text { font-size: .92rem; color: var(--body); line-height: 1.75; font-weight: 300; }
+.learn-text em { color: var(--cream); font-style: normal; }
+
+/* ════════════════════════════
+   PUBLICATION
+════════════════════════════ */
+.pub {
+  margin-top: 3rem; background: var(--s2); border: .5px solid rgba(240,236,227,.08);
+  border-radius: 6px; padding: 2.2rem 2.8rem;
+  display: grid; grid-template-columns: 1fr auto; gap: 2.5rem; align-items: center;
+  position: relative; overflow: hidden;
+}
+.pub::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: linear-gradient(180deg, var(--red), var(--gold)); }
+.pub-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(107,255,200,.08); border: .5px solid rgba(107,255,200,.22);
+  color: #6bffc8; font-family: 'JetBrains Mono', monospace;
+  font-size: .58rem; letter-spacing: .1em; padding: 4px 12px; margin-bottom: .8rem;
+}
+.pub-title { font-family: 'Oswald', sans-serif; font-size: 1.15rem; font-weight: 500; letter-spacing: .04em; color: var(--cream); line-height: 1.3; margin-bottom: .5rem; }
+.pub-auth { font-size: .76rem; color: var(--sub); margin-bottom: .4rem; }
+.pub-journal { font-family: 'JetBrains Mono', monospace; font-size: .64rem; color: var(--gold); letter-spacing: .04em; }
+.pub-abstract { font-size: .84rem; color: var(--body); margin-top: .65rem; line-height: 1.7; font-weight: 300; }
+.pub-btn {
+  display: inline-flex; align-items: center; gap: 8px; flex-direction: column; text-align: center;
+  background: rgba(232,25,44,.08); border: .5px solid rgba(232,25,44,.22);
+  color: var(--red); text-decoration: none; padding: 1rem 1.4rem; border-radius: 3px;
+  font-size: .64rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+  transition: background .2s; white-space: nowrap;
+}
+.pub-btn:hover { background: rgba(232,25,44,.18); }
+.pub-btn svg { width: 18px; height: 18px; fill: var(--red); }
+
+/* ════════════════════════════
+   SKILLS
+════════════════════════════ */
+.skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.1rem; margin-top: 3.5rem; }
+.skill-card { background: var(--s2); border: .5px solid var(--line); border-radius: 6px; padding: 1.6rem; transition: border-color .25s; }
+.skill-card:hover { border-color: rgba(232,25,44,.2); }
+.skill-head { display: flex; align-items: center; gap: .75rem; margin-bottom: .4rem; }
+.skill-icon { font-size: 1.1rem; }
+.skill-name { font-family: 'Oswald', sans-serif; font-size: .95rem; font-weight: 500; letter-spacing: .06em; color: var(--cream); }
+.skill-desc { font-size: .88rem; color: var(--body); line-height: 1.68; margin-bottom: 1.1rem; font-weight: 300; }
+.skill-bars { display: flex; flex-direction: column; gap: .58rem; margin-bottom: .85rem; }
+.skill-bar-row .sbt { display: flex; justify-content: space-between; margin-bottom: 4px; }
+.sbt-name { font-size: .76rem; color: var(--body); font-weight: 400; }
+.sbt-pct { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--sub); }
+.skill-track { height: 2px; background: rgba(240,236,227,.08); border-radius: 2px; overflow: hidden; }
+.skill-fill {
+  height: 100%; border-radius: 2px;
+  transform: scaleX(0); transform-origin: left;
+  animation: sfill 1s cubic-bezier(.23,1,.32,1) forwards;
+}
+.skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace; font-size: .54rem;
+  padding: 2px 7px; background: rgba(240,236,227,.04);
+  color: var(--sub); border: .5px solid rgba(240,236,227,.08);
+}
+
+/* ════════════════════════════
+   CONTACT
+════════════════════════════ */
+.contact-box {
+  margin-top: 3rem; background: var(--s2); border: .5px solid var(--line);
+  border-radius: 6px; padding: 3.5rem; text-align: center; position: relative; overflow: hidden;
+}
+.contact-box::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--red), var(--gold), transparent); }
+.contact-box::after { content: ''; position: absolute; top: -80px; left: 50%; transform: translateX(-50%); width: 400px; height: 200px; background: radial-gradient(ellipse, rgba(232,25,44,.07) 0%, transparent 70%); pointer-events: none; }
+.contact-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.2rem, 4.5vw, 4rem); letter-spacing: .04em;
+  color: var(--cream); line-height: .96; margin: .8rem 0;
+}
+.contact-title .ct-red { color: var(--red); }
+.contact-sub { font-size: .95rem; color: var(--body); max-width: 460px; margin: 0 auto 2.5rem; line-height: 1.78; font-weight: 300; }
+.contact-links { display: flex; justify-content: center; gap: .8rem; flex-wrap: wrap; }
+.contact-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: .5px solid rgba(240,236,227,.15); color: var(--body);
+  padding: 11px 20px; text-decoration: none;
+  font-size: .76rem; font-weight: 500; letter-spacing: .08em; text-transform: uppercase;
+  transition: all .2s;
+}
+.contact-link:hover { border-color: var(--red); color: var(--red); background: rgba(232,25,44,.06); }
+.contact-link svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+
+/* ── FOOTER ── */
+footer {
+  position: relative; z-index: 1; text-align: center; padding: 1.6rem;
+  font-family: 'JetBrains Mono', monospace; font-size: .58rem;
+  color: var(--hint); letter-spacing: .12em; border-top: .5px solid var(--line);
+}
+
+/* ── REVEAL ── */
+.rv  { opacity: 0; transform: translateY(26px);  transition: opacity .8s cubic-bezier(.23,1,.32,1), transform .8s cubic-bezier(.23,1,.32,1); }
+.rl  { opacity: 0; transform: translateX(-26px); transition: opacity .8s cubic-bezier(.23,1,.32,1), transform .8s cubic-bezier(.23,1,.32,1); }
+.rr  { opacity: 0; transform: translateX(26px);  transition: opacity .8s cubic-bezier(.23,1,.32,1), transform .8s cubic-bezier(.23,1,.32,1); }
+.rv.in, .rl.in, .rr.in { opacity: 1; transform: none; }
+.d1 { transition-delay: .1s; } .d2 { transition-delay: .2s; }
+.d3 { transition-delay: .3s; } .d4 { transition-delay: .4s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+  nav { padding: 1rem 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 1.5rem 4rem; gap: 2.5rem; }
+  .section { padding: 5rem 1.5rem; }
+  .exp-row { grid-template-columns: 1fr; gap: .8rem; }
+  .project-card { width: 100%; }
+  .modal-par { grid-template-columns: 1fr; }
+  .deep-3col { grid-template-columns: 1fr; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .learnings { grid-template-columns: 1fr; }
+  .pub { grid-template-columns: 1fr; gap: 1.5rem; }
+  .contact-box { padding: 2.5rem 1.5rem; }
 }
 </style>
 </head>
 <body>
 
-<div class="cur" id="cur"></div>
-<div class="cur-ring" id="ring"></div>
+<div id="cur"></div>
+<div id="ring"></div>
+<canvas id="cv"></canvas>
 
-<nav>
-  <div class="nav-logo"><div class="nav-dot"></div>VKP.portfolio</div>
+<!-- ═══ INTRO ═══ -->
+<div id="intro">
+  <div id="mv-box"></div>
+  <div id="mv-strip">
+    <span class="mvc">V</span><span class="mvc">K</span><span class="mvc">P</span>
+  </div>
+  <div id="intro-bitmoji">
+    <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" id="ibm">
+      <ellipse cx="50" cy="115" rx="22" ry="4" fill="rgba(232,25,44,.15)"/>
+      <rect x="38" y="82" width="10" height="26" rx="5" fill="#2a1f35" id="il-l"/>
+      <rect x="52" y="82" width="10" height="26" rx="5" fill="#2a1f35" id="il-r"/>
+      <ellipse cx="43" cy="108" rx="8" ry="4" fill="#e8192c"/>
+      <ellipse cx="57" cy="108" rx="8" ry="4" fill="#e8192c"/>
+      <rect x="30" y="50" width="40" height="38" rx="10" fill="#1e1030"/>
+      <rect x="43" y="50" width="14" height="4" rx="2" fill="#f5c842"/>
+      <text x="50" y="74" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="9" fill="#e8192c" letter-spacing="1">VKP</text>
+      <rect id="ia-l" x="14" y="54" width="18" height="9" rx="4.5" fill="#c8a882" transform-origin="30 58.5"/>
+      <rect id="ia-r" x="68" y="54" width="18" height="9" rx="4.5" fill="#c8a882" transform-origin="70 58.5"/>
+      <circle cx="16" cy="58" r="5" fill="#c8a882"/>
+      <circle cx="84" cy="58" r="5" fill="#c8a882" id="ih-r"/>
+      <rect x="6" y="62" width="20" height="14" rx="2" fill="#0e0a12"/>
+      <rect x="8" y="64" width="16" height="10" rx="1" fill="#e8192c"/>
+      <rect x="9" y="65" width="14" height="8" rx="1" fill="#1a0d22"/>
+      <line x1="10" y1="67" x2="22" y2="67" stroke="#f5c842" stroke-width=".8" opacity=".7"/>
+      <line x1="10" y1="69" x2="18" y2="69" stroke="#6bffc8" stroke-width=".8" opacity=".6"/>
+      <line x1="10" y1="71" x2="20" y2="71" stroke="#f5c842" stroke-width=".8" opacity=".5"/>
+      <rect x="44" y="41" width="12" height="12" rx="4" fill="#c8a882"/>
+      <ellipse cx="50" cy="32" rx="18" ry="20" fill="#c8a882"/>
+      <path d="M32 26 Q34 10 50 8 Q66 10 68 26 Q62 18 50 18 Q38 18 32 26Z" fill="#1a0a05"/>
+      <ellipse cx="44" cy="30" rx="3" ry="3.5" fill="#1a0a05"/>
+      <ellipse cx="56" cy="30" rx="3" ry="3.5" fill="#1a0a05"/>
+      <circle cx="45" cy="29" r="1" fill="white"/>
+      <circle cx="57" cy="29" r="1" fill="white"/>
+      <path d="M44 37 Q50 42 56 37" stroke="#8a4020" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <text id="ispk" x="88" y="50" font-size="10" fill="#f5c842" opacity="0">✦</text>
+    </svg>
+    <div id="mv-tag">Data Analyst &nbsp; Power BI Developer &nbsp; IEEE Researcher</div>
+  </div>
+  <div id="mv-prog"><div id="mv-bar"></div></div>
+  <div id="mv-flash"></div>
+</div>
+
+<!-- ═══ MODAL ═══ -->
+<div id="modal-overlay" onclick="closeMo(event)">
+  <div id="modal">
+    <div id="modal-close" onclick="closeMo()">✕</div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <div class="nav-logo">VKP <span>PORTFOLIO</span></div>
   <div class="nav-links">
-    <a href="#about">About</a>
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
-    <a href="#publication">Research</a>
+    <a href="#deep-case">Deep Case</a>
+    <a href="#research">Research</a>
     <a href="#skills">Skills</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-left reveal">
-    <div class="hero-kicker">01 — Introduction</div>
-    <h1 class="name">Vamsi Krishna<br><em>Peeta</em></h1>
-    <div class="hero-roles">
-      <span class="role-pill">Data Analyst</span>
-      <span class="role-pill">Power BI Developer</span>
-      <span class="role-pill">Business Analyst</span>
+<!-- ═══ HERO ═══ -->
+<div class="hero" id="hero">
+
+  <!-- LEFT: bitmoji + quick intro -->
+  <div class="hero-left">
+    <div id="hero-bitmoji">
+      <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" id="hbm">
+        <ellipse cx="50" cy="115" rx="22" ry="4" fill="rgba(232,25,44,.15)"/>
+        <rect x="38" y="82" width="10" height="26" rx="5" fill="#2a1f35" id="hl-l"/>
+        <rect x="52" y="82" width="10" height="26" rx="5" fill="#2a1f35" id="hl-r"/>
+        <ellipse cx="43" cy="108" rx="8" ry="4" fill="#e8192c"/>
+        <ellipse cx="57" cy="108" rx="8" ry="4" fill="#e8192c"/>
+        <rect x="30" y="50" width="40" height="38" rx="10" fill="#1e1030"/>
+        <rect x="43" y="50" width="14" height="4" rx="2" fill="#f5c842"/>
+        <text x="50" y="74" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="9" fill="#e8192c" letter-spacing="1">VKP</text>
+        <rect id="ha-l" x="14" y="54" width="18" height="9" rx="4.5" fill="#c8a882" transform-origin="30 58.5"/>
+        <rect id="ha-r" x="68" y="54" width="18" height="9" rx="4.5" fill="#c8a882" transform-origin="70 58.5"/>
+        <circle cx="16" cy="58" r="5" fill="#c8a882"/>
+        <circle cx="84" cy="58" r="5" fill="#c8a882" id="hh-r"/>
+        <rect x="6" y="62" width="20" height="14" rx="2" fill="#0e0a12"/>
+        <rect x="8" y="64" width="16" height="10" rx="1" fill="#e8192c"/>
+        <rect x="9" y="65" width="14" height="8" rx="1" fill="#1a0d22"/>
+        <line x1="10" y1="67" x2="22" y2="67" stroke="#f5c842" stroke-width=".8" opacity=".7"/>
+        <line x1="10" y1="69" x2="18" y2="69" stroke="#6bffc8" stroke-width=".8" opacity=".6"/>
+        <line x1="10" y1="71" x2="20" y2="71" stroke="#f5c842" stroke-width=".8" opacity=".5"/>
+        <rect x="44" y="41" width="12" height="12" rx="4" fill="#c8a882"/>
+        <ellipse cx="50" cy="32" rx="18" ry="20" fill="#c8a882"/>
+        <path d="M32 26 Q34 10 50 8 Q66 10 68 26 Q62 18 50 18 Q38 18 32 26Z" fill="#1a0a05"/>
+        <ellipse cx="44" cy="30" rx="3" ry="3.5" fill="#1a0a05"/>
+        <ellipse cx="56" cy="30" rx="3" ry="3.5" fill="#1a0a05"/>
+        <circle cx="45" cy="29" r="1" fill="white"/>
+        <circle cx="57" cy="29" r="1" fill="white"/>
+        <path d="M44 37 Q50 42 56 37" stroke="#8a4020" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+        <text id="hspk" x="88" y="50" font-size="12" fill="#f5c842" opacity="0">✦</text>
+        <g id="hi-bub" opacity="0">
+          <rect x="58" y="2" width="38" height="22" rx="7" fill="#e8192c"/>
+          <polygon points="64,24 60,31 72,24" fill="#e8192c"/>
+          <text x="77" y="18" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="13" fill="#fff" letter-spacing="1">HI!</text>
+        </g>
+      </svg>
     </div>
-    <p class="hero-desc">Most people see spreadsheets. I see decisions waiting to be made. I build <strong>Power BI dashboards</strong> executives actually rely on, surface the insights buried in business data, and translate numbers into actions that move organisations forward. <strong>IEEE published researcher.</strong> Based in the USA and open to onsite opportunities.</p>
-    <div class="hero-ctas">
-      <a href="#projects" class="cta-main">View Work ↓</a>
-      <a href="https://www.linkedin.com/in/vamsi-krishna-peeta-23585223a/" class="cta-ghost" target="_blank">LinkedIn ↗</a>
-      <a href="https://github.com/vamsi57567" class="cta-ghost" target="_blank">GitHub ↗</a>
+
+    <div>
+      <div class="hero-name-tag">Vamsi Krishna Peeta</div>
+      <div class="hero-name-sub">Data Analyst &nbsp; Power BI Developer &nbsp; IEEE Researcher</div>
+    </div>
+
+    <div class="hero-facts">
+      <div class="hero-fact">
+        <span class="hero-fact-arrow">▸</span>
+        <span class="hero-fact-text">Currently at <strong>Minnodi LLC</strong> — Baltimore, USA</span>
+      </div>
+      <div class="hero-fact">
+        <span class="hero-fact-arrow">▸</span>
+        <span class="hero-fact-text">MS Data Science at <strong>UMBC</strong></span>
+      </div>
+      <div class="hero-fact">
+        <span class="hero-fact-arrow">▸</span>
+        <span class="hero-fact-text">Published in <strong>IEEE Xplore</strong></span>
+      </div>
+      <div class="hero-fact">
+        <span class="hero-fact-arrow">▸</span>
+        <span class="hero-fact-text">Open to full time roles across the USA</span>
+      </div>
     </div>
   </div>
-  <div class="hero-right reveal-r">
+
+  <!-- RIGHT: headline + profile card -->
+  <div class="hero-right">
+    <div class="kicker"><span class="kicker-dot"></span>Available &nbsp; USA &nbsp; Onsite Welcome</div>
+    <h1>
+      I TURN DATA<br>
+      INTO <span class="h1-red">DECISIONS</span>
+      <span class="h1-gold h1-ind">LEADERS ACT ON.</span>
+    </h1>
+    <p class="hero-desc">
+      <strong>Power BI Developer and Data Analyst</strong> who builds analytics systems that replace assumptions with proof. 10 plus dashboards in production. 8 hours per week saved via automation. IEEE published researcher.
+    </p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn-red">See Case Studies ↓</a>
+      <a href="https://www.linkedin.com/in/vamsi-krishna-peeta-23585223a/" class="btn-line" target="_blank">LinkedIn ↗</a>
+      <a href="https://github.com/vamsi57567" class="btn-line" target="_blank">GitHub ↗</a>
+    </div>
+
+    <!-- Skills profile card -->
     <div class="profile-card">
-      <div class="pc-top">
-        <div style="display:flex;align-items:center;gap:1rem;margin-bottom:.8rem">
+      <div class="pc-bar">
+        <div class="pc-dots">
+          <div class="pc-dot" style="background:#ff5f57"></div>
+          <div class="pc-dot" style="background:#febc2e"></div>
+          <div class="pc-dot" style="background:#28c840"></div>
+        </div>
+        <div class="pc-title">VKP.profile &nbsp; analyst.card</div>
+        <div class="pc-status"><span class="pc-status-dot"></span>OPEN TO WORK</div>
+      </div>
+      <div class="pc-body">
+        <div class="pc-identity">
           <div class="pc-avatar">VK</div>
           <div>
-            <div class="pc-name">Vamsi Krishna Peeta</div>
-            <div class="pc-title">Data Analyst · Power BI Developer · BA</div>
+            <div class="pc-id-name">Vamsi Krishna Peeta</div>
+            <div class="pc-id-role">Power BI Developer &nbsp; Data Analyst &nbsp; BA</div>
+            <div class="pc-id-badge"><span style="width:4px;height:4px;border-radius:50%;background:#4ade80;display:inline-block"></span>USA &nbsp; Onsite Welcome</div>
           </div>
         </div>
-        <div class="pc-status"><span class="pc-status-dot"></span>Open to opportunities · USA</div>
-      </div>
-      <div class="pc-skills">
-        <div class="pc-skill-label">Core proficiencies</div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-top"><span class="skill-bar-name">Power BI &amp; DAX</span><span class="skill-bar-pct">95%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:95%;background:var(--acid);animation-delay:.2s"></div></div>
+        <div class="pc-skills-label">Core Proficiencies</div>
+        <div class="pc-skill">
+          <div class="pc-skill-top"><span class="pc-skill-name">Power BI &amp; DAX</span><span class="pc-skill-pct">95%</span></div>
+          <div class="pc-skill-track"><div class="pc-skill-fill" style="width:95%;background:var(--gold);animation-delay:.2s"></div></div>
         </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-top"><span class="skill-bar-name">SQL</span><span class="skill-bar-pct">90%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:90%;background:var(--sky);animation-delay:.35s"></div></div>
+        <div class="pc-skill">
+          <div class="pc-skill-top"><span class="pc-skill-name">SQL &amp; Data Modelling</span><span class="pc-skill-pct">90%</span></div>
+          <div class="pc-skill-track"><div class="pc-skill-fill" style="width:90%;background:#6bffc8;animation-delay:.35s"></div></div>
         </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-top"><span class="skill-bar-name">Python · Pandas</span><span class="skill-bar-pct">82%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:82%;background:var(--violet);animation-delay:.5s"></div></div>
+        <div class="pc-skill">
+          <div class="pc-skill-top"><span class="pc-skill-name">Python &amp; Pandas</span><span class="pc-skill-pct">82%</span></div>
+          <div class="pc-skill-track"><div class="pc-skill-fill" style="width:82%;background:#93b4ff;animation-delay:.5s"></div></div>
         </div>
-        <div class="skill-bar-row">
-          <div class="skill-bar-top"><span class="skill-bar-name">Excel · VBA</span><span class="skill-bar-pct">88%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:88%;background:var(--amber);animation-delay:.65s"></div></div>
+        <div class="pc-skill">
+          <div class="pc-skill-top"><span class="pc-skill-name">Excel VBA &amp; Automation</span><span class="pc-skill-pct">88%</span></div>
+          <div class="pc-skill-track"><div class="pc-skill-fill" style="width:88%;background:var(--red);animation-delay:.65s"></div></div>
         </div>
-        <div class="skill-bar-row" style="margin-bottom:0">
-          <div class="skill-bar-top"><span class="skill-bar-name">Business Analysis</span><span class="skill-bar-pct">85%</span></div>
-          <div class="skill-bar-track"><div class="skill-bar-fill" style="width:85%;background:var(--rose);animation-delay:.8s"></div></div>
+        <div class="pc-skill" style="margin-bottom:0">
+          <div class="pc-skill-top"><span class="pc-skill-name">Business Analysis</span><span class="pc-skill-pct">85%</span></div>
+          <div class="pc-skill-track"><div class="pc-skill-fill" style="width:85%;background:#c4b5fd;animation-delay:.8s"></div></div>
         </div>
-      </div>
-      <div class="pc-facts">
-        <div class="pc-fact"><div class="pc-fact-val">2+</div><div class="pc-fact-label">Yrs Experience</div></div>
-        <div class="pc-fact"><div class="pc-fact-val">10+</div><div class="pc-fact-label">Dashboards Built</div></div>
-        <div class="pc-fact"><div class="pc-fact-val">1</div><div class="pc-fact-label">IEEE Publication</div></div>
-        <div class="pc-fact"><div class="pc-fact-val">MS</div><div class="pc-fact-label">UMBC · In Progress</div></div>
+        <div class="pc-chips">
+          <div class="pc-chip"><div class="pc-chip-val">10+</div><div class="pc-chip-lbl">Dashboards Built</div></div>
+          <div class="pc-chip"><div class="pc-chip-val">8H</div><div class="pc-chip-lbl">Saved Per Week</div></div>
+          <div class="pc-chip"><div class="pc-chip-val">IEEE</div><div class="pc-chip-lbl">Published</div></div>
+          <div class="pc-chip"><div class="pc-chip-val">MS</div><div class="pc-chip-lbl">Data Science UMBC</div></div>
+        </div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- MARQUEE -->
-<div class="strip">
-  <div class="strip-inner">
-    <span class="strip-item">Power BI</span><span class="strip-item">DAX</span><span class="strip-item">SQL</span><span class="strip-item">Data Analysis</span><span class="strip-item">Business Intelligence</span><span class="strip-item">Power Query</span><span class="strip-item">Excel VBA</span><span class="strip-item">KPI Dashboards</span><span class="strip-item">Business Analysis</span><span class="strip-item">IEEE Published</span>
-    <span class="strip-item">Power BI</span><span class="strip-item">DAX</span><span class="strip-item">SQL</span><span class="strip-item">Data Analysis</span><span class="strip-item">Business Intelligence</span><span class="strip-item">Power Query</span><span class="strip-item">Excel VBA</span><span class="strip-item">KPI Dashboards</span><span class="strip-item">Business Analysis</span><span class="strip-item">IEEE Published</span>
+<div class="marquee">
+  <div class="marquee-inner">
+    <span class="marquee-item"><b>Power BI</b> &nbsp; DAX &nbsp; Power Query</span>
+    <span class="marquee-item"><b>SQL</b> &nbsp; Data Modelling</span>
+    <span class="marquee-item"><b>Python</b> &nbsp; Pandas &nbsp; NumPy</span>
+    <span class="marquee-item"><b>Excel VBA</b> &nbsp; Automation</span>
+    <span class="marquee-item"><b>Business Analysis</b> &nbsp; BRD &amp; FRD</span>
+    <span class="marquee-item"><b>IEEE Published</b> &nbsp; CNN Research</span>
+    <span class="marquee-item"><b>KPI Design</b> &nbsp; Dashboard Architecture</span>
+    <span class="marquee-item"><b>ETL Pipelines</b> &nbsp; REST APIs</span>
+    <span class="marquee-item"><b>Power BI</b> &nbsp; DAX &nbsp; Power Query</span>
+    <span class="marquee-item"><b>SQL</b> &nbsp; Data Modelling</span>
+    <span class="marquee-item"><b>Python</b> &nbsp; Pandas &nbsp; NumPy</span>
+    <span class="marquee-item"><b>Excel VBA</b> &nbsp; Automation</span>
+    <span class="marquee-item"><b>Business Analysis</b> &nbsp; BRD &amp; FRD</span>
+    <span class="marquee-item"><b>IEEE Published</b> &nbsp; CNN Research</span>
+    <span class="marquee-item"><b>KPI Design</b> &nbsp; Dashboard Architecture</span>
+    <span class="marquee-item"><b>ETL Pipelines</b> &nbsp; REST APIs</span>
   </div>
 </div>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="wrap">
-    <div class="eyebrow reveal">02 — About</div>
-    <h2 class="sec-title reveal">The analyst behind<br>the <em>dashboards</em></h2>
-    <div class="grid" style="display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;margin-top:3.5rem">
-      <div class="about-text reveal-l">
-        <p>I'm a <strong>Data Analyst and Power BI Developer</strong> with a sharp focus on business intelligence, reporting, and helping organisations make better decisions through clean data and clear visuals. Currently completing my Master of Professional Studies in Data Science at the University of Maryland, Baltimore County.</p>
-        <p>At Minnodi LLC I design <strong>Power BI dashboards</strong> that give leadership real answers — tracking KPIs, revenue performance, and operational health across the business. I write DAX, build data models, automate reporting with Power Query and Excel VBA, and work directly with stakeholders to turn business questions into dashboards people actually open every morning.</p>
-        <p>I have also published peer reviewed research in IEEE on detecting deforestation from satellite imagery using machine learning — because good analysis does not stop at the business. It can go anywhere data matters.</p>
-      </div>
-      <div class="edu-stack reveal-r">
-        <div class="edu-item">
-          <div class="edu-school">University of Maryland, Baltimore County</div>
-          <div class="edu-deg">MS — Professional Studies in Data Science</div>
-          <div class="edu-meta">Aug 2024 — Present &nbsp;·&nbsp; Baltimore, USA</div>
-        </div>
-        <div class="edu-item">
-          <div class="edu-school">SRM University</div>
-          <div class="edu-deg">Bachelor of Engineering — Computer Science and Engineering</div>
-          <div class="edu-meta">Jun 2020 — May 2024 &nbsp;·&nbsp; Andhra Pradesh, India</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- EXPERIENCE -->
-<section id="experience">
-  <div class="wrap">
-    <div class="eyebrow reveal">03 — Experience</div>
-    <h2 class="sec-title reveal">Where I've made<br><em>impact</em></h2>
-    <div class="timeline">
-      <div class="tl-item">
-        <div class="tl-dot"></div>
-        <div class="exp-deck">
-          <div class="exp-header">
-            <div>
-              <div class="exp-role">Power BI &amp; Business Analyst</div>
-              <div class="exp-co">Minnodi LLC</div>
-            </div>
-            <div class="exp-right">
-              <div class="exp-period">Jan 2025 — Present</div>
-              <div class="exp-loc">Baltimore, USA</div>
-              <span class="tag-type tag-ft">Full-Time</span>
-            </div>
-          </div>
-          <div class="exp-stats">
-            <span class="exp-stat">10+ dashboards delivered</span>
-            <span class="exp-stat">~30% faster reporting</span>
-            <span class="exp-stat">8 hrs/week saved via automation</span>
+<div class="section-bg" id="experience">
+  <div class="section">
+    <div class="eyebrow rv">02 &nbsp; Experience</div>
+    <h2 class="rv">WHERE I MADE<br><span class="h2-gold">MEASURABLE IMPACT</span></h2>
+    <div class="exp-list">
+
+      <div class="exp-row rv">
+        <div>
+          <div class="exp-date">Jan 2025 — Present</div>
+          <div class="exp-company">Minnodi LLC</div>
+          <div class="exp-location">Baltimore, USA</div>
+          <span class="exp-badge badge-ft">Full Time</span>
+        </div>
+        <div>
+          <div class="exp-title">Power BI and Business Analyst</div>
+          <div class="exp-pills">
+            <span class="exp-pill">10+ dashboards</span>
+            <span class="exp-pill">30% faster reporting</span>
+            <span class="exp-pill">8 hrs per week automated</span>
           </div>
           <div class="bullets">
             <div class="bullet">Designed 10+ interactive Power BI dashboards tracking KPIs, revenue performance, and operational metrics — cutting report turnaround time by approximately 30%.</div>
-            <div class="bullet">Built DAX data models and Power Query pipelines enabling real time self service reporting, replacing manual weekly Excel builds.</div>
-            <div class="bullet">Automated recurring reporting workflows with Excel VBA, saving the team an estimated 8 hours per week of manual data compilation.</div>
-            <div class="bullet">Conducted business requirements gathering with stakeholders, translated needs into dashboard specs and delivered solutions within sprint timelines.</div>
-            <div class="bullet">Performed market and competitor analysis to support strategic planning, contributing directly to quarterly business review presentations.</div>
+            <div class="bullet">Built DAX data models and Power Query pipelines enabling live self-service reporting, replacing manual weekly Excel builds across the organisation.</div>
+            <div class="bullet">Automated recurring reporting with Excel VBA, saving the team an estimated 8 hours per week of manual data compilation.</div>
+            <div class="bullet">Led requirements gathering with stakeholders, translated needs into dashboard specs, and delivered within sprint timelines.</div>
+            <div class="bullet">Performed market and competitor analysis feeding directly into quarterly business review presentations for senior leadership.</div>
           </div>
         </div>
       </div>
-      <div class="tl-item d1">
-        <div class="tl-dot past"></div>
-        <div class="exp-deck">
-          <div class="exp-header">
-            <div>
-              <div class="exp-role">Data Analyst</div>
-              <div class="exp-co">Bendito Soft Tech Pvt. Ltd.</div>
-            </div>
-            <div class="exp-right">
-              <div class="exp-period">Jun 2024 — Aug 2024</div>
-              <div class="exp-loc">Bangalore, India</div>
-              <span class="tag-type tag-intern">Internship</span>
-            </div>
-          </div>
-          <div class="exp-stats">
-            <span class="exp-stat">Python · Pandas · REST APIs</span>
-            <span class="exp-stat">5 data sources integrated</span>
+
+      <div class="exp-row rv d1">
+        <div>
+          <div class="exp-date">Jun 2024 — Aug 2024</div>
+          <div class="exp-company">Bendito Soft Tech</div>
+          <div class="exp-location">Bangalore, India</div>
+          <span class="exp-badge badge-intern">Internship</span>
+        </div>
+        <div>
+          <div class="exp-title">Data Analyst</div>
+          <div class="exp-pills">
+            <span class="exp-pill">5 systems integrated</span>
+            <span class="exp-pill">Python &nbsp; Pandas &nbsp; APIs</span>
           </div>
           <div class="bullets">
-            <div class="bullet">Built Python ETL pipelines to extract, transform, and integrate HRM data across multiple enterprise systems, improving data consistency across 5 integrated sources.</div>
-            <div class="bullet">Performed Pandas based data cleaning and validation, identifying and resolving data quality issues that previously caused reporting discrepancies.</div>
-            <div class="bullet">Tested and validated REST APIs via Postman ensuring reliable data flow, and documented integration behaviour for the engineering team.</div>
-            <div class="bullet">Produced workflow and API integration documentation enabling faster onboarding and long term maintainability for the team.</div>
+            <div class="bullet">Built Python ETL pipelines integrating HRM data across 5 enterprise systems, improving data consistency across all reporting layers.</div>
+            <div class="bullet">Performed Pandas based data cleaning and validation, identifying and resolving quality issues that were causing reporting discrepancies.</div>
+            <div class="bullet">Tested and validated REST APIs via Postman, documenting integration behaviour to enable faster engineering team onboarding.</div>
           </div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROJECTS -->
-<section id="projects">
-  <div class="wrap">
-    <div class="eyebrow reveal">04 — Projects</div>
-    <h2 class="sec-title reveal">Built &amp;<br><em>shipped</em></h2>
-    <div class="proj-deck-grid">
-
-      <div class="proj-deck wide reveal">
-        <div class="proj-number">01</div>
-        <div class="proj-cat"><span class="proj-cat-dot d-bi"></span>Business Intelligence &nbsp;·&nbsp; Featured</div>
-        <div class="proj-title">Meta Ad Performance Power BI Dashboard</div>
-        <div class="proj-desc">Built an end to end Power BI dashboard to analyze Meta advertising campaign performance across multiple ad sets and audiences. Connected raw ad manager exports via Power Query, built a star schema data model, and created calculated DAX measures for CTR, ROAS, cost per conversion, and engagement rate. Gave the marketing team a single source of truth to compare campaigns, spot budget waste, and reallocate spend in real time.</div>
-        <div class="proj-outcome">
-          <span class="proj-outcome-icon">⚡</span>
-          <span class="proj-outcome-text">Replaced 4 separate Excel trackers with one live dashboard. Reduced weekly reporting prep from 3 hours to under 20 minutes.</span>
-        </div>
-        <div class="proj-chips"><span class="chip">Power BI</span><span class="chip">DAX</span><span class="chip">Power Query</span><span class="chip">SQL</span><span class="chip">Star Schema</span><span class="chip">KPI Design</span><span class="chip">Marketing Analytics</span></div>
-        <div class="proj-footer">
-          <a href="https://github.com/vamsi57567" class="proj-link" target="_blank">View on GitHub <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
-          <span class="proj-impact">Power BI · ROAS · CTR · Conversion</span>
-        </div>
-      </div>
-
-      <div class="proj-deck reveal d1">
-        <div class="proj-number">02</div>
-        <div class="proj-cat"><span class="proj-cat-dot d-py"></span>Data Analysis · EDA</div>
-        <div class="proj-title">Wholesale Price Index — Exploratory Data Analysis</div>
-        <div class="proj-desc">Performed full EDA on India's Wholesale Price Index dataset covering 100+ commodity groups. Decomposed seasonal and long run trends, built correlation matrices to identify price co-movements, and visualised which sectors (fuel, manufactured goods, food) drove index movements most strongly.</div>
-        <div class="proj-outcome">
-          <span class="proj-outcome-icon">📌</span>
-          <span class="proj-outcome-text">Identified 3 commodity clusters with statistically significant price correlation — surfaced insights invisible in the raw data.</span>
-        </div>
-        <div class="proj-chips"><span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span class="chip">Seasonal Decomposition</span><span class="chip">Correlation Analysis</span></div>
-        <div class="proj-footer">
-          <a href="https://github.com/vamsi57567/Exploratory_data_analysis" class="proj-link" target="_blank">View on GitHub <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
-          <span class="proj-impact">100+ commodities analysed</span>
-        </div>
-      </div>
-
-      <div class="proj-deck reveal d2">
-        <div class="proj-number">03</div>
-        <div class="proj-cat"><span class="proj-cat-dot d-np"></span>Big Data · NLP</div>
-        <div class="proj-title">MapReduce Word Count and NLP Pipeline</div>
-        <div class="proj-desc">Implemented the MapReduce paradigm from scratch in Python — no Hadoop, no Spark, pure logic — to process large text corpora for word frequency analysis and non English word detection. Demonstrates understanding of how distributed data processing actually works at the algorithm level.</div>
-        <div class="proj-outcome">
-          <span class="proj-outcome-icon">🔍</span>
-          <span class="proj-outcome-text">Processed multi-file corpora with a custom mapper and reducer — demonstrating distributed computing fundamentals without off-the-shelf frameworks.</span>
-        </div>
-        <div class="proj-chips"><span class="chip">Python</span><span class="chip">MapReduce</span><span class="chip">NLP</span><span class="chip">Text Processing</span><span class="chip">Frequency Analysis</span></div>
-        <div class="proj-footer">
-          <a href="https://github.com/vamsi57567/Mapreduce" class="proj-link" target="_blank">View on GitHub <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
-          <span class="proj-impact">Distributed processing · From scratch</span>
-        </div>
-      </div>
-
-      <div class="proj-deck reveal d1">
-        <div class="proj-number">04</div>
-        <div class="proj-cat"><span class="proj-cat-dot d-ai"></span>Trustworthy AI · NLP</div>
-        <div class="proj-title">LLM Hallucination Detection via RAG</div>
-        <div class="proj-desc">Designed an 8 layer retrieval augmented generation pipeline combining FAISS dense retrieval and BM25 sparse retrieval, then added a Natural Language Inference layer for fact verification. Evaluated rigorously on 15,000 balanced claims from the FEVER benchmark dataset.</div>
-        <div class="proj-outcome">
-          <span class="proj-outcome-icon">🎯</span>
-          <span class="proj-outcome-text">+5.95 percentage point accuracy improvement over the baseline model. Meaningfully better uncertainty recognition for ambiguous queries.</span>
-        </div>
-        <div class="proj-chips"><span class="chip">Python</span><span class="chip">FAISS</span><span class="chip">BM25</span><span class="chip">NLI</span><span class="chip">RAG</span><span class="chip">FEVER Benchmark</span></div>
-        <div class="proj-footer">
-          <a href="https://github.com/vamsi57567" class="proj-link" target="_blank">View on GitHub <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
-          <span class="proj-impact">+5.95pp accuracy · 15K claims tested</span>
-        </div>
-      </div>
-
-      <div class="proj-deck wide reveal d2">
-        <div class="proj-number">05</div>
-        <div class="proj-cat"><span class="proj-cat-dot d-ml"></span>Machine Learning · IEEE Published Capstone</div>
-        <div class="proj-title">Deforestation Detection from Satellite Imagery</div>
-        <div class="proj-desc">Developed and trained a custom convolutional neural network to detect deforested regions from satellite remote sensing imagery — extracting vegetation cover change, forest loss rates, and land use dynamics at scale. The model processes multispectral satellite bands, applies spatial feature extraction, and outputs pixel-level deforestation probability maps. This work went beyond a course project — it was rigorous enough to be accepted and published as a conference paper in IEEE Xplore.</div>
-        <div class="proj-outcome">
-          <span class="proj-outcome-icon">🏆</span>
-          <span class="proj-outcome-text">Accepted and published in IEEE Xplore. Custom CNN outperformed all baseline approaches. One of the few undergraduate capstone projects to reach peer reviewed publication.</span>
-        </div>
-        <div class="proj-chips"><span class="chip">Python</span><span class="chip">TensorFlow</span><span class="chip">CNN</span><span class="chip">Remote Sensing</span><span class="chip">Satellite Imagery</span><span class="chip">Deep Learning</span><span class="chip">Image Segmentation</span></div>
-        <div class="proj-footer">
-          <a href="https://ieeexplore.ieee.org/document/10724972" class="proj-link" target="_blank">Read on IEEE Xplore <svg viewBox="0 0 12 12"><path d="M6.5 1h4.5v4.5L9 3.5 5.5 7 5 6.5 8.5 3zm-5 1H4v1H2v7h7V8h1v2.5a.5.5 0 01-.5.5h-8a.5.5 0 01-.5-.5v-8A.5.5 0 011.5 2z" fill="currentColor"/></svg></a>
-          <span class="proj-impact">IEEE Xplore · DOI: 10.1109/10724972</span>
-        </div>
-      </div>
 
     </div>
   </div>
-</section>
+</div>
 
-<!-- PUBLICATION -->
-<section id="publication">
-  <div class="wrap">
-    <div class="eyebrow reveal">05 — Research</div>
-    <h2 class="sec-title reveal">Peer reviewed<br><em>publication</em></h2>
-    <div class="pub-card reveal">
+<!-- PROJECTS DECK -->
+<div id="projects">
+  <div class="section">
+    <div class="eyebrow rv">03 &nbsp; Case Studies</div>
+    <h2 class="rv">PROJECTS WITH<br><span class="h2-red">PROOF, NOT PROMISES</span></h2>
+    <p class="rv d1" style="font-size:.78rem;color:var(--sub);margin-top:.6rem;font-family:'JetBrains Mono',monospace;letter-spacing:.08em">CLICK ANY CARD TO EXPAND ↓</p>
+    <div class="deck rv d2" id="deck"></div>
+  </div>
+</div>
+
+<!-- DEEP CASE STUDY — RAG -->
+<div class="section-bg" id="deep-case">
+  <div class="section">
+    <div class="eyebrow rv">03.5 &nbsp; Deep Case Study</div>
+    <h2 class="rv">TRUSTWORTHY AI<br><span class="h2-red">LLM HALLUCINATION DETECTION</span></h2>
+    <p class="rv" style="font-size:1.02rem;color:var(--body);line-height:1.82;max-width:700px;margin-top:1.2rem;font-weight:300">
+      A complete engineering breakdown of the 8-layer Retrieval Augmented Generation system I built to detect and reduce hallucinations in large language models — evaluated on 15,000 real-world claims from the FEVER benchmark.
+    </p>
+
+    <div class="deep-case rv">
+      <div class="deep-3col" style="margin-top:2rem">
+        <div class="deep-block db-problem">
+          <div class="deep-block-label">The Problem</div>
+          <div class="deep-block-text">LLMs confidently state incorrect facts. Standard single-retrieval RAG systems miss ambiguous claims and return false-confident answers with no uncertainty signal — a real risk in enterprise deployments.</div>
+        </div>
+        <div class="deep-block db-approach">
+          <div class="deep-block-label">My Approach</div>
+          <div class="deep-block-text">Combined dense (FAISS) and sparse (BM25) retrieval in an 8-layer pipeline, then added a DeBERTa NLI verification layer to fact-check generated answers against retrieved evidence before surfacing them.</div>
+        </div>
+        <div class="deep-block db-result">
+          <div class="deep-block-label">The Result</div>
+          <div class="deep-block-text"><span class="result-big">+5.95pp</span> accuracy improvement over baseline on 15,000 FEVER benchmark claims. Significantly better uncertainty recognition for ambiguous queries.</div>
+        </div>
+      </div>
+
+      <!-- Architecture diagram -->
+      <div class="arch-label rv">System Architecture</div>
+      <div class="arch-box rv">
+        <svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;min-width:580px" font-family="JetBrains Mono,monospace">
+          <!-- column labels -->
+          <text x="10"  y="16" font-size="7.5" fill="#6a6760" letter-spacing="1.5">INPUT</text>
+          <text x="178" y="16" font-size="7.5" fill="#6a6760" letter-spacing="1.5">ENCODE</text>
+          <text x="360" y="16" font-size="7.5" fill="#6a6760" letter-spacing="1.5">RETRIEVE</text>
+          <text x="580" y="16" font-size="7.5" fill="#6a6760" letter-spacing="1.5">GENERATE</text>
+          <text x="730" y="16" font-size="7.5" fill="#6a6760" letter-spacing="1.5">VERIFY</text>
+          <text x="862" y="16" font-size="7.5" fill="#6a6760" letter-spacing="1.5">OUT</text>
+
+          <!-- 1: Query -->
+          <rect x="10" y="28" width="118" height="48" rx="4" fill="rgba(232,25,44,.1)" stroke="#e8192c" stroke-width=".8"/>
+          <text x="69" y="47" text-anchor="middle" font-size="9" fill="#f0ece3" font-weight="600">User Query</text>
+          <text x="69" y="60" text-anchor="middle" font-size="7" fill="#9a968e">Claim or question</text>
+          <text x="69" y="72" text-anchor="middle" font-size="7" fill="#9a968e">to be verified</text>
+          <!-- arrow -->
+          <line x1="128" y1="52" x2="158" y2="52" stroke="#e8192c" stroke-width=".8"/>
+          <polygon points="157,48 165,52 157,56" fill="#e8192c"/>
+
+          <!-- 2: Encoder -->
+          <rect x="165" y="28" width="118" height="48" rx="4" fill="rgba(245,200,66,.09)" stroke="#f5c842" stroke-width=".8"/>
+          <text x="224" y="47" text-anchor="middle" font-size="9" fill="#f0ece3" font-weight="600">Query Encoder</text>
+          <text x="224" y="60" text-anchor="middle" font-size="7" fill="#9a968e">Sentence-BERT</text>
+          <text x="224" y="72" text-anchor="middle" font-size="7" fill="#f5c842">Vector embeddings</text>
+          <!-- split to FAISS and BM25 -->
+          <line x1="283" y1="52" x2="313" y2="52" stroke="#f5c842" stroke-width=".8"/>
+          <line x1="313" y1="52" x2="313" y2="26" stroke="#f5c842" stroke-width=".8"/>
+          <line x1="313" y1="52" x2="313" y2="108" stroke="#f5c842" stroke-width=".8"/>
+          <line x1="313" y1="26" x2="345" y2="26" stroke="#6bffc8" stroke-width=".8"/>
+          <polygon points="344,22 352,26 344,30" fill="#6bffc8"/>
+          <line x1="313" y1="108" x2="345" y2="108" stroke="#93b4ff" stroke-width=".8"/>
+          <polygon points="344,104 352,108 344,112" fill="#93b4ff"/>
+
+          <!-- 3a: FAISS -->
+          <rect x="352" y="10" width="118" height="42" rx="4" fill="rgba(107,255,200,.08)" stroke="#6bffc8" stroke-width=".8"/>
+          <text x="411" y="27" text-anchor="middle" font-size="9" fill="#f0ece3" font-weight="600">FAISS Dense</text>
+          <text x="411" y="38" text-anchor="middle" font-size="7" fill="#9a968e">Vector similarity search</text>
+          <text x="411" y="49" text-anchor="middle" font-size="7" fill="#6bffc8">Top-10 passages</text>
+
+          <!-- 3b: BM25 -->
+          <rect x="352" y="88" width="118" height="42" rx="4" fill="rgba(147,180,255,.08)" stroke="#93b4ff" stroke-width=".8"/>
+          <text x="411" y="105" text-anchor="middle" font-size="9" fill="#f0ece3" font-weight="600">BM25 Sparse</text>
+          <text x="411" y="116" text-anchor="middle" font-size="7" fill="#9a968e">TF-IDF keyword match</text>
+          <text x="411" y="127" text-anchor="middle" font-size="7" fill="#93b4ff">Top-10 passages</text>
+
+          <!-- merge to RRF -->
+          <line x1="470" y1="31" x2="502" y2="52" stroke="#6bffc8" stroke-width=".8"/>
+          <line x1="470" y1="109" x2="502" y2="88" stroke="#93b4ff" stroke-width=".8"/>
+          <polygon points="500,47 508,52 501,57" fill="#6bffc8"/>
+          <polygon points="500,85 508,88 501,93" fill="#93b4ff"/>
+
+          <!-- 4: RRF Fusion -->
+          <rect x="508" y="38" width="110" height="42" rx="4" fill="rgba(245,200,66,.09)" stroke="#f5c842" stroke-width=".8"/>
+          <text x="563" y="55" text-anchor="middle" font-size="9" fill="#f0ece3" font-weight="600">RRF Fusion</text>
+          <text x="563" y="66" text-anchor="middle" font-size="7" fill="#9a968e">Re-rank passages</text>
+          <text x="563" y="77" text-anchor="middle" font-size="7" fill="#f5c842">Top-5 selected</text>
+          <line x1="618" y1="59" x2="648" y2="59" stroke="#f5c842" stroke-width=".8"/>
+          <polygon points="647,55 655,59 647,63" fill="#f5c842"/>
+
+          <!-- 5: LLM Generator -->
+          <rect x="655" y="38" width="110" height="42" rx="4" fill="rgba(232,25,44,.1)" stroke="#e8192c" stroke-width=".8"/>
+          <text x="710" y="55" text-anchor="middle" font-size="9" fill="#f0ece3" font-weight="600">LLM Generator</text>
+          <text x="710" y="66" text-anchor="middle" font-size="7" fill="#9a968e">GPT-style model</text>
+          <text x="710" y="77" text-anchor="middle" font-size="7" fill="#e8192c">Draft answer</text>
+
+          <!-- down to NLI -->
+          <line x1="710" y1="80" x2="710" y2="148" stroke="#c4b5fd" stroke-width=".8"/>
+          <polygon points="706,146 710,155 714,146" fill="#c4b5fd"/>
+
+          <!-- 6: NLI Verifier -->
+          <rect x="618" y="155" width="184" height="48" rx="4" fill="rgba(196,181,253,.09)" stroke="#c4b5fd" stroke-width=".8"/>
+          <text x="710" y="174" text-anchor="middle" font-size="9" fill="#f0ece3" font-weight="600">NLI Verifier (DeBERTa)</text>
+          <text x="710" y="185" text-anchor="middle" font-size="7" fill="#9a968e">Cross-encoder fact check</text>
+          <text x="710" y="197" text-anchor="middle" font-size="7" fill="#c4b5fd">Entail / Neutral / Contradict</text>
+          <line x1="710" y1="203" x2="710" y2="236" stroke="#c4b5fd" stroke-width=".8"/>
+          <polygon points="706,234 710,243 714,234" fill="#c4b5fd"/>
+
+          <!-- 7: Confidence Router -->
+          <rect x="618" y="243" width="184" height="44" rx="4" fill="rgba(74,222,128,.07)" stroke="#4ade80" stroke-width=".8"/>
+          <text x="710" y="261" text-anchor="middle" font-size="9" fill="#f0ece3" font-weight="600">Confidence Router</text>
+          <text x="710" y="272" text-anchor="middle" font-size="7" fill="#9a968e">Threshold scoring logic</text>
+          <text x="710" y="283" text-anchor="middle" font-size="7" fill="#4ade80">Accept / Flag / Reject</text>
+
+          <!-- accept → output -->
+          <line x1="802" y1="265" x2="840" y2="265" stroke="#4ade80" stroke-width=".8"/>
+          <polygon points="839,261 847,265 839,269" fill="#4ade80"/>
+          <rect x="847" y="245" width="46" height="42" rx="4" fill="rgba(74,222,128,.13)" stroke="#4ade80" stroke-width=".8"/>
+          <text x="870" y="264" text-anchor="middle" font-size="8" fill="#f0ece3" font-weight="600">Answer</text>
+          <text x="870" y="276" text-anchor="middle" font-size="7" fill="#4ade80">Verified ✓</text>
+          <text x="870" y="285" text-anchor="middle" font-size="8" fill="#4ade80">✓</text>
+
+          <!-- retry loop back dashed -->
+          <line x1="618" y1="265" x2="575" y2="265" stroke="#e8192c" stroke-width=".8" stroke-dasharray="4,3"/>
+          <line x1="575" y1="265" x2="575" y2="190" stroke="#e8192c" stroke-width=".8" stroke-dasharray="4,3"/>
+          <line x1="575" y1="190" x2="508" y2="190" stroke="#e8192c" stroke-width=".8" stroke-dasharray="4,3"/>
+          <polygon points="510,186 502,190 510,194" fill="#e8192c"/>
+          <text x="535" y="185" text-anchor="middle" font-size="6.5" fill="#e8192c">retry</text>
+
+          <!-- accuracy bars panel -->
+          <rect x="10" y="155" width="170" height="148" rx="4" fill="rgba(240,236,227,.02)" stroke="rgba(240,236,227,.08)" stroke-width=".8"/>
+          <text x="95" y="172" text-anchor="middle" font-size="8.5" fill="#f0ece3" font-weight="600">FEVER Evaluation Results</text>
+          <text x="95" y="183" text-anchor="middle" font-size="7" fill="#9a968e">15,000 balanced claims</text>
+
+          <text x="18" y="204" font-size="7" fill="#6a6760">Baseline model</text>
+          <rect x="18" y="207" width="130" height="7" rx="2" fill="rgba(240,236,227,.05)"/>
+          <rect x="18" y="207" width="87" height="7" rx="2" fill="rgba(232,25,44,.38)"/>
+          <text x="152" y="215" font-size="7" fill="#e8192c">67%</text>
+
+          <text x="18" y="228" font-size="7" fill="#6a6760">RAG only</text>
+          <rect x="18" y="231" width="130" height="7" rx="2" fill="rgba(240,236,227,.05)"/>
+          <rect x="18" y="231" width="104" height="7" rx="2" fill="rgba(245,200,66,.38)"/>
+          <text x="152" y="239" font-size="7" fill="#f5c842">70%</text>
+
+          <text x="18" y="252" font-size="7" fill="#6a6760">RAG + NLI</text>
+          <rect x="18" y="255" width="130" height="7" rx="2" fill="rgba(240,236,227,.05)"/>
+          <rect x="18" y="255" width="127" height="7" rx="2" fill="rgba(74,222,128,.52)"/>
+          <text x="152" y="263" font-size="7" fill="#4ade80">72.95%</text>
+
+          <text x="95" y="280" text-anchor="middle" font-size="8.5" fill="#4ade80" font-weight="600">+5.95pp improvement</text>
+          <text x="95" y="292" text-anchor="middle" font-size="7" fill="#6a6760">Best ambiguous claim handling</text>
+
+          <!-- legend -->
+          <line x1="18" y1="308" x2="36" y2="308" stroke="#e8192c" stroke-width=".8" stroke-dasharray="4,3"/>
+          <text x="40" y="311" font-size="6.5" fill="#6a6760">Retry loop</text>
+          <line x1="90" y1="308" x2="108" y2="308" stroke="#4ade80" stroke-width=".8"/>
+          <text x="112" y="311" font-size="6.5" fill="#6a6760">Accept path</text>
+        </svg>
+      </div>
+
+      <!-- Tech pills -->
+      <div class="tech-pills rv">
+        <span class="tech-pill tp-green">FAISS Dense Retrieval</span>
+        <span class="tech-pill tp-blue">BM25 Sparse Retrieval</span>
+        <span class="tech-pill tp-purple">DeBERTa NLI Verifier</span>
+        <span class="tech-pill tp-gold">Reciprocal Rank Fusion</span>
+        <span class="tech-pill tp-red">Sentence-BERT Encoding</span>
+        <span class="tech-pill tp-ok">FEVER Benchmark 15K Claims</span>
+        <span class="tech-pill tp-gray">Python</span>
+        <span class="tech-pill tp-gray">HuggingFace Transformers</span>
+      </div>
+
+      <!-- Key learnings -->
+      <div class="learnings rv">
+        <div class="learn-card">
+          <div class="learn-label" style="color:var(--gold)">Key Engineering Decision</div>
+          <div class="learn-text">Hybrid retrieval — dense plus sparse — consistently outperformed either approach alone. Dense retrieval captures semantic similarity; sparse retrieval catches exact keywords that embeddings miss. Combining both through Reciprocal Rank Fusion delivered the best passage quality before the LLM ever saw a token.</div>
+        </div>
+        <div class="learn-card">
+          <div class="learn-label" style="color:var(--red)">What Surprised Me</div>
+          <div class="learn-text">The NLI verifier's biggest win was not catching outright false claims — it was correctly flagging <em>ambiguous</em> claims that the base model answered with false confidence. This is the real safety risk in enterprise LLM deployments, and it only surfaces under rigorous evaluation.</div>
+        </div>
+      </div>
+
+      <a href="https://github.com/vamsi57567" target="_blank" class="btn-red" style="width:fit-content">View on GitHub ↗</a>
+    </div>
+  </div>
+</div>
+
+<!-- RESEARCH -->
+<div id="research">
+  <div class="section">
+    <div class="eyebrow rv">04 &nbsp; Research</div>
+    <h2 class="rv">PEER REVIEWED<br><span class="h2-gold">PUBLICATION</span></h2>
+    <div class="pub rv">
       <div>
-        <div class="pub-badge">
-          <svg width="9" height="9" viewBox="0 0 10 10" fill="none"><circle cx="5" cy="5" r="4" stroke="currentColor"/><path d="M5 3v4M3 5h4" stroke="currentColor"/></svg>
-          IEEE Xplore &nbsp;·&nbsp; Conference Publication &nbsp;·&nbsp; 2024
-        </div>
+        <div class="pub-badge">IEEE Xplore &nbsp; Conference Paper &nbsp; 2024</div>
         <div class="pub-title">Deforestation Detection from Remote Sensing Images using Machine Learning</div>
-        <div class="pub-authors">Vamsi Krishna Peeta et al. &nbsp;·&nbsp; SRM University, Andhra Pradesh</div>
-        <div class="pub-journal">IEEE Xplore &nbsp;·&nbsp; DOI: 10.1109/10724972 &nbsp;·&nbsp; Conference Paper</div>
-        <p class="pub-abstract">Applies machine learning and deep learning to satellite remote sensing data to detect deforestation patterns at scale. Extracts key parameters including vegetation cover change, forest loss, and land use dynamics — combining CNNs with remote sensing to produce deforestation maps suitable for real environmental monitoring use.</p>
+        <div class="pub-auth">Vamsi Krishna Peeta et al. &nbsp; SRM University, Andhra Pradesh</div>
+        <div class="pub-journal">IEEE Xplore &nbsp; DOI: 10.1109/10724972</div>
+        <p class="pub-abstract">Applies machine learning and deep learning to satellite remote sensing data to detect deforestation at scale — extracting vegetation cover change, forest loss, and land use dynamics via a custom CNN architecture trained on multispectral satellite imagery.</p>
       </div>
-      <div class="pub-action">
-        <a href="https://ieeexplore.ieee.org/document/10724972" target="_blank">
+      <div>
+        <a href="https://ieeexplore.ieee.org/document/10724972" class="pub-btn" target="_blank">
           <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zm0-10h4v6h6v-6h4l-7-7-7 7z"/></svg>
           Read on IEEE
         </a>
       </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- SKILLS -->
-<section id="skills">
-  <div class="wrap">
-    <div class="eyebrow reveal">06 — Skills</div>
-    <h2 class="sec-title reveal">Technical<br><em>toolkit</em></h2>
-    <div class="skills-wrapper">
-      <div class="skill-cat reveal d1">
-        <div class="skill-cat-header"><span class="skill-ico">📊</span>Power BI Development</div>
-        <div class="skill-cat-sub">My primary tool. I build production dashboards from scratch — data model to published report — for business teams who need answers, not raw tables.</div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">DAX &amp; Measures</span><span class="sbar-pct">95%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:95%;background:var(--acid);animation-delay:.1s"></div></div></div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">Power Query (M Language)</span><span class="sbar-pct">90%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:90%;background:var(--acid);animation-delay:.2s"></div></div></div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">Data Modelling &amp; Relationships</span><span class="sbar-pct">88%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:88%;background:var(--acid);animation-delay:.3s"></div></div></div>
-        <div class="skill-tags"><span class="stag">Star Schema</span><span class="stag">KPI Cards</span><span class="stag">Slicers</span><span class="stag">Drillthrough</span><span class="stag">Row Level Security</span></div>
+<div class="section-bg" id="skills">
+  <div class="section">
+    <div class="eyebrow rv">05 &nbsp; Skills</div>
+    <h2 class="rv">WHAT I'M<br><span class="h2-red">STRONGEST IN</span></h2>
+    <div class="skills-grid">
+
+      <div class="skill-card rv d1">
+        <div class="skill-head"><span class="skill-icon">📊</span><span class="skill-name">Power BI Development</span></div>
+        <div class="skill-desc">Production dashboards from data model to published report — built for teams who need clear answers fast.</div>
+        <div class="skill-bars">
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">DAX and Calculated Measures</span><span class="sbt-pct">95%</span></div><div class="skill-track"><div class="skill-fill" style="width:95%;background:var(--gold);animation-delay:.1s"></div></div></div>
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Power Query M Language</span><span class="sbt-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:var(--gold);animation-delay:.2s"></div></div></div>
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Data Modelling and Star Schema</span><span class="sbt-pct">88%</span></div><div class="skill-track"><div class="skill-fill" style="width:88%;background:var(--gold);animation-delay:.3s"></div></div></div>
+        </div>
+        <div class="skill-tags"><span class="skill-tag">KPI Cards</span><span class="skill-tag">Drillthrough</span><span class="skill-tag">Row Level Security</span><span class="skill-tag">Report Publishing</span></div>
       </div>
-      <div class="skill-cat reveal d2">
-        <div class="skill-cat-header"><span class="skill-ico">🗄️</span>SQL &amp; Data Analysis</div>
-        <div class="skill-cat-sub">I write SQL to clean, join, and aggregate data before it hits a dashboard — and Python to handle the heavier lifting when SQL is not enough.</div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">SQL (joins, CTEs, window functions)</span><span class="sbar-pct">90%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:90%;background:var(--sky);animation-delay:.1s"></div></div></div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">Python · Pandas · NumPy</span><span class="sbar-pct">82%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:82%;background:var(--sky);animation-delay:.2s"></div></div></div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">Exploratory Data Analysis</span><span class="sbar-pct">87%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:87%;background:var(--sky);animation-delay:.3s"></div></div></div>
-        <div class="skill-tags"><span class="stag">Trend Analysis</span><span class="stag">Correlation</span><span class="stag">Outlier Detection</span><span class="stag">Statistical Testing</span></div>
+
+      <div class="skill-card rv d2">
+        <div class="skill-head"><span class="skill-icon">🗄️</span><span class="skill-name">SQL and Data Analysis</span></div>
+        <div class="skill-desc">SQL to clean, join, and aggregate data before it hits a dashboard. Python when the logic goes deeper.</div>
+        <div class="skill-bars">
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">SQL — joins, CTEs, window functions</span><span class="sbt-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:#6bffc8;animation-delay:.1s"></div></div></div>
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Python &nbsp; Pandas &nbsp; NumPy</span><span class="sbt-pct">82%</span></div><div class="skill-track"><div class="skill-fill" style="width:82%;background:#6bffc8;animation-delay:.2s"></div></div></div>
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Exploratory Data Analysis</span><span class="sbt-pct">87%</span></div><div class="skill-track"><div class="skill-fill" style="width:87%;background:#6bffc8;animation-delay:.3s"></div></div></div>
+        </div>
+        <div class="skill-tags"><span class="skill-tag">Trend Analysis</span><span class="skill-tag">Correlation</span><span class="skill-tag">Statistical Testing</span></div>
       </div>
-      <div class="skill-cat reveal d1">
-        <div class="skill-cat-header"><span class="skill-ico">📑</span>Excel &amp; Reporting</div>
-        <div class="skill-cat-sub">Excel is still where most business decisions happen. I automate the repetitive parts with VBA and build reports that update themselves.</div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">Excel Advanced Formulas</span><span class="sbar-pct">92%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:92%;background:var(--amber);animation-delay:.1s"></div></div></div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">VBA Macros &amp; Automation</span><span class="sbar-pct">80%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:80%;background:var(--amber);animation-delay:.2s"></div></div></div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">Pivot Tables &amp; Dashboard Design</span><span class="sbar-pct">90%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:90%;background:var(--amber);animation-delay:.3s"></div></div></div>
-        <div class="skill-tags"><span class="stag">VLOOKUP / XLOOKUP</span><span class="stag">Power Pivot</span><span class="stag">Dynamic Arrays</span><span class="stag">Conditional Formatting</span></div>
+
+      <div class="skill-card rv d1">
+        <div class="skill-head"><span class="skill-icon">📑</span><span class="skill-name">Excel and Automation</span></div>
+        <div class="skill-desc">I automate the repetitive parts with VBA and build reports that update themselves.</div>
+        <div class="skill-bars">
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Advanced Formulas and Functions</span><span class="sbt-pct">92%</span></div><div class="skill-track"><div class="skill-fill" style="width:92%;background:var(--red);animation-delay:.1s"></div></div></div>
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">VBA Macros and Automation</span><span class="sbt-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:var(--red);animation-delay:.2s"></div></div></div>
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Pivot Tables and Dashboard Design</span><span class="sbt-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:var(--red);animation-delay:.3s"></div></div></div>
+        </div>
+        <div class="skill-tags"><span class="skill-tag">XLOOKUP</span><span class="skill-tag">Power Pivot</span><span class="skill-tag">Dynamic Arrays</span></div>
       </div>
-      <div class="skill-cat reveal d2">
-        <div class="skill-cat-header"><span class="skill-ico">📋</span>Business Analysis</div>
-        <div class="skill-cat-sub">I bridge the gap between what stakeholders ask for and what the data can actually deliver — through structured requirements, gap analysis, and clear documentation.</div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">Requirements Gathering</span><span class="sbar-pct">88%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:88%;background:var(--rose);animation-delay:.1s"></div></div></div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">Gap Analysis &amp; Process Mapping</span><span class="sbar-pct">84%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:84%;background:var(--rose);animation-delay:.2s"></div></div></div>
-        <div class="sbar"><div class="sbar-top"><span class="sbar-name">BRD / FRD Documentation</span><span class="sbar-pct">82%</span></div><div class="sbar-track"><div class="sbar-fill" style="width:82%;background:var(--rose);animation-delay:.3s"></div></div></div>
-        <div class="skill-tags"><span class="stag">Stakeholder Interviews</span><span class="stag">Use Case Diagrams</span><span class="stag">Sprint Planning</span><span class="stag">As-Is / To-Be</span></div>
+
+      <div class="skill-card rv d2">
+        <div class="skill-head"><span class="skill-icon">📋</span><span class="skill-name">Business Analysis</span></div>
+        <div class="skill-desc">Bridging the gap between what stakeholders ask for and what data can actually deliver.</div>
+        <div class="skill-bars">
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Requirements Gathering</span><span class="sbt-pct">88%</span></div><div class="skill-track"><div class="skill-fill" style="width:88%;background:#c4b5fd;animation-delay:.1s"></div></div></div>
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Gap Analysis and Process Mapping</span><span class="sbt-pct">84%</span></div><div class="skill-track"><div class="skill-fill" style="width:84%;background:#c4b5fd;animation-delay:.2s"></div></div></div>
+          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">BRD and FRD Documentation</span><span class="sbt-pct">82%</span></div><div class="skill-track"><div class="skill-fill" style="width:82%;background:#c4b5fd;animation-delay:.3s"></div></div></div>
+        </div>
+        <div class="skill-tags"><span class="skill-tag">Stakeholder Interviews</span><span class="skill-tag">As-Is To-Be</span><span class="skill-tag">Sprint Planning</span></div>
       </div>
+
     </div>
   </div>
-</section>
+</div>
 
 <!-- CONTACT -->
-<section id="contact">
-  <div class="wrap">
-    <div class="eyebrow reveal">07 — Contact</div>
-    <h2 class="sec-title reveal">Let's build something<br>that <em>matters</em></h2>
-    <div class="contact-box reveal">
+<div id="contact">
+  <div class="section">
+    <div class="eyebrow rv" style="justify-content:center">06 &nbsp; Contact</div>
+    <div class="contact-box rv">
+      <div class="contact-title">READY TO TURN YOUR<br>DATA INTO <span class="ct-red">REAL DECISIONS?</span></div>
       <p class="contact-sub">Open to full time roles in data analytics, Power BI development, and business analysis. Based in the USA — onsite, hybrid, and remote all welcome.</p>
       <div class="contact-links">
-        <a href="https://www.linkedin.com/in/vamsi-krishna-peeta-23585223a/" class="clink" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn
+        <a href="https://www.linkedin.com/in/vamsi-krishna-peeta-23585223a/" class="contact-link" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
         </a>
-        <a href="https://github.com/vamsi57567" class="clink" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub
+        <a href="https://github.com/vamsi57567" class="contact-link" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          GitHub
         </a>
-        <a href="mailto:vamsi57567@gmail.com" class="clink">
-          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Email Me
+        <a href="mailto:vamsi57567@gmail.com" class="contact-link">
+          <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          Email Me
         </a>
-        <a href="https://ieeexplore.ieee.org/document/10724972" class="clink" target="_blank">
-          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>IEEE Paper
+        <a href="https://ieeexplore.ieee.org/document/10724972" class="contact-link" target="_blank">
+          <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          IEEE Paper
         </a>
       </div>
     </div>
   </div>
-</section>
+</div>
 
-<footer>© 2026 &nbsp;·&nbsp; Vamsi Krishna Peeta &nbsp;·&nbsp; USA</footer>
+<footer>© 2026 &nbsp; Vamsi Krishna Peeta &nbsp; USA &nbsp; Data Analyst &nbsp; Power BI Developer</footer>
 
 <script>
-const cur=document.getElementById('cur'),ring=document.getElementById('ring');
-let mx=0,my=0,rx=0,ry=0;
-document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
-(function loop(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop)})();
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.1});
-document.querySelectorAll('.reveal,.reveal-l,.reveal-r,.tl-item').forEach(el=>obs.observe(el));
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{cur.style.width='18px';cur.style.height='18px'});
-  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px'});
+/* ════ PROJECT DATA ════ */
+const PROJECTS = [
+  {
+    num:'01', cls:'cat-bi', cat:'Business Intelligence',
+    title:'Meta Ad Performance Power BI Dashboard',
+    glimpse:'Live Power BI dashboard replacing 4 Excel trackers. Weekly reporting prep fell from 3 hours to under 20 minutes.',
+    tags:['Power BI','DAX','Power Query','SQL','Star Schema'],
+    problem:'Marketing team tracked ad performance across 4 separate Excel files. Weekly consolidation took 3 hours and budget decisions arrived a week late — by which time money was already wasted.',
+    approach:'Built a star schema data model in Power BI. Connected raw Meta Ad Manager exports via Power Query. Created DAX measures for CTR, ROAS, cost per conversion, and engagement rate with campaign-level drillthrough.',
+    outcome:'One live dashboard replaced all 4 trackers. Weekly reporting prep fell from 3 hours to under 20 minutes. Budget reallocation moved from weekly to daily cadence using live ROAS data.',
+    result:'3 hours of weekly manual work reduced to 20 minutes. Budget decisions now happen daily instead of weekly.',
+    icon:'⚡',
+    chips:['Power BI','DAX','Power Query','SQL','Star Schema','KPI Design','Marketing Analytics'],
+    link:'https://github.com/vamsi57567', lbl:'View on GitHub'
+  },
+  {
+    num:'02', cls:'cat-da', cat:'Data Analysis',
+    title:'Wholesale Price Index Exploratory Data Analysis',
+    glimpse:'Full EDA on 100 plus commodity groups uncovering 3 statistically significant price clusters invisible in the raw data.',
+    tags:['Python','Pandas','Matplotlib','Seaborn','EDA'],
+    problem:"India's WPI dataset covering 100 plus commodity groups hides patterns invisible to the naked eye. Which sectors drive index movements? Which commodities co-move?",
+    approach:'Full EDA in Python: seasonal decomposition, rolling correlation matrices, sector level trend analysis, and commodity clustering across fuel, manufactured goods, and agricultural categories.',
+    outcome:'3 commodity clusters with statistically significant price co-movement identified — relevant for inflation forecasting and procurement timing.',
+    result:'3 statistically significant commodity clusters identified. Seasonal price cycles quantified across fuel, food, and manufactured goods.',
+    icon:'📌',
+    chips:['Python','Pandas','Matplotlib','Seaborn','Seasonal Decomposition','Correlation Analysis','EDA'],
+    link:'https://github.com/vamsi57567/Exploratory_data_analysis', lbl:'View on GitHub'
+  },
+  {
+    num:'03', cls:'cat-ai', cat:'Trustworthy AI',
+    title:'LLM Hallucination Detection via Multi-Layer RAG',
+    glimpse:'+5.95 percentage point accuracy gain over baseline on 15,000 FEVER benchmark claims using an 8-layer RAG pipeline.',
+    tags:['Python','FAISS','BM25','NLI','RAG'],
+    problem:'LLMs confidently state incorrect facts. Single-retrieval RAG systems miss ambiguous claims and produce false-confident answers with no uncertainty signal.',
+    approach:'8-layer pipeline fusing FAISS dense retrieval and BM25 sparse retrieval. Added a DeBERTa NLI verification layer to cross-check generated claims against retrieved evidence before surfacing answers.',
+    outcome:'+5.95 percentage point accuracy gain over baseline on 15,000 FEVER benchmark claims. Significantly better uncertainty recognition for ambiguous queries.',
+    result:'+5.95pp accuracy over baseline. NLI verification layer significantly reduced false-positive confident responses.',
+    icon:'🎯',
+    chips:['Python','FAISS','BM25','NLI','RAG','FEVER Benchmark','NLP','DeBERTa'],
+    link:'https://github.com/vamsi57567', lbl:'View on GitHub'
+  },
+  {
+    num:'04', cls:'cat-bd', cat:'Big Data and NLP',
+    title:'MapReduce Word Count and NLP Pipeline',
+    glimpse:'Full MapReduce paradigm built from scratch in Python — no Hadoop, no Spark, pure algorithmic implementation.',
+    tags:['Python','MapReduce','NLP','Text Processing'],
+    problem:'Processing large text corpora for frequency analysis requires understanding distributed computation at the algorithm level — not just importing a library.',
+    approach:'Implemented MapReduce from scratch in Python with a custom mapper and reducer for word counting, frequency ranking, and non-English word detection across multi-file corpora. Zero framework dependencies.',
+    outcome:'End to end distributed text processing pipeline demonstrating deep algorithmic understanding of how large scale data processing works at the logic level.',
+    result:'Full pipeline built without any frameworks. Demonstrates core algorithmic understanding of distributed computing.',
+    icon:'🔍',
+    chips:['Python','MapReduce','NLP','Text Processing','Frequency Analysis','Distributed Computing'],
+    link:'https://github.com/vamsi57567/Mapreduce', lbl:'View on GitHub'
+  },
+  {
+    num:'05', cls:'cat-ml', cat:'IEEE Published — Deep Learning',
+    title:'Deforestation Detection from Satellite Imagery',
+    glimpse:'Custom CNN outperforming all baselines. Published in IEEE Xplore — one of the few undergraduate capstones to reach peer reviewed publication.',
+    tags:['Python','TensorFlow','CNN','Remote Sensing'],
+    problem:'Manual detection of deforestation from satellite imagery is slow and geographically limited. Existing ML baselines struggled with complex multispectral pixel-level classification.',
+    approach:'Custom CNN architecture trained on satellite remote sensing data. Spatial feature extraction across multispectral bands generates pixel-level deforestation probability maps covering vegetation cover change and forest loss.',
+    outcome:'Custom model outperformed all baselines. Research accepted and published in IEEE Xplore. One of the few undergraduate capstones to reach peer reviewed publication.',
+    result:'Published in IEEE Xplore DOI 10.1109/10724972. Custom CNN outperformed all baseline approaches.',
+    icon:'🏆',
+    chips:['Python','TensorFlow','CNN','Remote Sensing','Satellite Imagery','Deep Learning','Image Segmentation'],
+    link:'https://ieeexplore.ieee.org/document/10724972', lbl:'Read on IEEE Xplore'
+  }
+];
+
+/* ════ BUILD DECK ════ */
+const deckEl = document.getElementById('deck');
+PROJECTS.forEach(p => {
+  const card = document.createElement('div');
+  card.className = 'project-card';
+  card.innerHTML = `
+    <div class="card-face">
+      <div class="card-num">${p.num}</div>
+      <span class="card-cat ${p.cls}">${p.cat}</span>
+      <div class="card-title">${p.title}</div>
+      <div class="card-glimpse">${p.glimpse}</div>
+      <div class="card-tags">${p.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>
+    </div>
+    <span class="card-arrow">→</span>
+  `;
+  card.addEventListener('click', () => openModal(p));
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transition = 'transform .08s, box-shadow .3s, border-color .3s';
+    card.style.transform = `perspective(700px) rotateY(${x*8}deg) rotateX(${-y*6}deg) translateZ(12px) translateY(-8px) scale(1.02)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform .5s cubic-bezier(.23,1,.32,1), box-shadow .3s, border-color .3s';
+    card.style.transform = '';
+  });
+  deckEl.appendChild(card);
 });
+
+/* ════ MODAL ════ */
+function openModal(p) {
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-num">${p.num}</div>
+    <span class="card-cat ${p.cls}" style="display:inline-block;margin-bottom:.8rem">${p.cat}</span>
+    <div class="modal-title">${p.title}</div>
+    <div class="modal-par">
+      <div class="modal-par-block"><div class="modal-par-label">Problem</div><div class="modal-par-text">${p.problem}</div></div>
+      <div class="modal-par-block"><div class="modal-par-label">Approach</div><div class="modal-par-text">${p.approach}</div></div>
+      <div class="modal-par-block"><div class="modal-par-label">Outcome</div><div class="modal-par-text">${p.outcome}</div></div>
+    </div>
+    <div class="modal-outcome"><span class="modal-outcome-icon">${p.icon}</span><span class="modal-outcome-text">${p.result}</span></div>
+    <div class="modal-chips">${p.chips.map(c=>`<span class="modal-chip">${c}</span>`).join('')}</div>
+    <a href="${p.link}" class="modal-link" target="_blank">${p.lbl} ↗</a>
+  `;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeMo(e) {
+  if (e && e.target !== document.getElementById('modal-overlay') && e.target !== document.getElementById('modal-close')) return;
+  document.getElementById('modal-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMo(); });
+
+/* ════ MARVEL INTRO ════ */
+(function() {
+  const intro  = document.getElementById('intro');
+  const box    = document.getElementById('mv-box');
+  const chars  = document.querySelectorAll('.mvc');
+  const bm     = document.getElementById('intro-bitmoji');
+  const tag    = document.getElementById('mv-tag');
+  const bar    = document.getElementById('mv-bar');
+  const flash  = document.getElementById('mv-flash');
+  const nav    = document.getElementById('nav');
+  const hero   = document.getElementById('hero');
+  const iarm   = document.getElementById('ia-r');
+  const ispk   = document.getElementById('ispk');
+  const ilegL  = document.getElementById('il-l');
+  const ilegR  = document.getElementById('il-r');
+
+  // Phase 1 — red box wipe in
+  setTimeout(() => {
+    box.style.transition = 'transform .4s cubic-bezier(.23,1,.32,1)';
+    box.style.transform = 'scaleX(1)';
+  }, 200);
+
+  // Phase 2 — letters drop in
+  setTimeout(() => {
+    chars.forEach((c, i) => {
+      setTimeout(() => {
+        c.style.transition = 'opacity .25s ease, transform .38s cubic-bezier(.23,1,.32,1)';
+        c.style.opacity = '1';
+        c.style.transform = 'rotateX(0deg)';
+      }, i * 100);
+    });
+  }, 650);
+
+  // Phase 3 — red box wipes out
+  setTimeout(() => {
+    box.style.transformOrigin = 'right';
+    box.style.transform = 'scaleX(0)';
+  }, 1250);
+
+  // Phase 4 — bitmoji appears, waves
+  setTimeout(() => {
+    bm.style.transition = 'opacity .5s';
+    bm.style.opacity = '1';
+    tag.style.transition = 'opacity .5s';
+    tag.style.opacity = '1';
+    let wt = 0, dir = 1, ph = 0;
+    const wv = setInterval(() => {
+      ph += .06; wt += dir * 11;
+      if (wt > 36 || wt < -10) dir *= -1;
+      if (iarm) iarm.setAttribute('transform', `rotate(${wt},70,58.5)`);
+      if (ispk) ispk.style.opacity = wt > 20 ? '1' : '0';
+      if (ilegL) ilegL.setAttribute('y', 82 + Math.sin(ph) * 1.5);
+      if (ilegR) ilegR.setAttribute('y', 82 - Math.sin(ph) * 1.5);
+    }, 40);
+    setTimeout(() => clearInterval(wv), 2200);
+  }, 1700);
+
+  // Phase 5 — progress bar then exit
+  let prog = 0;
+  setTimeout(() => {
+    const iv = setInterval(() => {
+      prog += 2.2;
+      bar.style.width = Math.min(prog, 100) + '%';
+      if (prog >= 100) {
+        clearInterval(iv);
+        setTimeout(() => {
+          flash.style.transition = 'opacity .12s';
+          flash.style.opacity = '1';
+          setTimeout(() => {
+            intro.style.transition = 'opacity .5s';
+            intro.style.opacity = '0';
+            flash.style.opacity = '0';
+            setTimeout(() => {
+              intro.style.display = 'none';
+              nav.classList.add('show');
+              hero.classList.add('show');
+              startHeroBitmoji();
+            }, 500);
+          }, 120);
+        }, 300);
+      }
+    }, 22);
+  }, 1900);
+})();
+
+/* ════ HERO BITMOJI WAVE ════ */
+function startHeroBitmoji() {
+  const harmR = document.getElementById('ha-r');
+  const hspk  = document.getElementById('hspk');
+  const hibub = document.getElementById('hi-bub');
+  const hlegL = document.getElementById('hl-l');
+  const hlegR = document.getElementById('hl-r');
+
+  // Show Hi bubble
+  if (hibub) { hibub.style.opacity = '1'; setTimeout(() => { hibub.style.opacity = '0'; }, 2200); }
+
+  let wt = 0, dir = 1, ph = 0;
+  setInterval(() => {
+    ph += .05; wt += dir * 11;
+    if (wt > 38 || wt < -12) dir *= -1;
+    if (harmR) harmR.setAttribute('transform', `rotate(${wt},70,58.5)`);
+    if (hspk)  hspk.style.opacity = wt > 20 ? '1' : '0';
+    if (hlegL) hlegL.setAttribute('y', 82 + Math.sin(ph) * 1.5);
+    if (hlegR) hlegR.setAttribute('y', 82 - Math.sin(ph) * 1.5);
+  }, 40);
+
+  // Periodic hi bubble
+  setInterval(() => {
+    if (hibub) { hibub.style.opacity = '1'; setTimeout(() => { hibub.style.opacity = '0'; }, 1800); }
+  }, 7000);
+}
+
+/* ════ NEURAL NETWORK BACKGROUND ════ */
+(function() {
+  const cv  = document.getElementById('cv');
+  const ctx = cv.getContext('2d');
+  let W, H, nodes = [];
+  const N = 52, DIST = 155;
+
+  function resize() { W = cv.width = innerWidth; H = cv.height = innerHeight; }
+  resize();
+  window.addEventListener('resize', () => { resize(); init(); });
+
+  function init() {
+    nodes = [];
+    for (let i = 0; i < N; i++) {
+      nodes.push({
+        x: Math.random() * W, y: Math.random() * H,
+        vx: (Math.random() - .5) * .32, vy: (Math.random() - .5) * .32,
+        r: Math.random() * 1.4 + .5,
+        pulse: Math.random() * Math.PI * 2
+      });
+    }
+  }
+  init();
+
+  let mx = -9999, my = -9999;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    nodes.forEach(n => {
+      const dx = mx - n.x, dy = my - n.y, d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 200) { n.vx += dx / d * .01; n.vy += dy / d * .01; }
+      n.vx *= .99; n.vy *= .99;
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0) n.x = W; if (n.x > W) n.x = 0;
+      if (n.y < 0) n.y = H; if (n.y > H) n.y = 0;
+    });
+
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const a = nodes[i], b = nodes[j];
+        const dx = b.x - a.x, dy = b.y - a.y, d = Math.sqrt(dx*dx + dy*dy);
+        if (d < DIST) {
+          const alpha = (1 - d/DIST) * .32;
+          const md = Math.min(
+            Math.sqrt((mx-a.x)**2 + (my-a.y)**2),
+            Math.sqrt((mx-b.x)**2 + (my-b.y)**2)
+          );
+          const heat = Math.max(0, 1 - md/240);
+          const r = Math.round(232*heat + 76*(1-heat));
+          const g = Math.round(25*heat + 65*(1-heat));
+          const bl = Math.round(44*heat + 95*(1-heat));
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y);
+          ctx.strokeStyle = `rgba(${r},${g},${bl},${alpha})`;
+          ctx.lineWidth = .75; ctx.stroke();
+        }
+      }
+    }
+
+    nodes.forEach(n => {
+      n.pulse += .024;
+      const pa = .28 + Math.sin(n.pulse) * .14;
+      const md = Math.sqrt((mx-n.x)**2 + (my-n.y)**2);
+      const heat = Math.max(0, 1 - md/175);
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+      ctx.fillStyle = heat > .1
+        ? `rgba(232,25,44,${pa + .2})`
+        : `rgba(110,90,145,${pa})`;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ════ CURSOR ════ */
+const cur = document.getElementById('cur');
+const ring = document.getElementById('ring');
+let mx = 0, my = 0, rx = 0, ry = 0;
+document.addEventListener('mousemove', e => {
+  mx = e.clientX; my = e.clientY;
+  cur.style.left = mx + 'px'; cur.style.top = my + 'px';
+});
+(function loop() {
+  rx += (mx - rx) * .12; ry += (my - ry) * .12;
+  ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+  requestAnimationFrame(loop);
+})();
+document.querySelectorAll('a, button, .project-card, #modal-close').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('hl'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('hl'));
+});
+
+/* ════ SCROLL REVEAL ════ */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+}, { threshold: .07 });
+document.querySelectorAll('.rv, .rl, .rr').forEach(el => obs.observe(el));
 </script>
 </body>
 </html>
