@@ -246,7 +246,7 @@ nav.show { opacity: 1; transform: translateY(0); }
 
 h1 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.8rem, 5vw, 5rem);
+  font-size: clamp(2.4rem, 4.2vw, 4.2rem);
   line-height: .96; letter-spacing: .04em;
   color: var(--cream); margin-bottom: 1.2rem;
 }
@@ -255,8 +255,8 @@ h1 .h1-gold { color: var(--gold); display: block; font-size: .58em; letter-spaci
 h1 .h1-ind { padding-left: clamp(.8rem, 3vw, 3rem); }
 
 .hero-desc {
-  font-size: 1.05rem; color: var(--body);
-  line-height: 1.82; max-width: 520px;
+  font-size: 1.1rem; color: var(--body);
+  line-height: 1.85; max-width: 520px;
   margin-bottom: 1.8rem; font-weight: 300;
 }
 .hero-desc strong { color: var(--cream); font-weight: 500; }
@@ -377,7 +377,7 @@ h1 .h1-ind { padding-left: clamp(.8rem, 3vw, 3rem); }
 .eyebrow::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
 h2 {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(2.4rem, 4vw, 4rem);
+  font-size: clamp(2rem, 3.2vw, 3.2rem);
   letter-spacing: .04em; color: var(--cream); line-height: .96; margin-bottom: 0;
 }
 h2 .h2-red { color: var(--red); }
@@ -410,7 +410,7 @@ h2 .h2-gold { color: var(--gold); }
   border: .5px solid rgba(232,25,44,.22); color: #f28a92;
 }
 .bullets { display: flex; flex-direction: column; gap: .6rem; }
-.bullet { font-size: .95rem; color: var(--body); padding-left: 16px; position: relative; line-height: 1.72; font-weight: 300; }
+.bullet { font-size: 1rem; color: var(--body); padding-left: 16px; position: relative; line-height: 1.75; font-weight: 300; }
 .bullet::before { content: '▸'; position: absolute; left: 0; color: var(--red); font-size: .6rem; top: .26rem; }
 
 /* ════════════════════════════
@@ -547,29 +547,41 @@ h2 .h2-gold { color: var(--gold); }
 /* ════════════════════════════
    SKILLS
 ════════════════════════════ */
-.skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.1rem; margin-top: 3.5rem; }
-.skill-card { background: var(--s2); border: .5px solid var(--line); border-radius: 6px; padding: 1.6rem; transition: border-color .25s; }
-.skill-card:hover { border-color: rgba(232,25,44,.2); }
-.skill-head { display: flex; align-items: center; gap: .75rem; margin-bottom: .4rem; }
-.skill-icon { font-size: 1.1rem; }
-.skill-name { font-family: 'Oswald', sans-serif; font-size: .95rem; font-weight: 500; letter-spacing: .06em; color: var(--cream); }
-.skill-desc { font-size: .88rem; color: var(--body); line-height: 1.68; margin-bottom: 1.1rem; font-weight: 300; }
-.skill-bars { display: flex; flex-direction: column; gap: .58rem; margin-bottom: .85rem; }
-.skill-bar-row .sbt { display: flex; justify-content: space-between; margin-bottom: 4px; }
-.sbt-name { font-size: .76rem; color: var(--body); font-weight: 400; }
-.sbt-pct { font-family: 'JetBrains Mono', monospace; font-size: .6rem; color: var(--sub); }
-.skill-track { height: 2px; background: rgba(240,236,227,.08); border-radius: 2px; overflow: hidden; }
-.skill-fill {
-  height: 100%; border-radius: 2px;
-  transform: scaleX(0); transform-origin: left;
-  animation: sfill 1s cubic-bezier(.23,1,.32,1) forwards;
+.skills-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1.2rem; margin-top: 3.5rem; }
+.skill-card {
+  position: relative; background: var(--s2);
+  border: .5px solid rgba(240,236,227,.09); border-radius: 8px;
+  overflow: hidden; cursor: default;
+  transition: transform .3s cubic-bezier(.23,1,.32,1), box-shadow .3s, border-color .3s;
+  transform-style: preserve-3d;
 }
-.skill-tags { display: flex; flex-wrap: wrap; gap: 4px; }
-.skill-tag {
-  font-family: 'JetBrains Mono', monospace; font-size: .54rem;
-  padding: 2px 7px; background: rgba(240,236,227,.04);
-  color: var(--sub); border: .5px solid rgba(240,236,227,.08);
+.skill-card:hover {
+  box-shadow: 0 20px 50px rgba(0,0,0,.5), 0 0 0 1px rgba(240,236,227,.12);
+  border-color: rgba(240,236,227,.16);
 }
+/* top color accent bar */
+.sk-accent {
+  position: absolute; top: 0; left: 0; right: 0; height: 2px; opacity: .7;
+}
+.sk-inner { padding: 1.7rem 1.6rem 1.5rem; }
+.sk-title {
+  font-family: 'Oswald', sans-serif; font-size: 1rem;
+  font-weight: 500; letter-spacing: .06em; color: var(--cream);
+  margin-bottom: .5rem;
+}
+.sk-desc {
+  font-size: .92rem; color: var(--body); line-height: 1.72;
+  font-weight: 300; margin-bottom: 1.1rem;
+}
+.sk-pills { display: flex; flex-wrap: wrap; gap: 5px; }
+.skp {
+  font-family: 'JetBrains Mono', monospace; font-size: .58rem;
+  padding: 4px 10px; border: .5px solid; border-radius: 3px;
+  font-weight: 400; letter-spacing: .04em;
+  transition: transform .15s, box-shadow .15s;
+}
+.skp:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+
 
 /* ════════════════════════════
    CONTACT
@@ -674,7 +686,7 @@ footer {
 
   <!-- headline + profile card -->
   <div class="hero-right">
-    <div class="kicker"><span class="kicker-dot"></span>Available &nbsp; USA &nbsp; Onsite</div>
+    <div class="kicker"><span class="kicker-dot"></span>Available &nbsp; USA &nbsp; Open to Full Time Roles</div>
     <h1>
       I TURN DATA<br>
       INTO <span class="h1-red">DECISIONS</span>
@@ -706,7 +718,7 @@ footer {
           <div>
             <div class="pc-id-name">Vamsi Krishna Peeta</div>
             <div class="pc-id-role">Power BI Developer &nbsp; Data Analyst &nbsp; BA</div>
-            <div class="pc-id-badge"><span style="width:4px;height:4px;border-radius:50%;background:#4ade80;display:inline-block"></span>USA &nbsp; Onsite</div>
+            <div class="pc-id-badge"><span style="width:4px;height:4px;border-radius:50%;background:#4ade80;display:inline-block"></span>Open to Full Time Roles &nbsp; USA</div>
           </div>
         </div>
         <div class="pc-skills-label">Core Proficiencies</div>
@@ -772,7 +784,7 @@ footer {
 
       <div class="exp-row rv">
         <div>
-          <div class="exp-date">Jan 2025 — Present</div>
+          <div class="exp-date">Jan 2026 — Present</div>
           <div class="exp-company">Minnodi LLC</div>
           <div class="exp-location">Baltimore, USA</div>
           <span class="exp-badge badge-ft">Full Time</span>
@@ -796,7 +808,7 @@ footer {
 
       <div class="exp-row rv d1">
         <div>
-          <div class="exp-date">Jun 2024 — Aug 2024</div>
+          <div class="exp-date">Jun 2025 — Aug 2025</div>
           <div class="exp-company">Bendito Soft Tech</div>
           <div class="exp-location">Bangalore, India</div>
           <span class="exp-badge badge-intern">Internship</span>
@@ -1041,51 +1053,71 @@ footer {
 <div class="section-bg" id="skills">
   <div class="section">
     <div class="eyebrow rv">05 &nbsp; Skills</div>
-    <h2 class="rv">WHAT I'M<br><span class="h2-red">STRONGEST IN</span></h2>
+    <h2 class="rv">WHAT I BRING<br><span class="h2-red">TO EVERY ROLE</span></h2>
     <div class="skills-grid">
 
-      <div class="skill-card rv d1">
-        <div class="skill-head"><span class="skill-icon">📊</span><span class="skill-name">Power BI Development</span></div>
-        <div class="skill-desc">Production dashboards from data model to published report — built for teams who need clear answers fast.</div>
-        <div class="skill-bars">
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">DAX and Calculated Measures</span><span class="sbt-pct">95%</span></div><div class="skill-track"><div class="skill-fill" style="width:95%;background:var(--gold);animation-delay:.1s"></div></div></div>
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Power Query M Language</span><span class="sbt-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:var(--gold);animation-delay:.2s"></div></div></div>
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Data Modelling and Star Schema</span><span class="sbt-pct">88%</span></div><div class="skill-track"><div class="skill-fill" style="width:88%;background:var(--gold);animation-delay:.3s"></div></div></div>
+      <div class="skill-card rv d1" data-tilt>
+        <div class="sk-accent" style="background:var(--gold)"></div>
+        <div class="sk-inner">
+          <div class="sk-title">Power BI Development</div>
+          <div class="sk-desc">End-to-end dashboard delivery — from raw data model to published report. I design for the decision-maker, not the data engineer.</div>
+          <div class="sk-pills">
+            <span class="skp" style="color:var(--gold);border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.07)">DAX Measures</span>
+            <span class="skp" style="color:var(--gold);border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.07)">Power Query</span>
+            <span class="skp" style="color:var(--gold);border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.07)">Star Schema</span>
+            <span class="skp" style="color:var(--gold);border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.07)">KPI Design</span>
+            <span class="skp" style="color:var(--gold);border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.07)">Drillthrough</span>
+            <span class="skp" style="color:var(--gold);border-color:rgba(245,200,66,.3);background:rgba(245,200,66,.07)">Row Level Security</span>
+          </div>
         </div>
-        <div class="skill-tags"><span class="skill-tag">KPI Cards</span><span class="skill-tag">Drillthrough</span><span class="skill-tag">Row Level Security</span><span class="skill-tag">Report Publishing</span></div>
       </div>
 
-      <div class="skill-card rv d2">
-        <div class="skill-head"><span class="skill-icon">🗄️</span><span class="skill-name">SQL and Data Analysis</span></div>
-        <div class="skill-desc">SQL to clean, join, and aggregate data before it hits a dashboard. Python when the logic goes deeper.</div>
-        <div class="skill-bars">
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">SQL — joins, CTEs, window functions</span><span class="sbt-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:#6bffc8;animation-delay:.1s"></div></div></div>
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Python &nbsp; Pandas &nbsp; NumPy</span><span class="sbt-pct">82%</span></div><div class="skill-track"><div class="skill-fill" style="width:82%;background:#6bffc8;animation-delay:.2s"></div></div></div>
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Exploratory Data Analysis</span><span class="sbt-pct">87%</span></div><div class="skill-track"><div class="skill-fill" style="width:87%;background:#6bffc8;animation-delay:.3s"></div></div></div>
+      <div class="skill-card rv d2" data-tilt>
+        <div class="sk-accent" style="background:#6bffc8"></div>
+        <div class="sk-inner">
+          <div class="sk-title">SQL and Data Analysis</div>
+          <div class="sk-desc">SQL for clean, join, and aggregate before anything hits a visual. Python for everything deeper — EDA, automation, and modelling.</div>
+          <div class="sk-pills">
+            <span class="skp" style="color:#6bffc8;border-color:rgba(107,255,200,.3);background:rgba(107,255,200,.07)">Joins and CTEs</span>
+            <span class="skp" style="color:#6bffc8;border-color:rgba(107,255,200,.3);background:rgba(107,255,200,.07)">Window Functions</span>
+            <span class="skp" style="color:#6bffc8;border-color:rgba(107,255,200,.3);background:rgba(107,255,200,.07)">Python and Pandas</span>
+            <span class="skp" style="color:#6bffc8;border-color:rgba(107,255,200,.3);background:rgba(107,255,200,.07)">Exploratory Analysis</span>
+            <span class="skp" style="color:#6bffc8;border-color:rgba(107,255,200,.3);background:rgba(107,255,200,.07)">Statistical Testing</span>
+            <span class="skp" style="color:#6bffc8;border-color:rgba(107,255,200,.3);background:rgba(107,255,200,.07)">NumPy</span>
+          </div>
         </div>
-        <div class="skill-tags"><span class="skill-tag">Trend Analysis</span><span class="skill-tag">Correlation</span><span class="skill-tag">Statistical Testing</span></div>
       </div>
 
-      <div class="skill-card rv d1">
-        <div class="skill-head"><span class="skill-icon">📑</span><span class="skill-name">Excel and Automation</span></div>
-        <div class="skill-desc">I automate the repetitive parts with VBA and build reports that update themselves.</div>
-        <div class="skill-bars">
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Advanced Formulas and Functions</span><span class="sbt-pct">92%</span></div><div class="skill-track"><div class="skill-fill" style="width:92%;background:var(--red);animation-delay:.1s"></div></div></div>
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">VBA Macros and Automation</span><span class="sbt-pct">80%</span></div><div class="skill-track"><div class="skill-fill" style="width:80%;background:var(--red);animation-delay:.2s"></div></div></div>
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Pivot Tables and Dashboard Design</span><span class="sbt-pct">90%</span></div><div class="skill-track"><div class="skill-fill" style="width:90%;background:var(--red);animation-delay:.3s"></div></div></div>
+      <div class="skill-card rv d1" data-tilt>
+        <div class="sk-accent" style="background:var(--red)"></div>
+        <div class="sk-inner">
+          <div class="sk-title">Excel and Automation</div>
+          <div class="sk-desc">I automate the repetitive parts with VBA so the team never touches a manual report again. Build once, runs every time.</div>
+          <div class="sk-pills">
+            <span class="skp" style="color:#ff8096;border-color:rgba(232,25,44,.3);background:rgba(232,25,44,.07)">VBA Macros</span>
+            <span class="skp" style="color:#ff8096;border-color:rgba(232,25,44,.3);background:rgba(232,25,44,.07)">Advanced Formulas</span>
+            <span class="skp" style="color:#ff8096;border-color:rgba(232,25,44,.3);background:rgba(232,25,44,.07)">Power Pivot</span>
+            <span class="skp" style="color:#ff8096;border-color:rgba(232,25,44,.3);background:rgba(232,25,44,.07)">Pivot Tables</span>
+            <span class="skp" style="color:#ff8096;border-color:rgba(232,25,44,.3);background:rgba(232,25,44,.07)">XLOOKUP</span>
+            <span class="skp" style="color:#ff8096;border-color:rgba(232,25,44,.3);background:rgba(232,25,44,.07)">Dynamic Arrays</span>
+          </div>
         </div>
-        <div class="skill-tags"><span class="skill-tag">XLOOKUP</span><span class="skill-tag">Power Pivot</span><span class="skill-tag">Dynamic Arrays</span></div>
       </div>
 
-      <div class="skill-card rv d2">
-        <div class="skill-head"><span class="skill-icon">📋</span><span class="skill-name">Business Analysis</span></div>
-        <div class="skill-desc">Bridging the gap between what stakeholders ask for and what data can actually deliver.</div>
-        <div class="skill-bars">
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Requirements Gathering</span><span class="sbt-pct">88%</span></div><div class="skill-track"><div class="skill-fill" style="width:88%;background:#c4b5fd;animation-delay:.1s"></div></div></div>
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">Gap Analysis and Process Mapping</span><span class="sbt-pct">84%</span></div><div class="skill-track"><div class="skill-fill" style="width:84%;background:#c4b5fd;animation-delay:.2s"></div></div></div>
-          <div class="skill-bar-row"><div class="sbt"><span class="sbt-name">BRD and FRD Documentation</span><span class="sbt-pct">82%</span></div><div class="skill-track"><div class="skill-fill" style="width:82%;background:#c4b5fd;animation-delay:.3s"></div></div></div>
+      <div class="skill-card rv d2" data-tilt>
+        <div class="sk-accent" style="background:#c4b5fd"></div>
+        <div class="sk-inner">
+          <div class="sk-title">Business Analysis</div>
+          <div class="sk-desc">Bridging the gap between what stakeholders ask for and what data can actually deliver — through structured requirements and documentation engineers can use.</div>
+          <div class="sk-pills">
+            <span class="skp" style="color:#c4b5fd;border-color:rgba(196,181,253,.3);background:rgba(196,181,253,.07)">Requirements Gathering</span>
+            <span class="skp" style="color:#c4b5fd;border-color:rgba(196,181,253,.3);background:rgba(196,181,253,.07)">Gap Analysis</span>
+            <span class="skp" style="color:#c4b5fd;border-color:rgba(196,181,253,.3);background:rgba(196,181,253,.07)">Process Mapping</span>
+            <span class="skp" style="color:#c4b5fd;border-color:rgba(196,181,253,.3);background:rgba(196,181,253,.07)">BRD and FRD</span>
+            <span class="skp" style="color:#c4b5fd;border-color:rgba(196,181,253,.3);background:rgba(196,181,253,.07)">Sprint Planning</span>
+            <span class="skp" style="color:#c4b5fd;border-color:rgba(196,181,253,.3);background:rgba(196,181,253,.07)">As-Is To-Be</span>
+          </div>
         </div>
-        <div class="skill-tags"><span class="skill-tag">Stakeholder Interviews</span><span class="skill-tag">As-Is To-Be</span><span class="skill-tag">Sprint Planning</span></div>
       </div>
 
     </div>
@@ -1097,8 +1129,8 @@ footer {
   <div class="section">
     <div class="eyebrow rv" style="justify-content:center">06 &nbsp; Contact</div>
     <div class="contact-box rv">
-      <div class="contact-title">READY TO TURN YOUR<br>DATA INTO <span class="ct-red">REAL DECISIONS?</span></div>
-      <p class="contact-sub">Open to full time roles in data analytics, Power BI development, and business analysis. Based in the USA — onsite, hybrid, and remote all welcome.</p>
+      <div class="contact-title">LET'S TALK.<br>I'M <span class="ct-red">OPEN TO FULL TIME ROLES.</span></div>
+      <p class="contact-sub">Data analytics, Power BI development, and business analysis. Based in the USA and actively looking for the right opportunity.</p>
       <div class="contact-links">
         <a href="https://www.linkedin.com/in/vamsi-krishna-peeta-23585223a/" class="contact-link" target="_blank">
           <svg viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
@@ -1153,20 +1185,7 @@ const PROJECTS = [
     link:'https://github.com/vamsi57567/Exploratory_data_analysis', lbl:'View on GitHub'
   },
   {
-    num:'03', cls:'cat-ai', cat:'Trustworthy AI',
-    title:'LLM Hallucination Detection via Multi-Layer RAG',
-    glimpse:'+5.95 percentage point accuracy gain over baseline on 15,000 FEVER benchmark claims using an 8-layer RAG pipeline.',
-    tags:['Python','FAISS','BM25','NLI','RAG'],
-    problem:'LLMs confidently state incorrect facts. Single-retrieval RAG systems miss ambiguous claims and produce false-confident answers with no uncertainty signal.',
-    approach:'8-layer pipeline fusing FAISS dense retrieval and BM25 sparse retrieval. Added a DeBERTa NLI verification layer to cross-check generated claims against retrieved evidence before surfacing answers.',
-    outcome:'+5.95 percentage point accuracy gain over baseline on 15,000 FEVER benchmark claims. Significantly better uncertainty recognition for ambiguous queries.',
-    result:'+5.95pp accuracy over baseline. NLI verification layer significantly reduced false-positive confident responses.',
-    icon:'🎯',
-    chips:['Python','FAISS','BM25','NLI','RAG','FEVER Benchmark','NLP','DeBERTa'],
-    link:'https://github.com/vamsi57567', lbl:'View on GitHub'
-  },
-  {
-    num:'04', cls:'cat-bd', cat:'Big Data and NLP',
+    num:'03', cls:'cat-bd', cat:'Big Data and NLP',
     title:'MapReduce Word Count and NLP Pipeline',
     glimpse:'Full MapReduce paradigm built from scratch in Python — no Hadoop, no Spark, pure algorithmic implementation.',
     tags:['Python','MapReduce','NLP','Text Processing'],
@@ -1177,19 +1196,6 @@ const PROJECTS = [
     icon:'🔍',
     chips:['Python','MapReduce','NLP','Text Processing','Frequency Analysis','Distributed Computing'],
     link:'https://github.com/vamsi57567/Mapreduce', lbl:'View on GitHub'
-  },
-  {
-    num:'05', cls:'cat-ml', cat:'IEEE Published — Deep Learning',
-    title:'Deforestation Detection from Satellite Imagery',
-    glimpse:'Custom CNN outperforming all baselines. Published in IEEE Xplore — one of the few undergraduate capstones to reach peer reviewed publication.',
-    tags:['Python','TensorFlow','CNN','Remote Sensing'],
-    problem:'Manual detection of deforestation from satellite imagery is slow and geographically limited. Existing ML baselines struggled with complex multispectral pixel-level classification.',
-    approach:'Custom CNN architecture trained on satellite remote sensing data. Spatial feature extraction across multispectral bands generates pixel-level deforestation probability maps covering vegetation cover change and forest loss.',
-    outcome:'Custom model outperformed all baselines. Research accepted and published in IEEE Xplore. One of the few undergraduate capstones to reach peer reviewed publication.',
-    result:'Published in IEEE Xplore DOI 10.1109/10724972. Custom CNN outperformed all baseline approaches.',
-    icon:'🏆',
-    chips:['Python','TensorFlow','CNN','Remote Sensing','Satellite Imagery','Deep Learning','Image Segmentation'],
-    link:'https://ieeexplore.ieee.org/document/10724972', lbl:'Read on IEEE Xplore'
   }
 ];
 
@@ -1411,6 +1417,21 @@ document.addEventListener('mousemove', e => {
 document.querySelectorAll('a, button, .project-card, #modal-close').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('hl'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('hl'));
+});
+
+/* ════ SKILL CARD 3D TILT ════ */
+document.querySelectorAll('.skill-card[data-tilt]').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - .5;
+    const y = (e.clientY - r.top) / r.height - .5;
+    card.style.transition = 'transform .08s, box-shadow .3s, border-color .3s';
+    card.style.transform = `perspective(800px) rotateY(${x * 7}deg) rotateX(${-y * 5}deg) translateZ(10px)`;
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform .6s cubic-bezier(.23,1,.32,1), box-shadow .3s, border-color .3s';
+    card.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateZ(0)';
+  });
 });
 
 /* ════ SCROLL REVEAL ════ */
