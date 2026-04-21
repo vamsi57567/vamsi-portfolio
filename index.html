@@ -91,7 +91,6 @@ body.hl #ring { width: 44px; height: 44px; border-color: rgba(232,25,44,.75); }
   margin-top: 1.5rem; opacity: 0;
   display: flex; flex-direction: column; align-items: center; gap: .5rem;
 }
-#intro-bitmoji svg { width: clamp(60px, 10vw, 85px); height: auto; }
 #mv-tag {
   font-family: 'JetBrains Mono', monospace;
   font-size: clamp(.55rem, 1vw, .78rem);
@@ -220,8 +219,8 @@ nav.show { opacity: 1; transform: translateY(0); }
 .hero {
   position: relative; z-index: 1;
   min-height: 100vh;
-  display: grid; grid-template-columns: 280px 1fr;
-  align-items: center; gap: 3rem;
+  display: block;
+  align-items: center;
   padding: 7.5rem 3rem 5rem;
   max-width: 1280px; margin: 0 auto;
   opacity: 0; transform: translateY(36px);
@@ -232,22 +231,6 @@ nav.show { opacity: 1; transform: translateY(0); }
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
   background: linear-gradient(90deg, var(--red), var(--gold), transparent);
 }
-
-/* LEFT — bitmoji column */
-.hero-left {
-  display: flex; flex-direction: column; align-items: flex-start; gap: 1.2rem;
-}
-#hero-bitmoji svg { width: clamp(90px, 11vw, 125px); height: auto; display: block; }
-.hero-name-tag {
-  font-family: 'JetBrains Mono', monospace; font-size: .66rem;
-  color: var(--gold); letter-spacing: .18em; text-transform: uppercase; margin-bottom: .2rem;
-}
-.hero-name-sub { font-size: .84rem; color: var(--sub); font-weight: 300; line-height: 1.5; }
-.hero-facts { display: flex; flex-direction: column; gap: .6rem; margin-top: .4rem; }
-.hero-fact { display: flex; align-items: flex-start; gap: .65rem; }
-.hero-fact-arrow { color: var(--red); font-size: .75rem; flex-shrink: 0; margin-top: .2rem; }
-.hero-fact-text { font-size: .88rem; color: var(--body); font-weight: 300; line-height: 1.5; }
-.hero-fact-text strong { color: var(--cream); font-weight: 500; }
 
 /* RIGHT — headline + card */
 .hero-right { display: flex; flex-direction: column; }
@@ -659,35 +642,6 @@ footer {
     <span class="mvc">V</span><span class="mvc">K</span><span class="mvc">P</span>
   </div>
   <div id="intro-bitmoji">
-    <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" id="ibm">
-      <ellipse cx="50" cy="115" rx="22" ry="4" fill="rgba(232,25,44,.15)"/>
-      <rect x="38" y="82" width="10" height="26" rx="5" fill="#2a1f35" id="il-l"/>
-      <rect x="52" y="82" width="10" height="26" rx="5" fill="#2a1f35" id="il-r"/>
-      <ellipse cx="43" cy="108" rx="8" ry="4" fill="#e8192c"/>
-      <ellipse cx="57" cy="108" rx="8" ry="4" fill="#e8192c"/>
-      <rect x="30" y="50" width="40" height="38" rx="10" fill="#1e1030"/>
-      <rect x="43" y="50" width="14" height="4" rx="2" fill="#f5c842"/>
-      <text x="50" y="74" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="9" fill="#e8192c" letter-spacing="1">VKP</text>
-      <rect id="ia-l" x="14" y="54" width="18" height="9" rx="4.5" fill="#c8a882" transform-origin="30 58.5"/>
-      <rect id="ia-r" x="68" y="54" width="18" height="9" rx="4.5" fill="#c8a882" transform-origin="70 58.5"/>
-      <circle cx="16" cy="58" r="5" fill="#c8a882"/>
-      <circle cx="84" cy="58" r="5" fill="#c8a882" id="ih-r"/>
-      <rect x="6" y="62" width="20" height="14" rx="2" fill="#0e0a12"/>
-      <rect x="8" y="64" width="16" height="10" rx="1" fill="#e8192c"/>
-      <rect x="9" y="65" width="14" height="8" rx="1" fill="#1a0d22"/>
-      <line x1="10" y1="67" x2="22" y2="67" stroke="#f5c842" stroke-width=".8" opacity=".7"/>
-      <line x1="10" y1="69" x2="18" y2="69" stroke="#6bffc8" stroke-width=".8" opacity=".6"/>
-      <line x1="10" y1="71" x2="20" y2="71" stroke="#f5c842" stroke-width=".8" opacity=".5"/>
-      <rect x="44" y="41" width="12" height="12" rx="4" fill="#c8a882"/>
-      <ellipse cx="50" cy="32" rx="18" ry="20" fill="#c8a882"/>
-      <path d="M32 26 Q34 10 50 8 Q66 10 68 26 Q62 18 50 18 Q38 18 32 26Z" fill="#1a0a05"/>
-      <ellipse cx="44" cy="30" rx="3" ry="3.5" fill="#1a0a05"/>
-      <ellipse cx="56" cy="30" rx="3" ry="3.5" fill="#1a0a05"/>
-      <circle cx="45" cy="29" r="1" fill="white"/>
-      <circle cx="57" cy="29" r="1" fill="white"/>
-      <path d="M44 37 Q50 42 56 37" stroke="#8a4020" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-      <text id="ispk" x="88" y="50" font-size="10" fill="#f5c842" opacity="0">✦</text>
-    </svg>
     <div id="mv-tag">Data Analyst &nbsp; Power BI Developer &nbsp; IEEE Researcher</div>
   </div>
   <div id="mv-prog"><div id="mv-bar"></div></div>
@@ -718,73 +672,9 @@ footer {
 <!-- ═══ HERO ═══ -->
 <div class="hero" id="hero">
 
-  <!-- LEFT: bitmoji + quick intro -->
-  <div class="hero-left">
-    <div id="hero-bitmoji">
-      <svg viewBox="0 0 100 120" fill="none" xmlns="http://www.w3.org/2000/svg" id="hbm">
-        <ellipse cx="50" cy="115" rx="22" ry="4" fill="rgba(232,25,44,.15)"/>
-        <rect x="38" y="82" width="10" height="26" rx="5" fill="#2a1f35" id="hl-l"/>
-        <rect x="52" y="82" width="10" height="26" rx="5" fill="#2a1f35" id="hl-r"/>
-        <ellipse cx="43" cy="108" rx="8" ry="4" fill="#e8192c"/>
-        <ellipse cx="57" cy="108" rx="8" ry="4" fill="#e8192c"/>
-        <rect x="30" y="50" width="40" height="38" rx="10" fill="#1e1030"/>
-        <rect x="43" y="50" width="14" height="4" rx="2" fill="#f5c842"/>
-        <text x="50" y="74" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="9" fill="#e8192c" letter-spacing="1">VKP</text>
-        <rect id="ha-l" x="14" y="54" width="18" height="9" rx="4.5" fill="#c8a882" transform-origin="30 58.5"/>
-        <rect id="ha-r" x="68" y="54" width="18" height="9" rx="4.5" fill="#c8a882" transform-origin="70 58.5"/>
-        <circle cx="16" cy="58" r="5" fill="#c8a882"/>
-        <circle cx="84" cy="58" r="5" fill="#c8a882" id="hh-r"/>
-        <rect x="6" y="62" width="20" height="14" rx="2" fill="#0e0a12"/>
-        <rect x="8" y="64" width="16" height="10" rx="1" fill="#e8192c"/>
-        <rect x="9" y="65" width="14" height="8" rx="1" fill="#1a0d22"/>
-        <line x1="10" y1="67" x2="22" y2="67" stroke="#f5c842" stroke-width=".8" opacity=".7"/>
-        <line x1="10" y1="69" x2="18" y2="69" stroke="#6bffc8" stroke-width=".8" opacity=".6"/>
-        <line x1="10" y1="71" x2="20" y2="71" stroke="#f5c842" stroke-width=".8" opacity=".5"/>
-        <rect x="44" y="41" width="12" height="12" rx="4" fill="#c8a882"/>
-        <ellipse cx="50" cy="32" rx="18" ry="20" fill="#c8a882"/>
-        <path d="M32 26 Q34 10 50 8 Q66 10 68 26 Q62 18 50 18 Q38 18 32 26Z" fill="#1a0a05"/>
-        <ellipse cx="44" cy="30" rx="3" ry="3.5" fill="#1a0a05"/>
-        <ellipse cx="56" cy="30" rx="3" ry="3.5" fill="#1a0a05"/>
-        <circle cx="45" cy="29" r="1" fill="white"/>
-        <circle cx="57" cy="29" r="1" fill="white"/>
-        <path d="M44 37 Q50 42 56 37" stroke="#8a4020" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-        <text id="hspk" x="88" y="50" font-size="12" fill="#f5c842" opacity="0">✦</text>
-        <g id="hi-bub" opacity="0">
-          <rect x="58" y="2" width="38" height="22" rx="7" fill="#e8192c"/>
-          <polygon points="64,24 60,31 72,24" fill="#e8192c"/>
-          <text x="77" y="18" text-anchor="middle" font-family="Bebas Neue,sans-serif" font-size="13" fill="#fff" letter-spacing="1">HI!</text>
-        </g>
-      </svg>
-    </div>
-
-    <div>
-      <div class="hero-name-tag">Vamsi Krishna Peeta</div>
-      <div class="hero-name-sub">Data Analyst &nbsp; Power BI Developer &nbsp; IEEE Researcher</div>
-    </div>
-
-    <div class="hero-facts">
-      <div class="hero-fact">
-        <span class="hero-fact-arrow">▸</span>
-        <span class="hero-fact-text">Currently at <strong>Minnodi LLC</strong> — Baltimore, USA</span>
-      </div>
-      <div class="hero-fact">
-        <span class="hero-fact-arrow">▸</span>
-        <span class="hero-fact-text">MS Data Science at <strong>UMBC</strong></span>
-      </div>
-      <div class="hero-fact">
-        <span class="hero-fact-arrow">▸</span>
-        <span class="hero-fact-text">Published in <strong>IEEE Xplore</strong></span>
-      </div>
-      <div class="hero-fact">
-        <span class="hero-fact-arrow">▸</span>
-        <span class="hero-fact-text">Open to full time roles across the USA</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- RIGHT: headline + profile card -->
+  <!-- headline + profile card -->
   <div class="hero-right">
-    <div class="kicker"><span class="kicker-dot"></span>Available &nbsp; USA &nbsp; Onsite Welcome</div>
+    <div class="kicker"><span class="kicker-dot"></span>Available &nbsp; USA &nbsp; Onsite</div>
     <h1>
       I TURN DATA<br>
       INTO <span class="h1-red">DECISIONS</span>
@@ -816,7 +706,7 @@ footer {
           <div>
             <div class="pc-id-name">Vamsi Krishna Peeta</div>
             <div class="pc-id-role">Power BI Developer &nbsp; Data Analyst &nbsp; BA</div>
-            <div class="pc-id-badge"><span style="width:4px;height:4px;border-radius:50%;background:#4ade80;display:inline-block"></span>USA &nbsp; Onsite Welcome</div>
+            <div class="pc-id-badge"><span style="width:4px;height:4px;border-radius:50%;background:#4ade80;display:inline-block"></span>USA &nbsp; Onsite</div>
           </div>
         </div>
         <div class="pc-skills-label">Core Proficiencies</div>
@@ -1369,10 +1259,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMo(); }
   const flash  = document.getElementById('mv-flash');
   const nav    = document.getElementById('nav');
   const hero   = document.getElementById('hero');
-  const iarm   = document.getElementById('ia-r');
-  const ispk   = document.getElementById('ispk');
-  const ilegL  = document.getElementById('il-l');
-  const ilegR  = document.getElementById('il-r');
 
   // Phase 1 — red box wipe in
   setTimeout(() => {
@@ -1397,23 +1283,13 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMo(); }
     box.style.transform = 'scaleX(0)';
   }, 1250);
 
-  // Phase 4 — bitmoji appears, waves
+  // Phase 4 — tagline fades in
   setTimeout(() => {
     bm.style.transition = 'opacity .5s';
     bm.style.opacity = '1';
     tag.style.transition = 'opacity .5s';
     tag.style.opacity = '1';
-    let wt = 0, dir = 1, ph = 0;
-    const wv = setInterval(() => {
-      ph += .06; wt += dir * 11;
-      if (wt > 36 || wt < -10) dir *= -1;
-      if (iarm) iarm.setAttribute('transform', `rotate(${wt},70,58.5)`);
-      if (ispk) ispk.style.opacity = wt > 20 ? '1' : '0';
-      if (ilegL) ilegL.setAttribute('y', 82 + Math.sin(ph) * 1.5);
-      if (ilegR) ilegR.setAttribute('y', 82 - Math.sin(ph) * 1.5);
-    }, 40);
-    setTimeout(() => clearInterval(wv), 2200);
-  }, 1700);
+  }, 1500);
 
   // Phase 5 — progress bar then exit
   let prog = 0;
@@ -1434,7 +1310,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMo(); }
               intro.style.display = 'none';
               nav.classList.add('show');
               hero.classList.add('show');
-              startHeroBitmoji();
             }, 500);
           }, 120);
         }, 300);
@@ -1442,33 +1317,6 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMo(); }
     }, 22);
   }, 1900);
 })();
-
-/* ════ HERO BITMOJI WAVE ════ */
-function startHeroBitmoji() {
-  const harmR = document.getElementById('ha-r');
-  const hspk  = document.getElementById('hspk');
-  const hibub = document.getElementById('hi-bub');
-  const hlegL = document.getElementById('hl-l');
-  const hlegR = document.getElementById('hl-r');
-
-  // Show Hi bubble
-  if (hibub) { hibub.style.opacity = '1'; setTimeout(() => { hibub.style.opacity = '0'; }, 2200); }
-
-  let wt = 0, dir = 1, ph = 0;
-  setInterval(() => {
-    ph += .05; wt += dir * 11;
-    if (wt > 38 || wt < -12) dir *= -1;
-    if (harmR) harmR.setAttribute('transform', `rotate(${wt},70,58.5)`);
-    if (hspk)  hspk.style.opacity = wt > 20 ? '1' : '0';
-    if (hlegL) hlegL.setAttribute('y', 82 + Math.sin(ph) * 1.5);
-    if (hlegR) hlegR.setAttribute('y', 82 - Math.sin(ph) * 1.5);
-  }, 40);
-
-  // Periodic hi bubble
-  setInterval(() => {
-    if (hibub) { hibub.style.opacity = '1'; setTimeout(() => { hibub.style.opacity = '0'; }, 1800); }
-  }, 7000);
-}
 
 /* ════ NEURAL NETWORK BACKGROUND ════ */
 (function() {
