@@ -217,7 +217,7 @@ h1 .h1i{padding-left:clamp(.8rem,3vw,3rem)}
 }
 .btn-line:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
 
-/* ── JARVIS PROFILE CARD ── */
+/* ── ANALYST PROFILE CARD ── */
 .profile-card{
   background:rgba(6,4,12,.97);border:1px solid rgba(232,25,44,.2);border-radius:8px;
   overflow:hidden;position:relative;
@@ -263,7 +263,7 @@ h1 .h1i{padding-left:clamp(.8rem,3vw,3rem)}
   font-size:.54rem;padding:2px 8px;border-radius:20px;margin-top:5px;letter-spacing:.08em;
 }
 
-/* JARVIS readout — 3x2 capability grid instead of bars */
+/* Capability readout grid */
 .pc-readout-label{font-family:'JetBrains Mono',monospace;font-size:.55rem;color:var(--hint);letter-spacing:.16em;text-transform:uppercase;margin-bottom:.75rem}
 .pc-readout-grid{display:grid;grid-template-columns:1fr 1fr;gap:.45rem;margin-bottom:.85rem}
 .pc-readout-item{
@@ -467,7 +467,117 @@ footer{position:relative;z-index:1;text-align:center;padding:1.6rem;font-family:
 .rv.in,.rl.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 
-@media(max-width:960px){
+/* ══ MARVEL 3D EFFECTS ══ */
+
+/* Floating 3D energy particles canvas */
+#cv-particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7}
+
+/* Section energy divider line */
+.section-bg{position:relative}
+.section-bg::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--red),var(--gold),var(--red),transparent);
+  background-size:200% 100%;animation:borderflow 4s linear infinite;
+}
+
+/* 3D hover lift on every card */
+.project-card,.skill-card,.pub,.learn-card,.pc-readout-item{
+  will-change:transform;
+}
+
+/* Section headings — Iron Man power glow on scroll-in */
+h2.in{animation:poweronH 0.7s cubic-bezier(.23,1,.32,1) both}
+@keyframes poweronH{
+  0%{opacity:0;transform:translateY(18px);text-shadow:0 0 40px var(--red),0 0 80px rgba(232,25,44,.4)}
+  60%{text-shadow:0 0 15px rgba(232,25,44,.2)}
+  100%{opacity:1;transform:none;text-shadow:none}
+}
+
+/* 3D perspective on whole hero when moving mouse */
+#hero{transition:transform .1s ease}
+
+/* glowing red underline sweep on nav links */
+.nav-links a{position:relative}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;
+  background:var(--red);transition:width .3s cubic-bezier(.23,1,.32,1);
+  box-shadow:0 0 6px var(--red);
+}
+.nav-links a:hover::after{width:100%}
+
+/* pulsing red ring on avatar */
+.pc-avatar::before{
+  content:'';position:absolute;inset:-3px;border-radius:8px;
+  border:1px solid rgba(232,25,44,.0);
+  animation:avatarring 2.5s ease-in-out infinite;
+}
+@keyframes avatarring{
+  0%,100%{border-color:rgba(232,25,44,.0);box-shadow:none}
+  50%{border-color:rgba(232,25,44,.5);box-shadow:0 0 12px rgba(232,25,44,.3)}
+}
+
+/* Iron Man beam sweep across each section on hover */
+.section:hover::after{
+  content:'';position:absolute;top:0;left:-100%;right:auto;bottom:0;width:2px;
+  background:linear-gradient(180deg,transparent,var(--red),transparent);
+  animation:beamsweep .8s ease-in-out forwards;pointer-events:none;
+}
+.section{position:relative;overflow:hidden}
+@keyframes beamsweep{from{left:-2px;opacity:1}to{left:100%;opacity:0}}
+
+/* Arc reactor style rings around profile card */
+.profile-card::after{
+  content:'';position:absolute;inset:-8px;
+  border:1px solid rgba(232,25,44,.0);border-radius:14px;
+  animation:outerring 3s ease-in-out infinite;pointer-events:none;
+}
+@keyframes outerring{
+  0%,100%{border-color:rgba(232,25,44,.0);transform:scale(1)}
+  50%{border-color:rgba(232,25,44,.2);transform:scale(1.01);box-shadow:0 0 30px rgba(232,25,44,.1)}
+}
+
+/* 3D floating effect on skill cards */
+@keyframes float3d{
+  0%,100%{transform:translateY(0) rotateX(0deg)}
+  50%{transform:translateY(-4px) rotateX(1deg)}
+}
+.skill-card.in:not(:hover){animation:float3d 5s ease-in-out infinite}
+.skill-card.in:nth-child(2){animation-delay:1.2s}
+.skill-card.in:nth-child(3){animation-delay:2.4s}
+.skill-card.in:nth-child(4){animation-delay:3.6s}
+
+/* glowing border on project cards on hover */
+.project-card:hover{
+  box-shadow:
+    0 0 0 1px rgba(232,25,44,.4),
+    0 0 20px rgba(232,25,44,.2),
+    0 0 60px rgba(232,25,44,.1),
+    0 24px 48px rgba(0,0,0,.7);
+}
+
+/* eyebrow typing cursor */
+.eyebrow::after{content:'_';color:var(--gold);animation:blink .9s step-end infinite;margin-left:2px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* contact box red glow pulse */
+.contact-box{animation:contactglow 4s ease-in-out infinite}
+@keyframes contactglow{
+  0%,100%{box-shadow:0 0 0 rgba(232,25,44,0)}
+  50%{box-shadow:0 0 60px rgba(232,25,44,.08),0 0 120px rgba(232,25,44,.04)}
+}
+
+/* Intro VKP letters — red glow */
+.mvc{text-shadow:0 0 60px rgba(232,25,44,.7),0 0 120px rgba(232,25,44,.3),0 0 200px rgba(232,25,44,.15)}
+
+/* reveal now triggers power-on effect */
+.rv.in,.rl.in{animation:poweron .65s cubic-bezier(.23,1,.32,1) both}
+@keyframes poweron{
+  0%{opacity:0;transform:translateY(20px);filter:brightness(3) blur(3px)}
+  55%{filter:brightness(1.3) blur(0)}
+  100%{opacity:1;transform:none;filter:brightness(1)}
+}
+
+
   nav{padding:1rem 1.5rem}
   .hero{grid-template-columns:1fr;padding:7rem 1.5rem 4rem;gap:2.5rem}
   .section{padding:5rem 1.5rem}
@@ -490,6 +600,7 @@ footer{position:relative;z-index:1;text-align:center;padding:1.6rem;font-family:
 <!-- canvases -->
 <canvas id="cv-net"></canvas>
 <canvas id="cv-arc"></canvas>
+<canvas id="cv-particles"></canvas>
 
 <!-- HUD overlays -->
 <div class="hud-corner" id="hc-tl"></div>
@@ -498,7 +609,7 @@ footer{position:relative;z-index:1;text-align:center;padding:1.6rem;font-family:
 <div class="hud-corner" id="hc-br"></div>
 <div id="hud-tr-data">
   SYS &nbsp; ONLINE<br>
-  JARVIS &nbsp; ACTIVE<br>
+  VKP.AI &nbsp; ACTIVE<br>
   POWER &nbsp; 100%<br>
   <span id="hud-clk"></span>
 </div>
@@ -562,7 +673,7 @@ footer{position:relative;z-index:1;text-align:center;padding:1.6rem;font-family:
     </div>
   </div>
 
-  <!-- RIGHT: JARVIS profile card -->
+  <!-- RIGHT: Analyst profile card -->
   <div>
     <div class="profile-card">
       <div class="pc-topbar">
@@ -571,7 +682,7 @@ footer{position:relative;z-index:1;text-align:center;padding:1.6rem;font-family:
           <div class="pc-dot" style="background:#febc2e"></div>
           <div class="pc-dot" style="background:#28c840"></div>
         </div>
-        <div class="pc-topbar-title">JARVIS &nbsp; Analyst Profile &nbsp; v2.6</div>
+        <div class="pc-topbar-title">VKP &nbsp; Analyst Profile &nbsp; v2.6</div>
         <div class="pc-live"><span class="pc-live-dot"></span>ACTIVE</div>
       </div>
       <div class="pc-body">
@@ -1144,6 +1255,81 @@ document.querySelectorAll('[data-tilt]').forEach(card=>{
     card.style.transform='';card.style.boxShadow='';
   });
 });
+
+/* ════ 3D FLOATING PARTICLES ════ */
+(function(){
+  const cv=document.getElementById('cv-particles');
+  const ctx=cv.getContext('2d');
+  let W,H;
+  function resize(){W=cv.width=innerWidth;H=cv.height=innerHeight}
+  resize();window.addEventListener('resize',resize);
+
+  /* tiny glowing cubes / diamonds floating up */
+  const parts=[];
+  for(let i=0;i<60;i++){
+    parts.push({
+      x:Math.random()*1920,
+      y:Math.random()*1080,
+      z:Math.random()*400+50,
+      vy:-(Math.random()*.4+.15),
+      vx:(Math.random()-.5)*.2,
+      vz:(Math.random()-.5)*.5,
+      size:Math.random()*3+1,
+      hue:Math.random()<.6?0:45, /* red or gold */
+      alpha:Math.random()*.6+.2,
+      spin:Math.random()*Math.PI*2,
+      spinV:(Math.random()-.5)*.04,
+    });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const fov=400;
+    parts.forEach(p=>{
+      /* 3D to 2D projection */
+      const scale=fov/(fov+p.z);
+      const sx=p.x*scale+W/2*(1-scale);
+      const sy=p.y*scale+H/2*(1-scale);
+      const size=p.size*scale;
+
+      p.spin+=p.spinV;
+      p.x+=p.vx;p.y+=p.vy;p.z+=p.vz;
+
+      /* wrap */
+      if(p.y<-50)p.y=H+50;
+      if(p.x<-50)p.x=W+50;if(p.x>W+50)p.x=-50;
+      if(p.z<0)p.z=400;if(p.z>500)p.z=0;
+
+      /* draw rotated square */
+      const col=p.hue===0?`rgba(232,25,44,${p.alpha*scale})`:`rgba(245,200,66,${p.alpha*scale})`;
+      ctx.save();
+      ctx.translate(sx,sy);
+      ctx.rotate(p.spin);
+      ctx.fillStyle=col;
+      ctx.shadowColor=p.hue===0?'#e8192c':'#f5c842';
+      ctx.shadowBlur=8*scale;
+      ctx.fillRect(-size/2,-size/2,size,size);
+      ctx.restore();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ════ HERO 3D MOUSE TILT ════ */
+(function(){
+  const hero=document.getElementById('hero');
+  document.addEventListener('mousemove',e=>{
+    if(!hero.classList.contains('show'))return;
+    const x=(e.clientX/innerWidth-.5)*6;
+    const y=(e.clientY/innerHeight-.5)*4;
+    hero.style.transform=`perspective(1200px) rotateY(${x}deg) rotateX(${-y}deg)`;
+  });
+  document.addEventListener('mouseleave',()=>{
+    hero.style.transition='transform .8s cubic-bezier(.23,1,.32,1)';
+    hero.style.transform='perspective(1200px) rotateY(0deg) rotateX(0deg)';
+  });
+})();
 
 /* ════ SCROLL REVEAL ════ */
 const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.07});
