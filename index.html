@@ -37,23 +37,162 @@ body {
   line-height: 1.6;
 }
 
-/* ── CURSOR ── */
+/* ════════════════════════════
+   IRON MAN HUD OVERLAY
+════════════════════════════ */
+/* Scan line overlay on entire page */
+body::after {
+  content: '';
+  position: fixed; inset: 0; z-index: 9990;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(232,25,44,.018) 2px,
+    rgba(232,25,44,.018) 4px
+  );
+  pointer-events: none;
+  animation: scanmove 12s linear infinite;
+}
+@keyframes scanmove {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 200px; }
+}
+
+/* HUD corner brackets — fixed on viewport */
+#hud-tl, #hud-tr, #hud-bl, #hud-br {
+  position: fixed; width: 40px; height: 40px;
+  pointer-events: none; z-index: 9500; opacity: .55;
+}
+#hud-tl { top: 16px; left: 16px; border-top: 1.5px solid var(--red); border-left: 1.5px solid var(--red); }
+#hud-tr { top: 16px; right: 16px; border-top: 1.5px solid var(--red); border-right: 1.5px solid var(--red); }
+#hud-bl { bottom: 16px; left: 16px; border-bottom: 1.5px solid var(--red); border-left: 1.5px solid var(--red); }
+#hud-br { bottom: 16px; right: 16px; border-bottom: 1.5px solid var(--red); border-right: 1.5px solid var(--red); }
+
+/* HUD data readout — top right */
+#hud-data {
+  position: fixed; top: 64px; right: 20px;
+  font-family: 'JetBrains Mono', monospace; font-size: .52rem;
+  color: rgba(232,25,44,.5); letter-spacing: .1em; line-height: 1.8;
+  pointer-events: none; z-index: 9500; text-align: right;
+  animation: hudfade 3s ease-in-out infinite alternate;
+}
+@keyframes hudfade { from{opacity:.4} to{opacity:.8} }
+
+/* HUD data readout — bottom left */
+#hud-data-bl {
+  position: fixed; bottom: 64px; left: 20px;
+  font-family: 'JetBrains Mono', monospace; font-size: .52rem;
+  color: rgba(245,200,66,.45); letter-spacing: .1em; line-height: 1.8;
+  pointer-events: none; z-index: 9500;
+  animation: hudfade 4s ease-in-out infinite alternate-reverse;
+}
+
+/* Arc reactor canvas — fixed background ring animation */
+#arc-canvas {
+  position: fixed; inset: 0; z-index: 0;
+  pointer-events: none; opacity: .22;
+}
+
+/* Holographic grid lines behind hero */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(232,25,44,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(232,25,44,.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+}
+
+/* Glowing red ring on section headings */
+h2::after {
+  content: '';
+  display: block; width: 40px; height: 2px;
+  background: linear-gradient(90deg, var(--red), transparent);
+  margin-top: .5rem;
+  animation: linepulse 2.5s ease-in-out infinite alternate;
+}
+@keyframes linepulse { from{opacity:.4;width:30px} to{opacity:1;width:55px} }
+
+/* Iron Man card glow — applied to skill cards on hover */
+.skill-card:hover {
+  box-shadow:
+    0 0 0 1px rgba(232,25,44,.35),
+    0 0 25px rgba(232,25,44,.18),
+    0 24px 48px rgba(0,0,0,.6);
+}
+
+/* Energy pulse on profile card */
+.profile-card::after {
+  content: '';
+  position: absolute; inset: -1px;
+  border-radius: 6px;
+  background: transparent;
+  border: 1px solid rgba(232,25,44,.0);
+  animation: cardpulse 3.5s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes cardpulse {
+  0%,100% { border-color: rgba(232,25,44,.0); box-shadow: none; }
+  50% { border-color: rgba(232,25,44,.3); box-shadow: 0 0 20px rgba(232,25,44,.12); }
+}
+
+/* Typing cursor blink on eyebrow labels */
+.eyebrow::after {
+  content: '_';
+  color: var(--gold);
+  animation: blink .9s step-end infinite;
+  margin-left: 2px;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+/* Power up glow line — hero top border animation */
+.hero::before {
+  background: linear-gradient(90deg, var(--red), var(--gold), var(--red));
+  background-size: 200% 100%;
+  animation: borderflow 3s linear infinite;
+}
+@keyframes borderflow {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
+
+/* Section reveal with Iron Man power-on effect */
+.rv.in { animation: poweron .6s cubic-bezier(.23,1,.32,1) both; }
+@keyframes poweron {
+  0%   { opacity: 0; transform: translateY(20px); filter: brightness(3) blur(4px); }
+  60%  { filter: brightness(1.4) blur(0); }
+  100% { opacity: 1; transform: none; filter: brightness(1) blur(0); }
+}
+
+/* Intro flash — red instead of white, more dramatic */
+#mv-flash { background: var(--red) !important; }
+
+
 #cur {
-  position: fixed; width: 8px; height: 8px;
+  position: fixed; width: 6px; height: 6px;
   background: var(--red); border-radius: 50%;
   pointer-events: none; z-index: 9999;
   transform: translate(-50%,-50%);
-  mix-blend-mode: difference;
+  box-shadow: 0 0 8px var(--red), 0 0 20px rgba(232,25,44,.5);
   transition: width .15s, height .15s;
 }
 #ring {
-  position: fixed; width: 30px; height: 30px;
-  border: 1px solid rgba(232,25,44,.4); border-radius: 50%;
+  position: fixed; width: 32px; height: 32px;
+  border: 1px solid rgba(232,25,44,.65); border-radius: 50%;
   pointer-events: none; z-index: 9998;
   transform: translate(-50%,-50%);
+  transition: width .2s, height .2s, border-color .2s;
 }
-body.hl #cur { width: 16px; height: 16px; }
-body.hl #ring { width: 44px; height: 44px; border-color: rgba(232,25,44,.75); }
+#ring::before, #ring::after {
+  content: ''; position: absolute; background: rgba(232,25,44,.5);
+}
+#ring::before { width: 6px; height: 1px; top: 50%; left: -8px; transform: translateY(-50%); box-shadow: 38px 0 0 rgba(232,25,44,.5); }
+#ring::after  { height: 6px; width: 1px; left: 50%; top: -8px; transform: translateX(-50%); box-shadow: 0 38px 0 rgba(232,25,44,.5); }
+body.hl #cur  { width: 14px; height: 14px; box-shadow: 0 0 14px var(--gold), 0 0 30px rgba(245,200,66,.4); background: var(--gold); }
+body.hl #ring { width: 48px; height: 48px; border-color: var(--gold); }
 
 /* ── CANVAS ── */
 #cv { position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .55; }
@@ -646,6 +785,25 @@ footer {
 <div id="cur"></div>
 <div id="ring"></div>
 <canvas id="cv"></canvas>
+<canvas id="arc-canvas"></canvas>
+
+<!-- Iron Man HUD overlays -->
+<div id="hud-tl"></div>
+<div id="hud-tr"></div>
+<div id="hud-bl"></div>
+<div id="hud-br"></div>
+<div id="hud-data">
+  SYS.STATUS &nbsp; ONLINE<br>
+  POWER &nbsp; 100%<br>
+  JARVIS &nbsp; ACTIVE<br>
+  <span id="hud-clock"></span>
+</div>
+<div id="hud-data-bl">
+  VKP.OS &nbsp; v2.6<br>
+  ANALYTICS &nbsp; CORE<br>
+  THREAT.LVL &nbsp; ZERO<br>
+  LOCATION &nbsp; USA
+</div>
 
 <!-- ═══ INTRO ═══ -->
 <div id="intro">
@@ -1140,7 +1298,7 @@ footer {
           <svg viewBox="0 0 24 24"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           GitHub
         </a>
-        <a href="mailto:vamsi57567@gmail.com" class="contact-link">
+        <a href="mailto:vamsikrishna57567@gmail.com" class="contact-link">
           <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
           Email Me
         </a>
@@ -1322,6 +1480,79 @@ document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMo(); }
       }
     }, 22);
   }, 1900);
+})();
+
+/* ════ ARC REACTOR + HUD CLOCK ════ */
+(function() {
+  // HUD clock
+  const clk = document.getElementById('hud-clock');
+  setInterval(() => {
+    if(clk) clk.textContent = new Date().toLocaleTimeString('en-US',{hour12:false});
+  }, 1000);
+
+  // Arc reactor rings on dedicated canvas
+  const ac = document.getElementById('arc-canvas');
+  const ax = ac.getContext('2d');
+  let AW, AH;
+  function resizeArc() { AW = ac.width = innerWidth; AH = ac.height = innerHeight; }
+  resizeArc();
+  window.addEventListener('resize', resizeArc);
+
+  const rings = [
+    { r: 80,  speed: .004, color: 'rgba(232,25,44,', dash: [8,6],  width: 1.2 },
+    { r: 130, speed:-.003, color: 'rgba(245,200,66,', dash: [4,10], width: .8  },
+    { r: 190, speed: .002, color: 'rgba(232,25,44,', dash: [12,8], width: 1.0 },
+    { r: 260, speed:-.0015,color: 'rgba(107,180,255,',dash: [6,12], width: .7  },
+    { r: 340, speed: .001, color: 'rgba(232,25,44,', dash: [16,8], width: .6  },
+  ];
+  let angle = 0;
+  // follow mouse
+  let arcX = -999, arcY = -999;
+  document.addEventListener('mousemove', e => { arcX = e.clientX; arcY = e.clientY; });
+
+  function drawArc() {
+    ax.clearRect(0, 0, AW, AH);
+    // target position — follow mouse slowly, default to hero center
+    const tx = arcX > 0 ? arcX : AW * .72;
+    const ty = arcY > 0 ? arcY : AH * .45;
+
+    rings.forEach((ring, i) => {
+      const a = angle * ring.speed * 60 + i;
+      ax.save();
+      ax.translate(tx, ty);
+      ax.rotate(a);
+      ax.beginPath();
+      ax.setLineDash(ring.dash);
+      ax.arc(0, 0, ring.r, 0, Math.PI * 2);
+      ax.strokeStyle = ring.color + (0.28 - i * .04) + ')';
+      ax.lineWidth = ring.width;
+      ax.stroke();
+
+      // small dot markers on each ring
+      for(let d = 0; d < 4; d++) {
+        const da = (Math.PI * 2 / 4) * d + a;
+        const dx = Math.cos(da) * ring.r;
+        const dy = Math.sin(da) * ring.r;
+        ax.beginPath();
+        ax.arc(dx, dy, 2.5, 0, Math.PI * 2);
+        ax.fillStyle = ring.color + '0.7)';
+        ax.fill();
+      }
+      ax.restore();
+    });
+
+    // center glow
+    const grd = ax.createRadialGradient(tx, ty, 0, tx, ty, 40);
+    grd.addColorStop(0, 'rgba(232,25,44,.18)');
+    grd.addColorStop(.5, 'rgba(232,25,44,.06)');
+    grd.addColorStop(1, 'rgba(232,25,44,0)');
+    ax.beginPath(); ax.arc(tx, ty, 40, 0, Math.PI*2);
+    ax.fillStyle = grd; ax.fill();
+
+    angle += .016;
+    requestAnimationFrame(drawArc);
+  }
+  drawArc();
 })();
 
 /* ════ NEURAL NETWORK BACKGROUND ════ */
