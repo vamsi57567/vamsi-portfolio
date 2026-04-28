@@ -192,7 +192,7 @@ nav.show{opacity:1;transform:translateY(0)}
 @keyframes beat{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(.35);opacity:.15}}
 
 h1{
-  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.5rem,4.5vw,4.8rem);
+  font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,3.8vw,4rem);
   line-height:.96;letter-spacing:.04em;color:var(--cream);margin-bottom:1.2rem;
 }
 h1 .h1r{color:var(--red)}
@@ -321,9 +321,7 @@ h1 .h1i{padding-left:clamp(.8rem,3vw,3rem)}
 .section-bg{background:var(--s1);border-top:.5px solid var(--line);border-bottom:.5px solid var(--line)}
 .eyebrow{font-family:'JetBrains Mono',monospace;font-size:.64rem;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.7rem;display:flex;align-items:center;gap:10px}
 .eyebrow::before{content:'';width:18px;height:1px;background:var(--gold)}
-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,3.2vw,3.2rem);letter-spacing:.04em;color:var(--cream);line-height:.96;margin-bottom:0}
-h2::after{content:'';display:block;width:40px;height:2px;background:linear-gradient(90deg,var(--red),transparent);margin-top:.5rem;animation:linepulse 2.5s ease-in-out infinite alternate}
-@keyframes linepulse{from{opacity:.4;width:28px}to{opacity:1;width:52px}}
+h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,2.8vw,2.8rem);letter-spacing:.04em;color:var(--cream);line-height:.96;margin-bottom:0}
 h2 .h2r{color:var(--red)}
 h2 .h2g{color:var(--gold)}
 
@@ -467,30 +465,19 @@ footer{position:relative;z-index:1;text-align:center;padding:1.6rem;font-family:
 .rv.in,.rl.in{opacity:1;transform:none}
 .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
 
-/* ══ MARVEL 3D EFFECTS ══ */
+/* ══ MARVEL EFFECTS — CLEAN ══ */
 
 /* Floating 3D energy particles canvas */
-#cv-particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.7}
-
-/* Section energy divider line */
-.section-bg{position:relative}
-.section-bg::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--red),var(--gold),var(--red),transparent);
-  background-size:200% 100%;animation:borderflow 4s linear infinite;
-}
+#cv-particles{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.65}
 
 /* 3D hover lift on every card */
-.project-card,.skill-card,.pub,.learn-card,.pc-readout-item{
-  will-change:transform;
-}
+.project-card,.skill-card,.pub,.learn-card,.pc-readout-item{will-change:transform}
 
-/* Section headings — Iron Man power glow on scroll-in */
-h2.in{animation:poweronH 0.7s cubic-bezier(.23,1,.32,1) both}
+/* Section headings — subtle power glow on scroll-in */
+h2.in{animation:poweronH 0.65s cubic-bezier(.23,1,.32,1) both}
 @keyframes poweronH{
-  0%{opacity:0;transform:translateY(18px);text-shadow:0 0 40px var(--red),0 0 80px rgba(232,25,44,.4)}
-  60%{text-shadow:0 0 15px rgba(232,25,44,.2)}
-  100%{opacity:1;transform:none;text-shadow:none}
+  0%{opacity:0;transform:translateY(16px)}
+  100%{opacity:1;transform:none}
 }
 
 /* 3D perspective on whole hero when moving mouse */
@@ -498,84 +485,25 @@ h2.in{animation:poweronH 0.7s cubic-bezier(.23,1,.32,1) both}
 
 /* glowing red underline sweep on nav links */
 .nav-links a{position:relative}
-.nav-links a::after{
-  content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;
-  background:var(--red);transition:width .3s cubic-bezier(.23,1,.32,1);
-  box-shadow:0 0 6px var(--red);
-}
+.nav-links a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--red);transition:width .3s cubic-bezier(.23,1,.32,1);box-shadow:0 0 6px var(--red)}
 .nav-links a:hover::after{width:100%}
 
 /* pulsing red ring on avatar */
-.pc-avatar::before{
-  content:'';position:absolute;inset:-3px;border-radius:8px;
-  border:1px solid rgba(232,25,44,.0);
-  animation:avatarring 2.5s ease-in-out infinite;
-}
-@keyframes avatarring{
-  0%,100%{border-color:rgba(232,25,44,.0);box-shadow:none}
-  50%{border-color:rgba(232,25,44,.5);box-shadow:0 0 12px rgba(232,25,44,.3)}
-}
+.pc-avatar::before{content:'';position:absolute;inset:-3px;border-radius:8px;border:1px solid rgba(232,25,44,.0);animation:avatarring 2.5s ease-in-out infinite}
+@keyframes avatarring{0%,100%{border-color:rgba(232,25,44,.0)}50%{border-color:rgba(232,25,44,.45);box-shadow:0 0 10px rgba(232,25,44,.25)}}
 
-/* Iron Man beam sweep across each section on hover */
-.section:hover::after{
-  content:'';position:absolute;top:0;left:-100%;right:auto;bottom:0;width:2px;
-  background:linear-gradient(180deg,transparent,var(--red),transparent);
-  animation:beamsweep .8s ease-in-out forwards;pointer-events:none;
-}
-.section{position:relative;overflow:hidden}
-@keyframes beamsweep{from{left:-2px;opacity:1}to{left:100%;opacity:0}}
-
-/* Arc reactor style rings around profile card */
-.profile-card::after{
-  content:'';position:absolute;inset:-8px;
-  border:1px solid rgba(232,25,44,.0);border-radius:14px;
-  animation:outerring 3s ease-in-out infinite;pointer-events:none;
-}
-@keyframes outerring{
-  0%,100%{border-color:rgba(232,25,44,.0);transform:scale(1)}
-  50%{border-color:rgba(232,25,44,.2);transform:scale(1.01);box-shadow:0 0 30px rgba(232,25,44,.1)}
-}
-
-/* 3D floating effect on skill cards */
-@keyframes float3d{
-  0%,100%{transform:translateY(0) rotateX(0deg)}
-  50%{transform:translateY(-4px) rotateX(1deg)}
-}
-.skill-card.in:not(:hover){animation:float3d 5s ease-in-out infinite}
-.skill-card.in:nth-child(2){animation-delay:1.2s}
-.skill-card.in:nth-child(3){animation-delay:2.4s}
-.skill-card.in:nth-child(4){animation-delay:3.6s}
+/* Arc reactor outer ring on profile card */
+.profile-card::after{content:'';position:absolute;inset:-6px;border:1px solid rgba(232,25,44,.0);border-radius:14px;animation:outerring 3.5s ease-in-out infinite;pointer-events:none}
+@keyframes outerring{0%,100%{border-color:rgba(232,25,44,.0)}50%{border-color:rgba(232,25,44,.18);box-shadow:0 0 20px rgba(232,25,44,.08)}}
 
 /* glowing border on project cards on hover */
-.project-card:hover{
-  box-shadow:
-    0 0 0 1px rgba(232,25,44,.4),
-    0 0 20px rgba(232,25,44,.2),
-    0 0 60px rgba(232,25,44,.1),
-    0 24px 48px rgba(0,0,0,.7);
-}
-
-/* eyebrow typing cursor */
-.eyebrow::after{content:'_';color:var(--gold);animation:blink .9s step-end infinite;margin-left:2px}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
-
-/* contact box red glow pulse */
-.contact-box{animation:contactglow 4s ease-in-out infinite}
-@keyframes contactglow{
-  0%,100%{box-shadow:0 0 0 rgba(232,25,44,0)}
-  50%{box-shadow:0 0 60px rgba(232,25,44,.08),0 0 120px rgba(232,25,44,.04)}
-}
+.project-card:hover{box-shadow:0 0 0 1px rgba(232,25,44,.35),0 0 20px rgba(232,25,44,.15),0 24px 48px rgba(0,0,0,.7)}
 
 /* Intro VKP letters — red glow */
-.mvc{text-shadow:0 0 60px rgba(232,25,44,.7),0 0 120px rgba(232,25,44,.3),0 0 200px rgba(232,25,44,.15)}
+.mvc{text-shadow:0 0 60px rgba(232,25,44,.7),0 0 120px rgba(232,25,44,.25)}
 
-/* reveal now triggers power-on effect */
-.rv.in,.rl.in{animation:poweron .65s cubic-bezier(.23,1,.32,1) both}
-@keyframes poweron{
-  0%{opacity:0;transform:translateY(20px);filter:brightness(3) blur(3px)}
-  55%{filter:brightness(1.3) blur(0)}
-  100%{opacity:1;transform:none;filter:brightness(1)}
-}
+/* reveal effect — clean fade up only */
+.rv.in,.rl.in{opacity:1;transform:none}
 
 
   nav{padding:1rem 1.5rem}
@@ -820,8 +748,8 @@ h2.in{animation:poweronH 0.7s cubic-bezier(.23,1,.32,1) both}
   <div class="section">
     <div class="eyebrow rv">03.5 &nbsp; Deep Case Study</div>
     <h2 class="rv">TRUSTWORTHY AI<br><span class="h2r">LLM HALLUCINATION DETECTION</span></h2>
-    <p class="rv" style="font-size:1.02rem;color:var(--body);line-height:1.82;max-width:680px;margin-top:1.2rem;font-weight:300">
-      A complete engineering breakdown of the 8-layer Retrieval Augmented Generation system I built to detect and reduce hallucinations in large language models — evaluated on 15,000 real-world claims from the FEVER benchmark.
+    <p class="rv" style="font-size:1rem;color:var(--body);line-height:1.8;max-width:640px;margin-top:1.1rem;font-weight:300">
+      8-layer RAG pipeline to detect and reduce LLM hallucinations — evaluated on 15,000 FEVER benchmark claims.
     </p>
     <div class="deep-3col rv">
       <div class="deep-block db-prob"><div class="db-label">The Problem</div><div class="db-text">LLMs confidently state incorrect facts. Standard single-retrieval RAG systems miss ambiguous claims and return false-confident answers with no uncertainty signal.</div></div>
@@ -931,16 +859,6 @@ h2.in{animation:poweronH 0.7s cubic-bezier(.23,1,.32,1) both}
       <span class="tp tp-k">FEVER Benchmark 15K Claims</span>
       <span class="tp tp-w">Python</span>
       <span class="tp tp-w">HuggingFace Transformers</span>
-    </div>
-    <div class="learnings rv">
-      <div class="learn-card">
-        <div class="learn-label" style="color:var(--gold)">Key Engineering Decision</div>
-        <div class="learn-text">Hybrid retrieval — dense plus sparse — consistently outperformed either approach alone. Dense captures semantic similarity; sparse catches exact keywords that embeddings miss. Combining both through Reciprocal Rank Fusion delivered the best passage quality before the LLM ever saw a token.</div>
-      </div>
-      <div class="learn-card">
-        <div class="learn-label" style="color:var(--red)">What Surprised Me</div>
-        <div class="learn-text">The NLI verifier's biggest win was not catching outright false claims — it was correctly flagging <em>ambiguous</em> claims the base model answered with false confidence. This is the real safety risk in enterprise LLM deployments and only surfaces under rigorous evaluation.</div>
-      </div>
     </div>
     <a href="https://github.com/vamsi57567" target="_blank" class="btn-red" style="width:fit-content">View on GitHub ↗</a>
   </div>
