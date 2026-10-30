@@ -3,30 +3,23 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>Vamsi Krishna Peeta — Data Analyst</title>
-<meta name="description" content="Data Analyst building ML models, statistical analyses, and RAG systems — turning multi-system data into clear, actionable insight. MS Data Science at UMBC, AWS Certified ML Engineer, IEEE published."/>
-<meta property="og:title" content="Vamsi Krishna Peeta — Data Analyst"/>
-<meta property="og:description" content="Data Analyst building ML models, statistical analyses, and RAG systems."/>
+<title>Vamsi Krishna Peeta | Data Analyst and Data Engineer</title>
+<meta name="description" content="Data Analyst and AWS Certified Machine Learning Engineer building ETL pipelines, validating data quality across multi-source environments, and structuring data for AI tools. SQL, Python, PySpark, Snowflake."/>
+<meta property="og:title" content="Vamsi Krishna Peeta | Data Analyst and Data Engineer"/>
+<meta property="og:description" content="Data Analyst and AWS Certified Machine Learning Engineer. ETL pipelines, data quality, and RAG systems."/>
 <meta property="og:type" content="website"/>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
   --bg:#050610;
-  --bg2:#0a0c1a;
-  --bg3:#10142a;
-  --surface:rgba(255,255,255,.04);
-  --surface2:rgba(255,255,255,.07);
   --border:rgba(255,255,255,.09);
-  --border2:rgba(255,255,255,.18);
   --text:#f3e9d8;
   --muted:#9a9586;
   --hint:#5d5a52;
   --red:#e8192c;
   --red2:#ff3349;
   --gold:#f5c842;
-  --gold2:#ffdc6e;
-  --cyan:#5dd9ff;
 }
 
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
@@ -40,7 +33,6 @@ body{
   min-height:100vh;
   position:relative;
 }
-
 body::before{
   content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
   background:
@@ -52,34 +44,32 @@ body::after{
   content:'';position:fixed;inset:0;z-index:2;pointer-events:none;
   background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(232,25,44,.012) 3px,rgba(232,25,44,.012) 4px);
 }
-
 a{color:inherit;text-decoration:none}
-img,svg{display:block;max-width:100%}
+svg{display:block;max-width:100%}
 ::selection{background:var(--red);color:#fff}
 ::-webkit-scrollbar{width:6px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--red);border-radius:3px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
 
 .wrap{max-width:1200px;margin:0 auto;padding:0 32px;position:relative;z-index:3}
-
 #stars{position:fixed;inset:0;z-index:1;pointer-events:none}
 
+/* owner-only view counter */
 .view-counter{
   position:fixed;top:80px;right:32px;z-index:50;
-  display:inline-flex;align-items:center;gap:10px;
+  display:none;align-items:center;gap:10px;
   background:rgba(10,12,26,.88);
   border:1px solid rgba(245,200,66,.3);
   padding:9px 16px;border-radius:2px;
-  font-size:.78rem;color:var(--gold);
-  letter-spacing:.08em;
+  font-size:.78rem;color:var(--gold);letter-spacing:.08em;
   backdrop-filter:blur(10px);
-  box-shadow:0 0 0 1px rgba(245,200,66,.05),0 8px 24px rgba(0,0,0,.5),0 0 20px rgba(245,200,66,.12);
-  font-family:'Times New Roman',Times,serif;
+  box-shadow:0 8px 24px rgba(0,0,0,.5),0 0 20px rgba(245,200,66,.12);
 }
 .vc-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:vcpulse 2s ease-in-out infinite}
 @keyframes vcpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.7)}}
 .vc-label{color:var(--muted);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase}
-.vc-num{font-weight:700;font-size:.95rem;color:var(--gold);letter-spacing:.04em}
+.vc-num{font-weight:700;font-size:.95rem;color:var(--gold)}
 
 nav{
   position:sticky;top:0;z-index:100;height:64px;
@@ -88,17 +78,17 @@ nav{
   box-shadow:0 1px 0 rgba(232,25,44,.08),0 4px 30px rgba(0,0,0,.4);
 }
 .nav-inner{max-width:1200px;margin:0 auto;padding:0 32px;height:100%;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:'Times New Roman',Times,serif;font-size:1.55rem;font-weight:700;color:var(--gold);letter-spacing:.04em;text-shadow:0 0 16px rgba(245,200,66,.4)}
+.logo{font-size:1.55rem;font-weight:700;color:var(--gold);letter-spacing:.04em;text-shadow:0 0 16px rgba(245,200,66,.4)}
 .nav-links{display:flex;gap:26px;align-items:center}
-.nav-links a{font-size:.84rem;font-weight:500;color:var(--muted);transition:color .15s ease,text-shadow .15s ease;letter-spacing:.02em}
+.nav-links a{font-size:.86rem;font-weight:500;color:var(--muted);transition:color .15s ease,text-shadow .15s ease;letter-spacing:.02em}
 .nav-links a:hover,.nav-links a.active{color:var(--red);text-shadow:0 0 12px rgba(232,25,44,.5)}
-.nav-cta{
-  background:linear-gradient(135deg,var(--red),var(--red2));color:#fff!important;
-  font-size:.82rem;font-weight:600;padding:9px 18px;border-radius:2px;letter-spacing:.04em;
+.nav-links a.nav-cta{
+  background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;
+  font-size:.82rem;font-weight:600;padding:9px 18px;border-radius:2px;
   box-shadow:0 4px 18px rgba(232,25,44,.35),inset 0 1px 0 rgba(255,255,255,.18);
-  transition:transform .15s,box-shadow .15s;
+  transition:transform .15s,box-shadow .15s;text-shadow:none;
 }
-.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,25,44,.55),inset 0 1px 0 rgba(255,255,255,.22);text-shadow:none}
+.nav-links a.nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 24px rgba(232,25,44,.55);color:#fff}
 .mobile-toggle{display:none;background:none;border:none;cursor:pointer;width:32px;height:32px;flex-direction:column;justify-content:center;gap:5px}
 .mobile-toggle span{display:block;width:22px;height:1.5px;background:var(--text);transition:transform .25s,opacity .2s}
 .mobile-toggle.on span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
@@ -106,43 +96,40 @@ nav{
 .mobile-toggle.on span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 .mobile-nav{display:none;position:fixed;inset:64px 0 0;z-index:99;background:var(--bg);padding:40px 32px;flex-direction:column;gap:22px}
 .mobile-nav.on{display:flex}
-.mobile-nav a{font-family:'Times New Roman',Times,serif;font-size:1.5rem;color:var(--text)}
+.mobile-nav a{font-size:1.5rem;color:var(--text)}
 .mobile-nav a.active{color:var(--red)}
 
+/* hero */
 .hero{padding:80px 0 60px;position:relative}
 .hero-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:60px;align-items:center}
 .hero-eyebrow{
-  font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;
+  font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:22px;
   display:inline-flex;align-items:center;gap:10px;text-shadow:0 0 12px rgba(245,200,66,.3);
   opacity:0;animation:fadeUp .9s ease .1s forwards;
 }
 .hero-eyebrow::before{content:'';width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 h1.hero-name{
-  font-family:'Times New Roman',Times,serif;font-size:clamp(3rem,6vw,4.6rem);
-  line-height:1.02;letter-spacing:-.01em;font-weight:700;margin-bottom:24px;
+  font-size:clamp(3rem,6vw,4.6rem);line-height:1.02;letter-spacing:-.01em;font-weight:700;margin-bottom:24px;
   background:linear-gradient(180deg,#fff 0%,#f3e9d8 40%,rgba(245,200,66,.85) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  text-shadow:0 0 60px rgba(232,25,44,.18);
   opacity:0;animation:fadeUp .9s ease .25s forwards;
 }
-.hero-tagline{font-size:1.14rem;line-height:1.68;color:var(--muted);max-width:580px;margin-bottom:36px;opacity:0;animation:fadeUp .9s ease .4s forwards}
+.hero-tagline{font-size:1.12rem;line-height:1.7;color:var(--muted);max-width:600px;margin-bottom:36px;opacity:0;animation:fadeUp .9s ease .4s forwards}
 .hero-tagline strong{color:var(--gold);font-weight:600}
 .hero-btns{display:flex;gap:14px;flex-wrap:wrap;opacity:0;animation:fadeUp .9s ease .55s forwards}
 .btn-primary{
   display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,var(--red),var(--red2));
-  color:#fff;padding:14px 28px;border-radius:2px;font-family:'Times New Roman',Times,serif;
-  font-size:.95rem;font-weight:600;letter-spacing:.04em;
+  color:#fff;padding:14px 28px;border-radius:2px;font-size:.95rem;font-weight:600;letter-spacing:.04em;
   box-shadow:0 6px 22px rgba(232,25,44,.4),inset 0 1px 0 rgba(255,255,255,.2);
   transition:transform .15s ease,box-shadow .15s ease;position:relative;overflow:hidden;
 }
 .btn-primary::after{content:'';position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.25) 50%,transparent 70%);transform:translateX(-110%);transition:transform .55s ease}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(232,25,44,.55),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 36px rgba(232,25,44,.55)}
 .btn-primary:hover::after{transform:translateX(110%)}
 .btn-outline{
   display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--gold);
   padding:14px 28px;border-radius:2px;border:1px solid rgba(245,200,66,.45);
-  font-family:'Times New Roman',Times,serif;font-size:.95rem;font-weight:600;letter-spacing:.04em;
-  transition:all .15s ease;
+  font-size:.95rem;font-weight:600;letter-spacing:.04em;transition:all .15s ease;
 }
 .btn-outline:hover{background:rgba(245,200,66,.1);border-color:var(--gold);transform:translateY(-2px);box-shadow:0 6px 20px rgba(245,200,66,.18)}
 
@@ -158,9 +145,10 @@ h1.hero-name{
 .hc-title{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:6px;font-weight:500}
 .hc-h{font-size:1.2rem;color:var(--text);margin-bottom:18px;line-height:1.25;font-weight:600}
 .hc-svg{width:100%;height:auto;display:block}
-.hc-legend{display:flex;gap:18px;justify-content:flex-start;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
+.hc-legend{display:flex;gap:18px;margin-top:14px;padding-top:14px;border-top:1px solid var(--border)}
 .hc-leg-item{display:flex;align-items:center;gap:6px;font-size:.74rem;color:var(--muted)}
 .hc-leg-dot{width:10px;height:10px;border-radius:1px}
+.hc-note{font-size:.7rem;color:var(--hint);margin-top:10px;line-height:1.5}
 
 .hero-stats{
   display:grid;grid-template-columns:repeat(4,1fr);margin-top:70px;padding:36px 0;
@@ -172,36 +160,34 @@ h1.hero-name{
 .stat{padding:0 24px;position:relative}
 .stat:not(:last-child)::after{content:'';position:absolute;right:0;top:10%;bottom:10%;width:1px;background:var(--border)}
 .stat-num{
-  font-family:'Times New Roman',Times,serif;font-size:clamp(2.2rem,4vw,2.9rem);font-weight:700;line-height:1;margin-bottom:8px;letter-spacing:-.01em;
+  font-size:clamp(2.2rem,4vw,2.9rem);font-weight:700;line-height:1;margin-bottom:8px;letter-spacing:-.01em;
   background:linear-gradient(135deg,var(--red) 0%,var(--gold) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  text-shadow:0 0 30px rgba(232,25,44,.2);
 }
 .stat-lbl{font-size:.74rem;font-weight:500;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;line-height:1.45}
 
+/* sections */
 section{padding:100px 0;position:relative}
 .sec-eyebrow{font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:inline-flex;align-items:center;gap:10px;text-shadow:0 0 10px rgba(245,200,66,.25)}
 .sec-eyebrow::before{content:'';width:28px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 .sec-h{
-  font-family:'Times New Roman',Times,serif;font-size:clamp(2.2rem,3.8vw,3rem);font-weight:700;
-  line-height:1.1;letter-spacing:-.01em;color:var(--text);margin-bottom:50px;
+  font-size:clamp(2.2rem,3.8vw,3rem);font-weight:700;line-height:1.1;letter-spacing:-.01em;margin-bottom:50px;
   background:linear-gradient(180deg,#fff 0%,#dcd0bb 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
-.sec-sub{font-size:1.02rem;color:var(--muted);max-width:640px;margin-top:-30px;margin-bottom:50px;line-height:1.7}
-
+.sub-h{font-size:1.25rem;font-weight:700;color:var(--gold);margin:56px 0 22px;letter-spacing:.02em}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
 .reveal.in{opacity:1;transform:none}
 
+/* experience */
 .exp-list{display:flex;flex-direction:column;gap:48px}
 .exp-row{display:grid;grid-template-columns:230px 1fr;gap:50px}
 .exp-rail{position:relative;padding-left:26px}
 .exp-rail::before{content:'';position:absolute;left:8px;top:8px;bottom:0;width:1px;background:linear-gradient(180deg,var(--red),transparent)}
 .exp-dot{position:absolute;left:0;top:4px;width:16px;height:16px;border-radius:50%;background:var(--bg);border:2px solid var(--red);box-shadow:0 0 14px rgba(232,25,44,.5)}
-.exp-dates{font-size:.82rem;letter-spacing:.04em;color:var(--text);margin-bottom:6px;font-weight:500}
+.exp-dates{font-size:.84rem;letter-spacing:.04em;color:var(--text);margin-bottom:6px;font-weight:500}
 .exp-loc{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
 .exp-type{display:inline-block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;padding:4px 10px;margin-top:14px;background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;box-shadow:0 4px 14px rgba(232,25,44,.3)}
-.exp-type.alt{background:transparent;color:var(--gold);border:1px solid rgba(245,200,66,.4);box-shadow:none}
 .exp-card{
   background:linear-gradient(160deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);
   border:1px solid var(--border);border-radius:4px;padding:36px;
@@ -209,56 +195,18 @@ section{padding:100px 0;position:relative}
   backdrop-filter:blur(8px);transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s,border-color .25s;
   transform-style:preserve-3d;will-change:transform;
 }
-.exp-card:hover{transform:translateY(-6px);box-shadow:0 36px 80px rgba(0,0,0,.55),0 0 0 1px rgba(232,25,44,.2),0 0 30px rgba(232,25,44,.12);border-color:rgba(232,25,44,.25)}
-.exp-co{font-family:'Times New Roman',Times,serif;font-size:1.65rem;font-weight:700;line-height:1.2;color:var(--text);margin-bottom:6px}
+.exp-card:hover{box-shadow:0 36px 80px rgba(0,0,0,.55),0 0 0 1px rgba(232,25,44,.2),0 0 30px rgba(232,25,44,.12);border-color:rgba(232,25,44,.25)}
+.exp-co{font-size:1.65rem;font-weight:700;line-height:1.2;color:var(--text);margin-bottom:6px}
 .exp-role{font-size:.85rem;letter-spacing:.08em;color:var(--gold);text-transform:uppercase;margin-bottom:22px;font-weight:500}
-.exp-blocks{display:flex;flex-direction:column;gap:16px;margin-bottom:24px}
-.exp-block-l{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:6px;font-weight:600}
-.exp-block-t{font-size:1rem;color:var(--text);line-height:1.68}
-.exp-block-t strong{color:var(--gold);font-weight:600}
+.exp-points{list-style:none;display:flex;flex-direction:column;gap:15px;margin-bottom:24px}
+.exp-points li{position:relative;padding-left:22px;font-size:1rem;line-height:1.7;color:var(--text)}
+.exp-points li::before{content:'';position:absolute;left:0;top:.8em;width:10px;height:1px;background:var(--red);box-shadow:0 0 6px var(--red)}
+.exp-points strong{color:var(--gold);font-weight:600}
 .tool-chips{display:flex;flex-wrap:wrap;gap:6px}
 .chip{font-size:.7rem;letter-spacing:.04em;padding:5px 12px;background:rgba(245,200,66,.07);color:var(--gold);border:1px solid rgba(245,200,66,.22);border-radius:2px;transition:background .15s,border-color .15s}
 .chip:hover{background:rgba(245,200,66,.15);border-color:rgba(245,200,66,.4)}
 
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.edu-card{
-  background:linear-gradient(160deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);
-  border:1px solid var(--border);border-radius:4px;padding:34px;position:relative;
-  box-shadow:0 16px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);
-  backdrop-filter:blur(8px);transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s,border-color .25s;
-  transform-style:preserve-3d;will-change:transform;
-}
-.edu-card:hover{transform:translateY(-5px);box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 1px rgba(245,200,66,.22),0 0 24px rgba(245,200,66,.1);border-color:rgba(245,200,66,.25)}
-.edu-current{position:absolute;top:24px;right:24px;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;padding:4px 10px;background:var(--red);color:#fff;box-shadow:0 4px 14px rgba(232,25,44,.45)}
-.edu-inst{font-family:'Times New Roman',Times,serif;font-size:1.4rem;font-weight:700;line-height:1.2;color:var(--text);margin-bottom:6px;max-width:80%}
-.edu-deg{font-size:.82rem;letter-spacing:.06em;color:var(--gold);margin-bottom:10px;text-transform:uppercase;font-weight:500}
-.edu-gpa{display:inline-block;font-size:.72rem;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--border);padding:3px 10px;margin-bottom:16px;letter-spacing:.03em}
-.edu-meta{font-size:.75rem;color:var(--muted);margin-bottom:20px;letter-spacing:.02em}
-.edu-courses-l{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:10px;font-weight:600}
-.edu-courses{display:flex;flex-direction:column;gap:7px}
-.edu-course{font-size:.92rem;color:var(--text);padding-left:14px;position:relative}
-.edu-course::before{content:'';position:absolute;left:0;top:9px;width:6px;height:1px;background:var(--red)}
-
-.cert-strip{
-  margin-top:24px;
-  background:linear-gradient(135deg,rgba(245,200,66,.08) 0%,rgba(232,25,44,.05) 100%);
-  border:1px solid rgba(245,200,66,.25);border-radius:4px;
-  padding:26px 32px;display:flex;align-items:center;gap:20px;
-  box-shadow:0 16px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05);
-  transition:transform .3s ease,box-shadow .3s ease;
-}
-.cert-strip:hover{transform:translateY(-4px);box-shadow:0 26px 56px rgba(0,0,0,.5),0 0 24px rgba(245,200,66,.12)}
-.cert-badge{
-  flex-shrink:0;width:52px;height:52px;border-radius:50%;
-  background:linear-gradient(135deg,var(--gold),#c99a1f);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.3rem;font-weight:700;color:#1a1200;
-  box-shadow:0 0 0 3px rgba(245,200,66,.15),0 8px 20px rgba(245,200,66,.3);
-}
-.cert-text-l{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;font-weight:600}
-.cert-text-t{font-family:'Times New Roman',Times,serif;font-size:1.15rem;font-weight:700;color:var(--text)}
-.cert-text-s{font-size:.8rem;color:var(--muted);margin-top:3px}
-
+/* projects */
 .proj-list{display:flex;flex-direction:column;gap:30px}
 .proj-card{
   background:linear-gradient(160deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.015) 100%);
@@ -271,18 +219,29 @@ section{padding:100px 0;position:relative}
 .proj-card:hover::before{opacity:1}
 .proj-card:hover{box-shadow:0 36px 90px rgba(0,0,0,.6),0 0 0 1px rgba(232,25,44,.25),0 0 40px rgba(232,25,44,.15);border-color:rgba(232,25,44,.3)}
 .proj-num{font-size:.72rem;letter-spacing:.16em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;font-weight:600}
-.proj-title{font-family:'Times New Roman',Times,serif;font-size:1.75rem;font-weight:700;line-height:1.25;color:var(--text);margin-bottom:20px}
-.proj-blocks{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:22px}
-.proj-block-l{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:6px;font-weight:600}
-.proj-block-t{font-size:.95rem;color:var(--text);line-height:1.68}
-.proj-block-t strong{color:var(--gold);font-weight:600}
+.proj-title{font-size:1.75rem;font-weight:700;line-height:1.25;color:var(--text);margin-bottom:16px}
+.proj-desc{font-size:1rem;color:var(--text);line-height:1.75;max-width:900px}
+.proj-desc strong{color:var(--gold);font-weight:600}
+.fig-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:24px 0}
+.fig{background:rgba(5,6,16,.5);border:1px solid var(--border);padding:16px 18px;border-radius:2px}
+.fig-num{
+  font-size:1.9rem;font-weight:700;line-height:1;letter-spacing:-.01em;
+  background:linear-gradient(135deg,var(--red) 0%,var(--gold) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.fig-lbl{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px;line-height:1.4}
 .proj-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
 .proj-links{display:flex;gap:10px;flex-wrap:wrap}
 .proj-link{display:inline-flex;align-items:center;gap:6px;font-size:.84rem;font-weight:600;color:var(--gold);padding:10px 18px;border:1px solid rgba(245,200,66,.35);border-radius:2px;letter-spacing:.04em;transition:all .15s ease}
 .proj-link:hover{background:rgba(245,200,66,.12);border-color:var(--gold);transform:translateY(-2px)}
 .proj-link.fill{background:linear-gradient(135deg,var(--red),var(--red2));color:#fff;border-color:transparent;box-shadow:0 6px 18px rgba(232,25,44,.35)}
 .proj-link.fill:hover{box-shadow:0 10px 26px rgba(232,25,44,.5)}
+.proj-extra{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.proj-extra .proj-card{padding:30px;display:flex;flex-direction:column}
+.proj-extra .proj-title{font-size:1.3rem}
+.proj-extra .proj-desc{font-size:.96rem;flex-grow:1;margin-bottom:18px}
 
+/* research */
 .research-card{
   background:linear-gradient(160deg,rgba(255,255,255,.05) 0%,rgba(255,255,255,.015) 100%);
   border:1px solid var(--border);border-radius:4px;padding:48px;position:relative;border-left:3px solid var(--red);
@@ -290,33 +249,84 @@ section{padding:100px 0;position:relative}
   backdrop-filter:blur(8px);transition:transform .35s cubic-bezier(.23,1,.32,1),box-shadow .35s;
   transform-style:preserve-3d;will-change:transform;
 }
-.research-card:hover{transform:translateY(-5px);box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px rgba(232,25,44,.22),0 0 40px rgba(232,25,44,.18)}
+.research-card:hover{box-shadow:0 40px 90px rgba(0,0,0,.6),0 0 0 1px rgba(232,25,44,.22),0 0 40px rgba(232,25,44,.18)}
 .res-venue{font-size:.78rem;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:14px;font-weight:600}
-.res-title{font-family:'Times New Roman',Times,serif;font-size:1.85rem;font-weight:700;line-height:1.25;color:var(--text);margin-bottom:14px}
+.res-title{font-size:1.85rem;font-weight:700;line-height:1.25;color:var(--text);margin-bottom:14px}
 .res-authors{font-size:.86rem;color:var(--muted);margin-bottom:8px;font-style:italic}
 .res-doi{font-size:.78rem;color:var(--red);margin-bottom:22px;letter-spacing:.04em;font-weight:600}
 .res-summary{font-size:1.02rem;color:var(--text);line-height:1.72;margin-bottom:30px;max-width:780px}
 .res-arch{background:rgba(5,6,16,.5);border:1px solid var(--border);padding:28px;margin-bottom:28px}
 .res-arch-l{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;font-weight:600}
 
+/* skills */
+.core-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;margin-bottom:34px}
+.core-tile{
+  background:linear-gradient(160deg,rgba(255,255,255,.06) 0%,rgba(255,255,255,.02) 100%);
+  border:1px solid var(--border);border-radius:4px;padding:20px 16px;
+  box-shadow:0 14px 30px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05);
+  transition:box-shadow .3s,border-color .3s;transform-style:preserve-3d;will-change:transform;position:relative;overflow:hidden;
+}
+.core-tile::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--red),var(--gold))}
+.core-tile:hover{box-shadow:0 26px 60px rgba(0,0,0,.55),0 0 24px rgba(245,200,66,.14);border-color:rgba(245,200,66,.3)}
+.core-name{font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:6px}
+.core-sub{font-size:.78rem;color:var(--muted);line-height:1.5}
 .skill-rows{
   background:linear-gradient(160deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);
   border:1px solid var(--border);border-radius:4px;overflow:hidden;
   box-shadow:0 24px 60px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.04);
   backdrop-filter:blur(8px);
 }
-.skill-row{display:grid;grid-template-columns:260px 1fr;gap:30px;padding:28px 36px;border-bottom:1px solid var(--border);align-items:center;transition:background .2s}
+.skill-row{display:grid;grid-template-columns:260px 1fr;gap:30px;padding:24px 36px;border-bottom:1px solid var(--border);align-items:center;transition:background .2s}
 .skill-row:hover{background:rgba(245,200,66,.03)}
 .skill-row:last-child{border-bottom:none}
-.skill-domain{font-family:'Times New Roman',Times,serif;font-size:1.1rem;font-weight:700;color:var(--gold);letter-spacing:.01em;line-height:1.3}
+.skill-domain{font-size:1.08rem;font-weight:700;color:var(--gold);letter-spacing:.01em;line-height:1.3}
 .skill-tools{display:flex;flex-wrap:wrap;gap:6px}
-.skill-tool{font-size:.74rem;letter-spacing:.04em;padding:6px 12px;background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--border);border-radius:2px;transition:all .15s}
+.skill-tool{font-size:.74rem;letter-spacing:.03em;padding:6px 12px;background:rgba(255,255,255,.04);color:var(--text);border:1px solid var(--border);border-radius:2px;transition:all .15s}
 .skill-tool:hover{background:rgba(232,25,44,.1);border-color:rgba(232,25,44,.3);color:var(--red2)}
+.skill-tool.hl{border-color:rgba(245,200,66,.35);background:rgba(245,200,66,.07);color:var(--gold)}
 
+/* education */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.edu-card{
+  background:linear-gradient(160deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);
+  border:1px solid var(--border);border-radius:4px;padding:34px;position:relative;
+  box-shadow:0 16px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.04);
+  backdrop-filter:blur(8px);transition:box-shadow .35s,border-color .25s;
+  transform-style:preserve-3d;will-change:transform;
+}
+.edu-card:hover{box-shadow:0 30px 70px rgba(0,0,0,.55),0 0 0 1px rgba(245,200,66,.22),0 0 24px rgba(245,200,66,.1);border-color:rgba(245,200,66,.25)}
+.edu-inst{font-size:1.4rem;font-weight:700;line-height:1.2;color:var(--text);margin-bottom:6px}
+.edu-deg{font-size:.82rem;letter-spacing:.06em;color:var(--gold);margin-bottom:10px;text-transform:uppercase;font-weight:500}
+.edu-gpa{display:inline-block;font-size:.74rem;color:var(--text);background:rgba(255,255,255,.05);border:1px solid var(--border);padding:3px 10px;margin-bottom:14px;letter-spacing:.03em}
+.edu-meta{font-size:.76rem;color:var(--muted);margin-bottom:20px}
+.edu-courses-l{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red);margin-bottom:10px;font-weight:600}
+.edu-courses{display:grid;grid-template-columns:1fr 1fr;gap:7px 18px}
+.edu-course{font-size:.9rem;color:var(--text);padding-left:14px;position:relative;line-height:1.45}
+.edu-course::before{content:'';position:absolute;left:0;top:.72em;width:6px;height:1px;background:var(--red)}
+.cert-grid{margin-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.cert-strip{
+  background:linear-gradient(135deg,rgba(245,200,66,.08) 0%,rgba(232,25,44,.05) 100%);
+  border:1px solid rgba(245,200,66,.25);border-radius:4px;
+  padding:26px 28px;display:flex;align-items:center;gap:20px;
+  box-shadow:0 16px 36px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.05);
+  transition:transform .3s ease,box-shadow .3s ease;
+}
+.cert-strip:hover{transform:translateY(-4px);box-shadow:0 26px 56px rgba(0,0,0,.5),0 0 24px rgba(245,200,66,.12)}
+.cert-badge{
+  flex-shrink:0;width:52px;height:52px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold),#c99a1f);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.95rem;font-weight:700;color:#1a1200;
+  box-shadow:0 0 0 3px rgba(245,200,66,.15),0 8px 20px rgba(245,200,66,.3);
+}
+.cert-text-l{font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:5px;font-weight:600}
+.cert-text-t{font-size:1.1rem;font-weight:700;color:var(--text);line-height:1.3}
+.cert-text-s{font-size:.8rem;color:var(--muted);margin-top:3px}
+
+/* contact */
 .contact{background:linear-gradient(180deg,rgba(255,255,255,.02) 0%,rgba(232,25,44,.04) 100%);text-align:center;border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
 .contact-h{
-  font-family:'Times New Roman',Times,serif;font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:700;
-  line-height:1.15;margin-bottom:18px;letter-spacing:-.01em;
+  font-size:clamp(2.2rem,4.5vw,3.4rem);font-weight:700;line-height:1.15;margin-bottom:18px;letter-spacing:-.01em;
   background:linear-gradient(180deg,#fff 0%,var(--gold) 100%);
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
@@ -336,6 +346,9 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
 
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 
+@media(max-width:1000px){
+  .core-grid{grid-template-columns:repeat(3,1fr)}
+}
 @media(max-width:900px){
   .view-counter{top:74px;right:14px;padding:6px 12px}
   .vc-label{display:none}
@@ -348,26 +361,32 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
   section{padding:70px 0}
   .exp-row{grid-template-columns:1fr;gap:24px}
   .exp-rail{padding-left:0}
-  .exp-rail::before{display:none}
-  .exp-dot{display:none}
+  .exp-rail::before,.exp-dot{display:none}
   .exp-card{padding:26px}
-  .edu-grid{grid-template-columns:1fr}
+  .edu-grid,.cert-grid,.proj-extra{grid-template-columns:1fr}
   .proj-card{padding:26px}
-  .proj-blocks{grid-template-columns:1fr}
+  .fig-row{grid-template-columns:1fr}
   .research-card{padding:32px}
   .skill-row{grid-template-columns:1fr;gap:14px;padding:22px 26px}
-  .cert-strip{flex-direction:column;text-align:center}
+  .core-grid{grid-template-columns:repeat(2,1fr)}
+  .edu-courses{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+  .hero-eyebrow,h1.hero-name,.hero-tagline,.hero-btns,.hero-chart{opacity:1}
 }
 </style>
 </head>
 <body>
 
-<canvas id="stars"></canvas>
+<canvas id="stars" aria-hidden="true"></canvas>
 
-<div class="view-counter" title="Total portfolio views">
+<div class="view-counter" id="viewBox" title="Total portfolio views (only visible to you)">
   <span class="vc-dot"></span>
   <span class="vc-label">Views</span>
-  <span class="vc-num" id="viewCount">—</span>
+  <span class="vc-num" id="viewCount">0</span>
 </div>
 
 <nav>
@@ -376,8 +395,8 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
     <div class="nav-links" id="navLinks">
       <a href="#experience">Experience</a>
       <a href="#projects">Projects</a>
-      <a href="#research">Research</a>
       <a href="#skills">Skills</a>
+      <a href="#research">Research</a>
       <a href="#education">Education</a>
       <a href="#contact" class="nav-cta">Contact</a>
     </div>
@@ -387,8 +406,8 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
 <div class="mobile-nav" id="mobileNav">
   <a href="#experience">Experience</a>
   <a href="#projects">Projects</a>
-  <a href="#research">Research</a>
   <a href="#skills">Skills</a>
+  <a href="#research">Research</a>
   <a href="#education">Education</a>
   <a href="#contact">Contact</a>
 </div>
@@ -399,60 +418,68 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
   <div class="wrap">
     <div class="hero-grid">
       <div>
-        <div class="hero-eyebrow">Data Analyst · Machine Learning &amp; AI</div>
+        <div class="hero-eyebrow">Data Analyst · Data Engineer · AWS Certified ML Engineer</div>
         <h1 class="hero-name">Vamsi Krishna Peeta</h1>
         <p class="hero-tagline">
-          I build <strong>machine learning models</strong>, statistical analyses, and <strong>retrieval-augmented generation systems</strong> — using SQL and Python pipelines to turn complex, multi-system data into clear, actionable insight. I use AI tools, including <strong>Claude Code</strong>, daily to speed up analysis and automate recurring workflows, backed by graduate coursework in forecasting and applied machine learning.
+          I build <strong>ETL pipelines</strong>, design data ingestion and transformation workflows, validate data quality across multi-source environments, and structure data so <strong>AI tools</strong> can use it. Proficient in <strong>SQL, Python, PySpark, and Snowflake</strong>, with a track record of taking end-to-end ownership of data systems and catching quality issues at the source.
         </p>
         <div class="hero-btns">
-          <a href="#projects" class="btn-primary">View Case Studies →</a>
+          <a href="#projects" class="btn-primary">View Projects →</a>
           <a href="https://github.com/vamsi57567" target="_blank" rel="noopener" class="btn-outline">GitHub ↗</a>
         </div>
       </div>
 
       <div class="hero-chart" id="heroChart">
-        <div class="hc-title">Operational Impact</div>
-        <div class="hc-h">Weekly Report Delivery — Before vs After</div>
-        <svg class="hc-svg" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+        <div class="hc-title">Measured Impact</div>
+        <div class="hc-h">Processing and Reporting Time, Indexed to Baseline</div>
+        <svg class="hc-svg" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Bar chart: batch processing time fell 60 percent and report delivery time fell 30 percent, indexed to a baseline of 100">
           <g stroke="rgba(255,255,255,.07)" stroke-width="0.5">
-            <line x1="42" y1="30" x2="350" y2="30"/>
-            <line x1="42" y1="70" x2="350" y2="70"/>
+            <line x1="42" y1="40" x2="350" y2="40"/>
+            <line x1="42" y1="75" x2="350" y2="75"/>
             <line x1="42" y1="110" x2="350" y2="110"/>
-            <line x1="42" y1="150" x2="350" y2="150"/>
+            <line x1="42" y1="145" x2="350" y2="145"/>
             <line x1="42" y1="180" x2="350" y2="180" stroke="rgba(255,255,255,.2)" stroke-width="0.8"/>
           </g>
           <g font-family="'Times New Roman',serif" font-size="9" fill="#9a9586" text-anchor="end">
-            <text x="36" y="33">10</text><text x="36" y="73">7.5</text><text x="36" y="113">5</text><text x="36" y="153">2.5</text><text x="36" y="183">0</text>
-          </g>
-          <g font-family="'Times New Roman',serif" font-size="9" fill="#9a9586" text-anchor="middle">
-            <text x="80" y="198">W1</text><text x="150" y="198">W2</text><text x="220" y="198">W3</text><text x="290" y="198">W4</text>
+            <text x="36" y="43">100</text><text x="36" y="78">75</text><text x="36" y="113">50</text><text x="36" y="148">25</text><text x="36" y="183">0</text>
           </g>
           <g fill="#5d5a52">
-            <rect x="64" y="42" width="22" height="138"/><rect x="134" y="50" width="22" height="130"/>
-            <rect x="204" y="38" width="22" height="142"/><rect x="274" y="46" width="22" height="134"/>
+            <rect x="70" y="40" width="36" height="140"/>
+            <rect x="225" y="40" width="36" height="140"/>
           </g>
           <defs><linearGradient id="redgrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ff3349"/><stop offset="100%" stop-color="#e8192c"/></linearGradient></defs>
           <g fill="url(#redgrad)">
-            <rect x="89" y="124" width="22" height="56"/><rect x="159" y="118" width="22" height="62"/>
-            <rect x="229" y="124" width="22" height="56"/><rect x="299" y="128" width="22" height="52"/>
+            <rect x="112" y="124" width="36" height="56"/>
+            <rect x="267" y="82" width="36" height="98"/>
           </g>
-          <g font-family="'Times New Roman',serif" font-size="9" fill="#f5c842" text-anchor="middle" font-weight="700">
-            <text x="100" y="119">1.9h</text><text x="170" y="113">2.1h</text><text x="240" y="119">1.9h</text><text x="310" y="123">1.8h</text>
+          <g font-family="'Times New Roman',serif" font-size="10" fill="#9a9586" text-anchor="middle">
+            <text x="88" y="34">100</text><text x="243" y="34">100</text>
           </g>
-          <text x="196" y="16" font-family="'Times New Roman',serif" font-size="9" fill="#9a9586" text-anchor="middle" letter-spacing="1.5">HOURS PER WEEK</text>
+          <g font-family="'Times New Roman',serif" font-size="10" fill="#f5c842" text-anchor="middle" font-weight="700">
+            <text x="130" y="118">40</text><text x="285" y="76">70</text>
+          </g>
+          <g font-family="'Times New Roman',serif" font-size="9.5" fill="#f3e9d8" text-anchor="middle">
+            <text x="109" y="198">Batch processing</text>
+            <text x="264" y="198">Report delivery</text>
+          </g>
+          <g font-family="'Times New Roman',serif" font-size="9" fill="#f5c842" text-anchor="middle" letter-spacing="0.5">
+            <text x="109" y="211">60% less time</text>
+            <text x="264" y="211">30% less time</text>
+          </g>
         </svg>
         <div class="hc-legend">
           <div class="hc-leg-item"><span class="hc-leg-dot" style="background:#5d5a52"></span>Before</div>
-          <div class="hc-leg-item"><span class="hc-leg-dot" style="background:#e8192c"></span>After (Power BI)</div>
+          <div class="hc-leg-item"><span class="hc-leg-dot" style="background:#e8192c"></span>After</div>
         </div>
+        <div class="hc-note">Indexed from the reported 60% reduction (Bendito Soft Tech) and 30% reduction (Minnodi LLC).</div>
       </div>
     </div>
 
     <div class="hero-stats">
+      <div class="stat"><div class="stat-num">60%</div><div class="stat-lbl">Faster Batch Processing<br>Bendito Soft Tech</div></div>
+      <div class="stat"><div class="stat-num">15,000+</div><div class="stat-lbl">Records Reconciled<br>Across 5 Enterprise Systems</div></div>
       <div class="stat"><div class="stat-num">30%</div><div class="stat-lbl">Faster Report Delivery<br>Minnodi LLC</div></div>
-      <div class="stat"><div class="stat-num">60%</div><div class="stat-lbl">Faster ETL Processing<br>Bendito Soft Tech</div></div>
-      <div class="stat"><div class="stat-num">73.7%</div><div class="stat-lbl">Hallucination Detection<br>Accuracy — RAG System</div></div>
-      <div class="stat"><div class="stat-num">AWS</div><div class="stat-lbl">Certified ML Engineer<br>Associate (MLA-C02)</div></div>
+      <div class="stat"><div class="stat-num">73.7%</div><div class="stat-lbl">Hallucination Detection<br>RAG System</div></div>
     </div>
   </div>
 </header>
@@ -469,21 +496,21 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
       <article class="exp-row reveal">
         <div class="exp-rail">
           <div class="exp-dot"></div>
-          <div class="exp-dates">Jan 2026 — Present</div>
+          <div class="exp-dates">Sep 2025 to Present</div>
           <div class="exp-loc">Remote, US</div>
           <span class="exp-type">Full-Time</span>
         </div>
         <div class="exp-card" data-tilt>
           <div class="exp-co">Minnodi LLC</div>
           <div class="exp-role">Data Analyst</div>
-          <div class="exp-blocks">
-            <div><div class="exp-block-l">Problem</div><div class="exp-block-t">Data across <strong>5 enterprise systems</strong> had no reconciliation layer, with quality issues going undetected and reporting taking too long to prepare manually.</div></div>
-            <div><div class="exp-block-l">Approach</div><div class="exp-block-t">Reconciled and validated <strong>15,000+ records</strong> across 5 systems using SQL, identifying and resolving 15+ data quality issues. Built and maintained 10+ Power BI dashboards and reports (DAX, Power Query) used directly by stakeholders across 3 business units. Used AI tools, including <strong>Claude Code</strong>, daily to speed up analysis and automate recurring reporting workflows.</div></div>
-            <div><div class="exp-block-l">Outcome</div><div class="exp-block-t">Report delivery time cut by <strong>30%</strong>. Stakeholders across 3 business units now work directly from live dashboards, with findings translated into clear, actionable recommendations.</div></div>
-          </div>
+          <ul class="exp-points">
+            <li>Reconciled more than <strong>15,000 records across 5 enterprise systems</strong>, identifying and resolving over 15 data quality issues by tracing each anomaly to its source system, documenting transformation logic and source-specific rules, and partnering with stakeholders to translate domain requirements into clean, structured outputs that downstream teams can use without additional manual intervention.</li>
+            <li>Designed and maintained Power BI data models using star schema architecture, DAX-driven calculations, and Power Query transformations, building reusable, well-documented data structures that serve as trusted inputs for dashboards and reporting across <strong>3 business units</strong>.</li>
+            <li>Cut recurring report delivery time by <strong>30%</strong> by standardizing data extraction, cleaning, and formatting into repeatable, maintainable ingestion workflows. Uses Claude Code daily to accelerate SQL development and automate data tasks, turning one-off requests into reusable routines.</li>
+          </ul>
           <div class="tool-chips">
             <span class="chip">SQL</span><span class="chip">Power BI</span><span class="chip">DAX</span>
-            <span class="chip">Power Query</span><span class="chip">Claude Code</span>
+            <span class="chip">Power Query</span><span class="chip">Star Schema</span><span class="chip">Claude Code</span>
           </div>
         </div>
       </article>
@@ -491,42 +518,22 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
       <article class="exp-row reveal">
         <div class="exp-rail">
           <div class="exp-dot"></div>
-          <div class="exp-dates">Aug 2025 — May 2026</div>
-          <div class="exp-loc">Baltimore, MD</div>
-          <span class="exp-type alt">Graduate Research</span>
-        </div>
-        <div class="exp-card" data-tilt>
-          <div class="exp-co">University of Maryland, Baltimore County</div>
-          <div class="exp-role">Data Analyst</div>
-          <div class="exp-blocks">
-            <div><div class="exp-block-l">Problem</div><div class="exp-block-t">Graduate research initiatives needed statistically rigorous modeling and reconciled data across multiple source systems, with technical results translated for non-technical stakeholders.</div></div>
-            <div><div class="exp-block-l">Approach</div><div class="exp-block-t">Applied statistical and machine learning methods, including <strong>supervised models</strong>, in R and Python to real-world datasets. Performed SQL and Python-based data reconciliation across multiple source systems. Completed dedicated financial modeling coursework covering forecasting, budgeting, and valuation.</div></div>
-            <div><div class="exp-block-l">Outcome</div><div class="exp-block-t">Delivered findings stakeholders could act on directly, pairing applied ML methodology with financial modeling fundamentals used across research initiatives.</div></div>
-          </div>
-          <div class="tool-chips">
-            <span class="chip">R</span><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Statistical Modeling</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="exp-row reveal">
-        <div class="exp-rail">
-          <div class="exp-dot"></div>
-          <div class="exp-dates">Jan 2023 — May 2024</div>
+          <div class="exp-dates">May 2022 to May 2024</div>
           <div class="exp-loc">Remote, India</div>
           <span class="exp-type">Full-Time</span>
         </div>
         <div class="exp-card" data-tilt>
           <div class="exp-co">Bendito Soft Tech Pvt. Ltd.</div>
-          <div class="exp-role">Data Analyst</div>
-          <div class="exp-blocks">
-            <div><div class="exp-block-l">Problem</div><div class="exp-block-t">Batch processing for downstream reporting was slow and unreliable, recurring datasets hid patterns that went unnoticed, and KPI tracking was inconsistent across time.</div></div>
-            <div><div class="exp-block-l">Approach</div><div class="exp-block-t">Built Python-based ETL automation. Applied data mining techniques to surface patterns and anomalies across recurring datasets. Tracked and reported on 12 KPIs using SQL. Used Snowflake for data transformation and automated recurring workflows with Microsoft Copilot and Power Automate.</div></div>
-            <div><div class="exp-block-l">Outcome</div><div class="exp-block-t"><strong>60% reduction</strong> in batch processing time, improving reliability of downstream reporting and analysis. Stakeholders gained consistent, repeatable visibility into 12 KPI trends.</div></div>
-          </div>
+          <div class="exp-role">Data Engineer</div>
+          <ul class="exp-points">
+            <li>Built scalable ETL pipelines in C++ and Python that ingested, transformed, and loaded data from varied source formats, reducing batch processing time by <strong>60%</strong> and eliminating manual steps that had previously introduced inconsistency into the data delivery cycle.</li>
+            <li>Used <strong>Snowflake</strong> as the primary data warehouse for cross-system ingestion and quality validation, monitoring pipelines for anomalies and inconsistencies before they reached downstream analytics, and documenting root causes and remediation steps for every issue identified.</li>
+            <li>Wrote complex SQL to transform raw source data into structured, platform-ready outputs tracking <strong>12 operational KPIs</strong>, building reusable query libraries that other analysts could adapt independently without requiring rework of the underlying transformation logic.</li>
+            <li>Led validation and testing of data pipelines using Jira for defect tracking. Automated recurring ingestion workflows with Power Automate and performed REST API testing via Postman to verify correctness of data connections across integrated systems.</li>
+          </ul>
           <div class="tool-chips">
-            <span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Snowflake</span>
-            <span class="chip">Microsoft Copilot</span><span class="chip">Power Automate</span>
+            <span class="chip">C++</span><span class="chip">Python</span><span class="chip">Snowflake</span>
+            <span class="chip">SQL</span><span class="chip">Jira</span><span class="chip">Power Automate</span><span class="chip">Postman</span>
           </div>
         </div>
       </article>
@@ -539,22 +546,24 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
 <section id="projects">
   <div class="wrap">
     <div class="reveal">
-      <div class="sec-eyebrow">Selected Projects</div>
-      <h2 class="sec-h">Case studies with measurable outcomes.</h2>
+      <div class="sec-eyebrow">Projects</div>
+      <h2 class="sec-h">Systems built, results measured.</h2>
     </div>
     <div class="proj-list">
 
       <article class="proj-card reveal" data-tilt>
-        <div class="proj-num">01 — ML &amp; Risk Modeling</div>
-        <div class="proj-title">Predictive Model for Children at Risk of Elevated Blood Lead Levels</div>
-        <div class="proj-blocks">
-          <div><div class="proj-block-l">Problem</div><div class="proj-block-t">Risk needed modeling across <strong>125,490 records</strong> with only <strong>93 high-risk cases</strong> — a severe class imbalance problem that makes standard models unreliable.</div></div>
-          <div><div class="proj-block-l">Approach</div><div class="proj-block-t">Applied logistic regression, random forest, and XGBoost alongside SMOTE and ADASYN resampling. After an early result appeared unusually strong, identified a <strong>data leakage issue</strong>, corrected it, and retuned models with RandomizedSearchCV before validating final results.</div></div>
-          <div><div class="proj-block-l">Outcome</div><div class="proj-block-t">Delivered validated models after catching and correcting a leakage issue that would have overstated performance — questioning results before trusting them.</div></div>
+        <div class="proj-num">AI Data Infrastructure</div>
+        <div class="proj-title">RAG Based Hallucination Detection System</div>
+        <p class="proj-desc">Designed and built semantic data retrieval infrastructure combining <strong>hybrid FAISS and BM25 retrieval</strong> fused via Reciprocal Rank Fusion with a <strong>DeBERTa NLI consistency-check layer</strong>, structuring raw text data to be materially more accessible to AI tools. Evaluated on a 15,000 claim dataset and a purpose-built adversarial test set.</p>
+        <div class="fig-row">
+          <div class="fig"><div class="fig-num">73.7%</div><div class="fig-lbl">Hallucination detection on adversarial cases</div></div>
+          <div class="fig"><div class="fig-num">59.05% to 62.75%</div><div class="fig-lbl">Factual accuracy improvement</div></div>
+          <div class="fig"><div class="fig-num">15,000</div><div class="fig-lbl">Claims evaluated</div></div>
         </div>
         <div class="proj-chips">
-          <span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">SMOTE</span>
-          <span class="chip">ADASYN</span><span class="chip">XGBoost</span><span class="chip">RandomizedSearchCV</span>
+          <span class="chip">Python</span><span class="chip">FAISS</span><span class="chip">BM25</span>
+          <span class="chip">Reciprocal Rank Fusion</span><span class="chip">Cross-Encoder Reranking</span>
+          <span class="chip">DeBERTa NLI</span><span class="chip">HuggingFace Transformers</span><span class="chip">ONNX</span>
         </div>
         <div class="proj-links">
           <a class="proj-link" href="https://github.com/vamsi57567" target="_blank" rel="noopener">GitHub ↗</a>
@@ -562,22 +571,152 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
       </article>
 
       <article class="proj-card reveal" data-tilt>
-        <div class="proj-num">02 — Trustworthy AI</div>
-        <div class="proj-title">RAG Based Hallucination Detection System</div>
-        <div class="proj-blocks">
-          <div><div class="proj-block-l">Problem</div><div class="proj-block-t">LLMs produce confident but factually incorrect outputs with no built-in verification layer.</div></div>
-          <div><div class="proj-block-l">Approach</div><div class="proj-block-t">Built an <strong>8-layer retrieval-augmented generation system</strong> combining FAISS and BM25 hybrid retrieval with cross-encoder reranking. Added NLI-based consistency checks and uncertainty quantification.</div></div>
-          <div><div class="proj-block-l">Outcome</div><div class="proj-block-t">Improved factual accuracy from <strong>59.05% to 62.75%</strong> on a 15,000-claim dataset. Reached <strong>73.7% hallucination detection accuracy</strong> on adversarial test cases.</div></div>
+        <div class="proj-num">Machine Learning and Data Integrity</div>
+        <div class="proj-title">Predictive Model for Children at Risk of Elevated Blood Lead Levels</div>
+        <p class="proj-desc">Applied logistic regression, random forest, and XGBoost with SMOTE and ADASYN resampling to a severely imbalanced dataset. After an early result looked unusually strong, I <strong>caught and corrected a data leakage issue mid-project</strong>, retuned with RandomizedSearchCV, and validated on a held-out test set before trusting any output.</p>
+        <div class="fig-row">
+          <div class="fig"><div class="fig-num">125,490</div><div class="fig-lbl">Records modeled</div></div>
+          <div class="fig"><div class="fig-num">93</div><div class="fig-lbl">High risk cases (severe class imbalance)</div></div>
+          <div class="fig"><div class="fig-num">Held-out</div><div class="fig-lbl">Test set validation after leakage fix</div></div>
         </div>
         <div class="proj-chips">
-          <span class="chip">Python</span><span class="chip">FAISS</span><span class="chip">BM25</span>
-          <span class="chip">Cross-Encoder Reranking</span><span class="chip">NLI</span><span class="chip">Uncertainty Quantification</span>
+          <span class="chip">Python</span><span class="chip">scikit-learn</span><span class="chip">XGBoost</span>
+          <span class="chip">SMOTE</span><span class="chip">ADASYN</span><span class="chip">RandomizedSearchCV</span>
         </div>
         <div class="proj-links">
           <a class="proj-link" href="https://github.com/vamsi57567" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </article>
 
+    </div>
+
+    <div class="sub-h reveal">More projects</div>
+    <div class="proj-extra">
+      <article class="proj-card reveal" data-tilt>
+        <div class="proj-num">Big Data and Forecasting</div>
+        <div class="proj-title">Energy Consumption Forecasting for Smart Cities</div>
+        <p class="proj-desc">Built a large-scale data processing pipeline on <strong>PySpark and HDFS</strong> supporting batch and real-time outputs. Compared SARIMA, random forest, and linear regression; random forest beat the SARIMA baseline by <strong>9.6% RMSE</strong>, with documented rationale for model selection.</p>
+        <div class="proj-chips">
+          <span class="chip">PySpark</span><span class="chip">HDFS</span><span class="chip">SARIMA</span>
+          <span class="chip">scikit-learn</span><span class="chip">AWS</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/vamsi57567" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </article>
+
+      <article class="proj-card reveal" data-tilt>
+        <div class="proj-num">Exploratory Analysis and Regression</div>
+        <div class="proj-title">Wholesale Price Index Analysis</div>
+        <p class="proj-desc">Exploratory data analysis on commodity pricing and economic index data, with correlations up to <strong>0.87</strong>. Built a linear regression model with an <strong>R-squared of 0.84</strong>, validated with residual analysis and holdout testing.</p>
+        <div class="proj-chips">
+          <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">scikit-learn</span>
+          <span class="chip">Linear Regression</span>
+        </div>
+        <div class="proj-links">
+          <a class="proj-link" href="https://github.com/vamsi57567/Exploratory_data_analysis" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="sec-eyebrow">Technical Skills</div>
+      <h2 class="sec-h">The full stack, by what I use it for.</h2>
+    </div>
+
+    <div class="core-grid">
+      <div class="core-tile reveal" data-tilt><div class="core-name">Python</div><div class="core-sub">pandas, NumPy, scikit-learn, XGBoost, statsmodels</div></div>
+      <div class="core-tile reveal" data-tilt><div class="core-name">SQL</div><div class="core-sub">CTEs, window functions, complex queries</div></div>
+      <div class="core-tile reveal" data-tilt><div class="core-name">Snowflake</div><div class="core-sub">Cross-system ingestion and quality validation</div></div>
+      <div class="core-tile reveal" data-tilt><div class="core-name">PySpark</div><div class="core-sub">Large-scale processing with HDFS</div></div>
+      <div class="core-tile reveal" data-tilt><div class="core-name">Power BI</div><div class="core-sub">DAX, data models, star schema</div></div>
+      <div class="core-tile reveal" data-tilt><div class="core-name">AWS</div><div class="core-sub">S3, EC2, EMR. ML Engineer certified</div></div>
+    </div>
+
+    <div class="skill-rows reveal">
+      <div class="skill-row">
+        <div class="skill-domain">SQL and Data Engineering</div>
+        <div class="skill-tools">
+          <span class="skill-tool hl">Snowflake</span><span class="skill-tool">Complex Queries</span>
+          <span class="skill-tool">Joins and Aggregations</span><span class="skill-tool">CTEs</span>
+          <span class="skill-tool">Window Functions</span><span class="skill-tool">T-SQL Concepts</span>
+          <span class="skill-tool">Data Transformation</span><span class="skill-tool">Reusable Query Libraries</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-domain">ETL and Pipelines</div>
+        <div class="skill-tools">
+          <span class="skill-tool hl">Python ETL</span><span class="skill-tool hl">C++ ETL</span>
+          <span class="skill-tool hl">PySpark</span><span class="skill-tool">HDFS</span>
+          <span class="skill-tool">AWS S3</span><span class="skill-tool">AWS EC2</span><span class="skill-tool">AWS EMR</span>
+          <span class="skill-tool">Batch Ingestion</span><span class="skill-tool">Real-Time Ingestion</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-domain">Data Quality and Validation</div>
+        <div class="skill-tools">
+          <span class="skill-tool">Multi-Source Reconciliation</span><span class="skill-tool">Anomaly Detection</span>
+          <span class="skill-tool">Root Cause Analysis</span><span class="skill-tool">Pipeline Monitoring</span>
+          <span class="skill-tool">Pipeline Validation Testing</span><span class="skill-tool">Defect Tracking</span>
+          <span class="skill-tool">REST API Testing</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-domain">AI and Semantic Structuring</div>
+        <div class="skill-tools">
+          <span class="skill-tool">RAG Pipeline Design</span><span class="skill-tool">FAISS</span>
+          <span class="skill-tool">BM25</span><span class="skill-tool">Reciprocal Rank Fusion</span>
+          <span class="skill-tool">Cross-Encoder Reranking</span><span class="skill-tool">DeBERTa NLI</span>
+          <span class="skill-tool">HuggingFace Transformers</span><span class="skill-tool">ONNX</span>
+          <span class="skill-tool">Uncertainty Quantification</span><span class="skill-tool">Data Preparation for AI</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-domain">Machine Learning and Statistics</div>
+        <div class="skill-tools">
+          <span class="skill-tool">scikit-learn</span><span class="skill-tool">XGBoost</span>
+          <span class="skill-tool">Logistic Regression</span><span class="skill-tool">Random Forest</span>
+          <span class="skill-tool">SMOTE</span><span class="skill-tool">ADASYN</span>
+          <span class="skill-tool">RandomizedSearchCV</span><span class="skill-tool">SARIMA</span>
+          <span class="skill-tool">statsmodels</span><span class="skill-tool">Statistical Analysis</span>
+          <span class="skill-tool">AWS SageMaker Concepts</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-domain">Programming</div>
+        <div class="skill-tools">
+          <span class="skill-tool hl">Python</span><span class="skill-tool hl">SQL</span>
+          <span class="skill-tool">C++</span><span class="skill-tool">R Studio</span><span class="skill-tool">SAS</span>
+          <span class="skill-tool">pandas</span><span class="skill-tool">NumPy</span>
+          <span class="skill-tool">Matplotlib</span><span class="skill-tool">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-domain">BI and Reporting</div>
+        <div class="skill-tools">
+          <span class="skill-tool hl">Power BI</span><span class="skill-tool hl">DAX</span>
+          <span class="skill-tool">Power Query</span><span class="skill-tool">Data Modeling</span>
+          <span class="skill-tool">Star Schema</span><span class="skill-tool">Row Level Security</span>
+          <span class="skill-tool">Drillthrough Reports</span><span class="skill-tool">Workspace Administration</span>
+          <span class="skill-tool">Excel Advanced Formulas</span><span class="skill-tool">PivotTables</span>
+          <span class="skill-tool">VLOOKUP</span><span class="skill-tool">VBA Automation</span>
+        </div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-domain">Tools and Automation</div>
+        <div class="skill-tools">
+          <span class="skill-tool hl">Claude Code (daily)</span><span class="skill-tool">Microsoft Copilot</span>
+          <span class="skill-tool">Power Automate</span><span class="skill-tool">Git</span>
+          <span class="skill-tool">Jira</span><span class="skill-tool">Postman</span>
+          <span class="skill-tool">Apache Tomcat</span><span class="skill-tool">Salesforce (Apex)</span>
+          <span class="skill-tool">Microsoft Office</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -594,96 +733,40 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
       <h3 class="res-title">Deforestation Detection from Remote Sensing Images using Machine Learning</h3>
       <div class="res-authors">Vamsi Krishna Peeta et al. · SRM University, Andhra Pradesh</div>
       <div class="res-doi">DOI: 10.1109/10724972</div>
-      <p class="res-summary">Applied a custom CNN architecture to multispectral satellite imagery to detect deforestation at scale, extracting vegetation cover change and land-use dynamics, and outperforming traditional ML baselines on spatial classification tasks.</p>
+      <p class="res-summary">Fine-tuned a pretrained CNN via transfer learning on multispectral satellite imagery (Landsat and Sentinel) to detect deforestation and land-use change at scale, outperforming traditional ML baselines on spatial classification.</p>
       <div class="res-arch">
         <div class="res-arch-l">System Architecture</div>
-        <svg viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" font-family="'Times New Roman',serif">
+        <svg viewBox="0 0 760 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet" font-family="'Times New Roman',serif" role="img" aria-label="Pipeline: satellite data, preprocessing, fine-tuned CNN, classification output">
           <g>
             <rect x="10" y="30" width="150" height="44" rx="2" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
             <text x="85" y="50" text-anchor="middle" font-size="11" fill="#f3e9d8" font-weight="700">Satellite Data</text>
-            <text x="85" y="64" text-anchor="middle" font-size="9" fill="#9a9586">Landsat / Sentinel</text>
+            <text x="85" y="64" text-anchor="middle" font-size="9" fill="#9a9586">Landsat and Sentinel</text>
           </g>
           <line x1="160" y1="52" x2="195" y2="52" stroke="#f5c842" stroke-width="1.2"/>
           <polygon points="194,48 202,52 194,56" fill="#f5c842"/>
           <g>
             <rect x="202" y="30" width="150" height="44" rx="2" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
             <text x="277" y="50" text-anchor="middle" font-size="11" fill="#f3e9d8" font-weight="700">Preprocessing</text>
-            <text x="277" y="64" text-anchor="middle" font-size="9" fill="#9a9586">Normalization, Augmentation</text>
+            <text x="277" y="64" text-anchor="middle" font-size="9" fill="#9a9586">Multispectral Bands</text>
           </g>
           <line x1="352" y1="52" x2="387" y2="52" stroke="#f5c842" stroke-width="1.2"/>
           <polygon points="386,48 394,52 386,56" fill="#f5c842"/>
           <g>
             <rect x="394" y="30" width="150" height="44" rx="2" fill="#e8192c" stroke="#ff3349"/>
-            <text x="469" y="50" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">CNN Model</text>
-            <text x="469" y="64" text-anchor="middle" font-size="9" fill="#fff" opacity="0.85">Custom Architecture</text>
+            <text x="469" y="50" text-anchor="middle" font-size="11" fill="#fff" font-weight="700">Fine-Tuned CNN</text>
+            <text x="469" y="64" text-anchor="middle" font-size="9" fill="#fff" opacity="0.85">Transfer Learning</text>
           </g>
           <line x1="544" y1="52" x2="579" y2="52" stroke="#f5c842" stroke-width="1.2"/>
           <polygon points="578,48 586,52 578,56" fill="#f5c842"/>
           <g>
             <rect x="586" y="30" width="160" height="44" rx="2" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
             <text x="666" y="50" text-anchor="middle" font-size="11" fill="#f3e9d8" font-weight="700">Classification</text>
-            <text x="666" y="64" text-anchor="middle" font-size="9" fill="#9a9586">Forest Loss Output</text>
+            <text x="666" y="64" text-anchor="middle" font-size="9" fill="#9a9586">Land-Use Change Output</text>
           </g>
         </svg>
       </div>
       <a class="proj-link fill" href="https://ieeexplore.ieee.org/document/10724972" target="_blank" rel="noopener">Read on IEEE Xplore ↗</a>
     </article>
-  </div>
-</section>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="sec-eyebrow">Skills</div>
-      <h2 class="sec-h">Tools across the stack.</h2>
-    </div>
-    <div class="skill-rows reveal">
-      <div class="skill-row">
-        <div class="skill-domain">Data Analysis &amp; Reconciliation</div>
-        <div class="skill-tools">
-          <span class="skill-tool">SQL (Advanced)</span><span class="skill-tool">Multi-System Data Validation</span>
-          <span class="skill-tool">Data Quality Investigation</span><span class="skill-tool">Variance Analysis</span>
-          <span class="skill-tool">Statistical Analysis</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-domain">ML &amp; AI</div>
-        <div class="skill-tools">
-          <span class="skill-tool">scikit-learn</span><span class="skill-tool">Logistic Regression</span>
-          <span class="skill-tool">Random Forest</span><span class="skill-tool">XGBoost</span>
-          <span class="skill-tool">Gradient Boosted Trees</span><span class="skill-tool">PyTorch</span>
-          <span class="skill-tool">TensorFlow</span><span class="skill-tool">SARIMA</span>
-          <span class="skill-tool">RAG</span><span class="skill-tool">FAISS</span>
-          <span class="skill-tool">BM25</span><span class="skill-tool">Cross-Encoder Reranking</span>
-          <span class="skill-tool">Uncertainty Quantification</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-domain">Programming &amp; Querying</div>
-        <div class="skill-tools">
-          <span class="skill-tool">Python</span><span class="skill-tool">SQL</span>
-          <span class="skill-tool">R</span><span class="skill-tool">PySpark</span><span class="skill-tool">SparkSQL</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-domain">BI &amp; Reporting</div>
-        <div class="skill-tools">
-          <span class="skill-tool">Power BI (DAX)</span><span class="skill-tool">Power Query</span>
-          <span class="skill-tool">Tableau</span><span class="skill-tool">Excel Advanced Formulas</span>
-          <span class="skill-tool">PivotTables</span><span class="skill-tool">VBA</span>
-        </div>
-      </div>
-      <div class="skill-row">
-        <div class="skill-domain">Cloud, Tools &amp; Automation</div>
-        <div class="skill-tools">
-          <span class="skill-tool">AWS</span><span class="skill-tool">Docker</span>
-          <span class="skill-tool">Snowflake</span><span class="skill-tool">Microsoft Office</span>
-          <span class="skill-tool">Claude Code</span><span class="skill-tool">Microsoft Copilot</span>
-          <span class="skill-tool">Power Automate</span>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -696,38 +779,57 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
     </div>
     <div class="edu-grid">
       <article class="edu-card reveal" data-tilt>
-        <span class="edu-current">Current</span>
         <div class="edu-inst">University of Maryland, Baltimore County</div>
-        <div class="edu-deg">M.S. — Data Science</div>
+        <div class="edu-deg">M.S. Data Science</div>
         <div class="edu-gpa">GPA 3.86 / 4.0</div>
-        <div class="edu-meta">Aug 2024 — May 2026 · Baltimore, MD</div>
+        <div class="edu-meta">Aug 2024 to May 2026 · Baltimore, MD</div>
         <div class="edu-courses-l">Relevant Coursework</div>
         <div class="edu-courses">
-          <div class="edu-course">Forecasting &amp; Applied Machine Learning</div>
-          <div class="edu-course">Financial Modeling — Forecasting, Budgeting, Valuation</div>
-          <div class="edu-course">Statistical &amp; Supervised Learning Methods</div>
+          <div class="edu-course">Statistical Learning and Data Mining</div>
+          <div class="edu-course">Machine Learning</div>
+          <div class="edu-course">Forecasting and Time Series Analysis</div>
+          <div class="edu-course">Big Data Processing</div>
+          <div class="edu-course">Data Analysis and Visualization</div>
+          <div class="edu-course">Database Management Systems</div>
+          <div class="edu-course">Research Methods and Evaluation</div>
+          <div class="edu-course">Financial Management</div>
         </div>
       </article>
       <article class="edu-card reveal" data-tilt>
         <div class="edu-inst">SRM University</div>
-        <div class="edu-deg">B.E. — Computer Science</div>
+        <div class="edu-deg">B.E. Computer Science</div>
         <div class="edu-gpa">GPA 3.81 / 4.0</div>
-        <div class="edu-meta">Jun 2020 — May 2024 · Andhra Pradesh, India</div>
+        <div class="edu-meta">Jun 2020 to May 2024 · Andhra Pradesh, India</div>
         <div class="edu-courses-l">Relevant Coursework</div>
         <div class="edu-courses">
-          <div class="edu-course">Algorithms &amp; Data Structures</div>
-          <div class="edu-course">Machine Learning &amp; Computer Networks</div>
-          <div class="edu-course">Python &amp; R Programming</div>
+          <div class="edu-course">Algorithms</div>
+          <div class="edu-course">Data Structures</div>
+          <div class="edu-course">Database Systems</div>
+          <div class="edu-course">Statistical Methods</div>
+          <div class="edu-course">Python</div>
+          <div class="edu-course">R Programming</div>
+          <div class="edu-course">Machine Learning</div>
+          <div class="edu-course">Computer Networks</div>
         </div>
       </article>
     </div>
 
-    <div class="cert-strip reveal">
-      <div class="cert-badge">AWS</div>
-      <div>
-        <div class="cert-text-l">Certification</div>
-        <div class="cert-text-t">AWS Certified Machine Learning Engineer — Associate</div>
-        <div class="cert-text-s">MLA-C02</div>
+    <div class="cert-grid">
+      <div class="cert-strip reveal">
+        <div class="cert-badge">AWS</div>
+        <div>
+          <div class="cert-text-l">Certification</div>
+          <div class="cert-text-t">AWS Certified Machine Learning Engineer, Associate</div>
+          <div class="cert-text-s">MLA-C02</div>
+        </div>
+      </div>
+      <div class="cert-strip reveal">
+        <div class="cert-badge">SF</div>
+        <div>
+          <div class="cert-text-l">Certification</div>
+          <div class="cert-text-t">Salesforce Developer Virtual Internship</div>
+          <div class="cert-text-s">Apex Specialist and Process Automation Specialist Super Badges</div>
+        </div>
       </div>
     </div>
   </div>
@@ -737,26 +839,26 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
 <section id="contact" class="contact">
   <div class="wrap reveal">
     <h2 class="contact-h">Let's build something rigorous.</h2>
-    <p class="contact-sub">Open to full-time roles in the USA — data analytics, machine learning, and business intelligence. Reach out via any channel below.</p>
+    <p class="contact-sub">Open to full-time roles across the USA, including remote. Data analytics, data engineering, and machine learning. Reach out through any channel below.</p>
     <div class="contact-links">
       <a class="contact-link" href="https://www.linkedin.com/in/vamsi-krishna-23585223a/" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43c-1.14 0-2.06-.93-2.06-2.06s.92-2.06 2.06-2.06 2.06.92 2.06 2.06-.92 2.06-2.06 2.06zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0h.01z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43c-1.14 0-2.06-.93-2.06-2.06s.92-2.06 2.06-2.06 2.06.92 2.06 2.06-.92 2.06-2.06 2.06zm1.78 13.02H3.56V9h3.56v11.45zM22.23 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0h.01z"/></svg>
         LinkedIn
       </a>
       <a class="contact-link" href="https://github.com/vamsi57567" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M12 .3C5.4.3 0 5.7 0 12.3c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.6 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6C20.6 22.1 24 17.6 24 12.3 24 5.7 18.6.3 12 .3"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 .3C5.4.3 0 5.7 0 12.3c0 5.3 3.4 9.8 8.2 11.4.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2 1-.3 2-.4 3-.4s2 .1 3 .4c2.3-1.6 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6C20.6 22.1 24 17.6 24 12.3 24 5.7 18.6.3 12 .3"/></svg>
         GitHub
       </a>
       <a class="contact-link" id="emailLink" href="#">
-        <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         Email
       </a>
       <a class="contact-link" href="tel:+16674330363">
-        <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         667-433-0363
       </a>
       <a class="contact-link" href="https://ieeexplore.ieee.org/document/10724972" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
         IEEE Paper
       </a>
     </div>
@@ -767,7 +869,7 @@ footer{background:var(--bg);padding:40px 0;border-top:1px solid var(--border);te
 
 <footer>
   <div class="wrap">
-    <div class="footer-text">© 2026 <b>Vamsi Krishna Peeta</b> · Data Analyst · Baltimore, USA</div>
+    <div class="footer-text">© 2026 <b>Vamsi Krishna Peeta</b> · Data Analyst and Data Engineer · USA</div>
   </div>
 </footer>
 
@@ -790,8 +892,7 @@ const navLinks = document.querySelectorAll('.nav-links a:not(.nav-cta), .mobile-
 function setActive() {
   let curId = '';
   sections.forEach(sec => {
-    const top = sec.getBoundingClientRect().top;
-    if (top <= 120) curId = sec.id;
+    if (sec.getBoundingClientRect().top <= 120) curId = sec.id;
   });
   navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + curId));
 }
@@ -808,39 +909,52 @@ const revealObs = new IntersectionObserver((entries) => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
+/* email assembled in script so it is not sitting in the HTML for scrapers */
 (function(){
   const u = 'vamsikrishna57567';
   const d = 'gmail.com';
   document.getElementById('emailLink').href = 'mailto:' + u + '@' + d;
 })();
 
+/* View counter: counts every visitor, but only shows for you.
+   Open the site once with #owner at the end of the URL to turn it on in your browser. */
 (function(){
+  const box = document.getElementById('viewBox');
   const el = document.getElementById('viewCount');
-  const url = 'https://api.countapi.xyz/hit/vamsi-portfolio-alpha/visits';
+  let owner = false;
+  try {
+    if (location.hash === '#owner') {
+      localStorage.setItem('vkpOwner', '1');
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    owner = localStorage.getItem('vkpOwner') === '1';
+  } catch (e) {}
+  const key = 'vamsi-portfolio-alpha/visits';
+  const url = 'https://api.countapi.xyz/' + (owner ? 'get/' : 'hit/') + key;
   fetch(url)
     .then(r => r.json())
-    .then(data => {
-      if (data && typeof data.value === 'number') {
-        el.textContent = data.value.toLocaleString();
-      } else {
-        const cached = localStorage.getItem('vkpViews');
-        el.textContent = cached || '1';
+    .then(d => {
+      if (owner && d && typeof d.value === 'number') {
+        el.textContent = d.value.toLocaleString();
+        box.style.display = 'inline-flex';
       }
     })
     .catch(() => {
-      let n = parseInt(localStorage.getItem('vkpViews') || '0', 10) + 1;
-      localStorage.setItem('vkpViews', n);
-      el.textContent = n.toLocaleString();
+      if (owner) {
+        el.textContent = 'unavailable';
+        box.style.display = 'inline-flex';
+      }
     });
 })();
 
+/* 3D tilt */
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const isTouch = window.matchMedia('(hover: none)').matches;
-if (!isTouch) {
+if (!isTouch && !reduceMotion) {
   document.querySelectorAll('[data-tilt]').forEach(card => {
-    const max = 8;
-    const lift = 14;
+    const max = 7;
+    const lift = 12;
     let rect;
-    card.style.willChange = 'transform';
     card.addEventListener('mouseenter', () => {
       rect = card.getBoundingClientRect();
       card.style.transition = 'transform .15s ease, box-shadow .25s ease, border-color .25s ease';
@@ -849,7 +963,7 @@ if (!isTouch) {
       if (!rect) rect = card.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width - 0.5;
       const y = (e.clientY - rect.top) / rect.height - 0.5;
-      card.style.transform = `perspective(1100px) rotateY(${x * max}deg) rotateX(${-y * max}deg) translateZ(${lift}px) scale(1.012)`;
+      card.style.transform = `perspective(1100px) rotateY(${x * max}deg) rotateX(${-y * max}deg) translateZ(${lift}px) scale(1.01)`;
     });
     card.addEventListener('mouseleave', () => {
       card.style.transition = 'transform .55s cubic-bezier(.23,1,.32,1), box-shadow .35s, border-color .25s';
@@ -875,7 +989,9 @@ if (!isTouch) {
   }
 }
 
+/* starfield */
 (function(){
+  if (reduceMotion) return;
   const cv = document.getElementById('stars');
   const ctx = cv.getContext('2d');
   let W, H, stars = [], mx = 0, my = 0;
